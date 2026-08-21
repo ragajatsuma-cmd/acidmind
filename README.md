@@ -2,6 +2,11 @@
 
 # AcidMind: Seven Critique Skills for AI Agents
 
+![AcidMind banner](./assets/banner.jpeg)
+
+<details>
+<summary>ASCII banner</summary>
+
 ```
 @@@@@@           @@@      @@@ @@@@@@@@@@  @@@               @@@
 @@@@@@@@          @@@      @@@ @@@@@@@@@@@ @@@               @@@
@@ -16,13 +21,16 @@
         seven critique skills for AI coding agents · v0.0.1
 ```
 
+</details>
+
 > A router-pattern skill family that stops AI coding agents from giving generic "looks good
 > overall" reviews. Seven specialist critics — design, features, performance, disaster
 > scenarios, meta-skill auditing, general critique, and plain human honesty — each read
 > **on-demand**, never force-loaded into every session.
 
-The canonical banner lives at [`assets/banner.txt`](./assets/banner.txt) and is what the CLI
-prints (in green) on every run.
+The ASCII banner lives at [`assets/banner.txt`](./assets/banner.txt) and is what the CLI
+prints (in green) on every run; the image banner lives at
+[`assets/banner.jpeg`](./assets/banner.jpeg).
 
 ---
 
@@ -164,7 +172,8 @@ acidmind/
 ├── README-ID.md              # this file, Indonesian
 ├── LICENSE
 ├── assets/
-│   └── banner.txt            # ASCII banner used by the CLI and this page
+│   ├── banner.txt            # ASCII banner printed by the CLI
+│   └── banner.jpeg           # image banner shown on GitHub
 └── skills/
     ├── ruthless-critic/SKILL.md
     ├── design-critic/SKILL.md
