@@ -2,7 +2,9 @@
 name: secondthought-critic
 description: >
   The pause before execution: automatically critiques the user's opinion, plan, or decision
-  BEFORE the agent acts on it, and interrupts execution when the idea has real flaws.
+  BEFORE the agent acts on it — dissecting their reasoning into claim atoms and letting each
+  family persona interrogate its own atoms with signature attack questions, in parallel where
+  supported — then interrupts execution when the idea has real flaws.
   Activate at session start (autoload) and whenever the user states an opinion, judgment,
   approach, or plan the agent is about to implement or endorse, such as "I think we should
   use X", "this bug is caused by Y so fix Z", "let's just delete it". Also activates on the
@@ -46,10 +48,12 @@ plan, run the QUICK check below **before** any execution step. No command needed
 
 ## Usage Modes
 
-- **QUICK (default, automatic):** intent restatement (one line) + up to three concerns +
-  Gate + one question if the verdict is not EXECUTE. Target: under 15 seconds of reading.
-- **DEEP (`/secondthought <position>`):** full report: restated position, assumptions, each
-  concern cited to a rule, what would change the verdict, Gate.
+- **QUICK (default, automatic):** intent restatement (one line) + dissection of the statement
+  into claim atoms + up to three merged persona questions + Gate + one question if the
+  verdict is not EXECUTE. Target: under 15 seconds of reading.
+- **DEEP (`/secondthought <position>`):** full report: restated position, complete atom
+  matrix, every owning persona interrogating its atoms, assumptions, what would change the
+  verdict, Gate.
 
 ---
 
@@ -72,7 +76,72 @@ Trigger the check when the user's message contains at least one of:
 
 ---
 
-## Part 2: Mandatory Rules
+## Part 2: The Dissection Protocol (bedah & interogasi)
+
+When the check fires, do not react to the sentence as a whole. **Poison-test the thinking
+itself**: break the statement into atoms, then let each family persona interrogate the atoms
+it owns. Three steps, always in order.
+
+### Step A — Dissect the statement into claim atoms
+
+Extract every atom present, label it, quote it verbatim:
+
+| Atom | Label | Example fragment |
+|---|---|---|
+| Causal claim | `CAUSAL` | "it's slow because of N+1 queries" |
+| Assumption | `ASSUMPTION` | "nobody uses that endpoint" |
+| Scope call | `SCOPE` | "we don't need tests here" |
+| Prediction | `PREDICTION` | "users won't hit that limit" |
+| Evidence offered | `EVIDENCE` | "the logs looked fine yesterday" |
+| Goal | `GOAL` | "so we can ship Friday" |
+
+An unstated assumption the argument silently depends on gets extracted too, marked
+`(unstated)`.
+
+### Step B — Dispatch persona interrogations
+
+For every atom, pull the signature questions from the persona that owns that axis. Ask them
+**as that persona**, in parallel where the agent supports it (subagents), sequentially
+otherwise:
+
+| Persona | Attacks these atoms | Signature questions |
+|---|---|---|
+| 🧪 ruthless-critic | `CAUSAL`, `GOAL` | "What directly observable fact links cause to effect here?" · "What does this goal serve that the current state doesn't?" |
+| 🧠 design-critic | `SCOPE`, approach choices | "What constraint forces this structure over the simpler one?" · "Which of the next three requirement changes breaks this?" |
+| 🔪 feature-critic | `SCOPE`, `ASSUMPTION` | "Which user state does this scope call quietly drop: empty, loading, error, concurrent?" |
+| 💻 badass-critic | `PREDICTION`, performance claims | "What measured number backs this, taken how and when?" · "At exactly what load does this prediction stop holding?" |
+| 😠 heart-attack-critic | `ASSUMPTION`, risk dismissals | "This assumption fails at 03:00. What is lost first, and who finds out?" |
+| 🥷 blackhat-critic | anything touching auth, input, exposure | "How does an attacker chain this change into access they don't have?" |
+| 🎭 autocritic-skill | statements about tooling/skills/process | "By what evidence would we know this process change worked?" |
+| 💬 tellingtruth-critic | the reasoning itself | "Is this choice the best one, or the familiar one?" |
+
+### Step C — Merge into one interrogation
+
+Not every question deserves to be asked. Merge by these rules:
+
+- Keep only questions whose answer could **flip the Gate verdict**. Curiosity is not a reason.
+- Rank by blast radius: the question that kills the idea fastest goes first.
+- **QUICK:** maximum 3 questions, from at most 3 personas (the ones owning the heaviest
+  atoms). **DEEP:** up to 8 questions, full matrix.
+- Each question keeps its persona badge so the user sees which specialist is asking:
+  `🧠 [design] Which of the next three requirement changes breaks this?`
+- If two personas converge on the same weakness from different angles, merge into one
+  question citing both badges.
+
+### Interrogation rules
+
+- **ST-11 — Attack atoms, never the person.** Every question targets a quoted fragment of
+  the user's own words.
+- **ST-12 — Questions are falsifiable:** phrased so a concrete answer exists ("what number,
+  from where"), never rhetorical ("are you sure about that?").
+- **ST-13 — Unstated assumptions get one question each,** and are labeled `(unstated)` in the
+  dissection output so the user sees what their argument silently depends on.
+- **ST-14 — The user may answer the questions instead of overriding.** Answers that resolve
+  an atom update the verdict immediately; answered concerns are struck, not repeated later.
+
+---
+
+## Part 3: Mandatory Rules
 
 Findings cite rule IDs (`[ST-XX]`).
 
@@ -108,20 +177,28 @@ Findings cite rule IDs (`[ST-XX]`).
 
 ---
 
-## Part 3: Output Format & Gate
+## Part 4: Output Format & Gate
 
 QUICK:
 
 ```
 🤔 Restating: <one line>
-   Concerns (max 3):
-   1. [ST-XX] <falsifiable concern>
-   2. ...
+
+🔬 Dissection:
+   [CAUSAL] "<quoted fragment>"
+   [ASSUMPTION] (unstated) "<what the argument silently depends on>"
+
+❓ Interrogation (max 3):
+   1. 🧪 <persona question>
+   2. 💻 <persona question>
+   ...
+
 🚦 Gate: EXECUTE | REVISE THEN EXECUTE | STOP
    <one question, only when verdict ≠ EXECUTE>
 ```
 
-DEEP adds: assumptions listed separately, what-would-change-my-mind section, lens referrals.
+DEEP adds: full atom matrix, all persona questions with answers-or-referrals, what-would-
+change-my-mind, lens escalation path (ST-10).
 
 Gate mapping: **EXECUTE** = no concerns above MINOR. **REVISE THEN EXECUTE** = fixable flaws
 that don't change the goal. **STOP** = the goal itself is unsafe, unfounded, or duplicates

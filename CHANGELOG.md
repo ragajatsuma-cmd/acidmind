@@ -2,6 +2,18 @@
 
 All notable changes to AcidMind are documented in this file.
 
+## [1.5.1] — 2026-08-22
+
+### Added
+
+- **Dissection Protocol** in `secondthought-critic` (bedah & interogasi): the user's statement
+  is broken into claim atoms (causal, assumption, scope, prediction, evidence, goal —
+  including unstated assumptions), then each family persona interrogates the atoms it owns
+  with signature attack questions, dispatched in parallel where the agent supports it.
+  Questions merge into one interrogation ranked by blast radius; each keeps its persona badge.
+  New rules ST-11 to ST-14: attack atoms never the person, falsifiable questions only,
+  unstated assumptions surfaced, answers strike concerns permanently.
+
 ## [1.5.0] — 2026-08-22
 
 ### Added
