@@ -110,6 +110,28 @@ paragraphs.
 
 ---
 
+### Claude Code — plugin install
+
+Install AcidMind as a plugin and every critic becomes a real slash command (`/grill-me`,
+`/blackhat`, `/acidmind`, …):
+
+```bash
+# 1. Add the marketplace
+/plugin marketplace add https://github.com/ragajatsuma-cmd/acidmind
+
+# 2. Install the plugin
+/plugin install acidmind@acidmind
+```
+
+The plugin bundles all nine skills plus nine prewired commands; skills auto-trigger on review
+requests, or invoke them directly with the commands above.
+
+### Other agents
+
+Use Option B/C below — the router pattern is tool-agnostic.
+
+---
+
 ## Quick Start
 
 ### Option A — npx (recommended)
@@ -239,6 +261,12 @@ acidmind/
 ├── README-ID.md              # project overview (Indonesian)
 ├── CHANGELOG.md
 ├── LICENSE
+├── .claude-plugin/
+│   ├── plugin.json           # Claude Code plugin manifest
+│   └── marketplace.json      # marketplace listing for /plugin marketplace add
+├── commands/                 # prewired slash commands (one per critic)
+│   ├── grill-me.md, designcritic.md, featurecritic.md, badass.md
+│   └── heartattack.md, blackhat.md, auditskill.md, tellingtruth.md, acidmind.md
 ├── assets/
 │   ├── banner.txt            # ASCII banner printed by the CLI
 │   └── banner.jpeg           # image banner shown on GitHub

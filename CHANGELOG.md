@@ -4,6 +4,15 @@ All notable changes to AcidMind are documented in this file.
 
 ## [1.3.1] — 2026-08-22
 
+### Added
+
+- **Claude Code plugin packaging** — `.claude-plugin/plugin.json` + `marketplace.json` make
+  AcidMind installable as a plugin:
+  `/plugin marketplace add https://github.com/ragajatsuma-cmd/acidmind` then
+  `/plugin install acidmind@acidmind`. Nine prewired slash commands (`commands/*.md`) map
+  directly onto the critics: `/grill-me`, `/designcritic`, `/featurecritic`, `/badass`,
+  `/heartattack`, `/blackhat`, `/auditskill`, `/tellingtruth`, `/acidmind`.
+
 ### Changed
 
 - **Installer now runs via npx directly from GitHub** — no clone or npm publish required:
