@@ -207,10 +207,8 @@ git clone https://github.com/<your-username>/acidmind.git
 
 ```
 acidmind/
-├── AcidMind.md              # this file — the router / index
-├── ACIDMIND-ID.md           # Indonesian version of this router
-├── README.md                # project overview (English)
-├── README-ID.md             # project overview (Indonesian)
+├── AcidMind.md               # this file — the router / index
+├── README.md                 # project overview (English)
 ├── LICENSE
 └── skills/
     ├── ruthless-critic/

@@ -49,7 +49,6 @@ Editions (--edition <name>, default: core):
 Options:
   --edition <name>   core | security | full (default: core)
   --all              shorthand for --edition full
-  --lang <en|id>     Language variant for docs (default: en)
   --dest <dir>       Destination directory (default: current directory)
   --repo <owner/name>  Source GitHub repo (default: ${DEFAULT_REPO})
   --branch <name>    Source branch (default: ${DEFAULT_BRANCH})
@@ -97,7 +96,6 @@ function showBanner() {
 
 function parseArgs(argv) {
   const opts = {
-    lang: "en",
     dest: process.cwd(),
     repo: process.env.ACIDMIND_REPO || DEFAULT_REPO,
     branch: process.env.ACIDMIND_BRANCH || DEFAULT_BRANCH,
@@ -108,8 +106,7 @@ function parseArgs(argv) {
   const positional = [];
   for (let i = 0; i < argv.length; i++) {
     const a = argv[i];
-    if (a === "--lang") opts.lang = argv[++i];
-    else if (a === "--dest") opts.dest = argv[++i];
+    if (a === "--dest") opts.dest = argv[++i];
     else if (a === "--repo") opts.repo = argv[++i];
     else if (a === "--branch") opts.branch = argv[++i];
     else if (a === "--force") opts.force = true;
@@ -163,11 +160,6 @@ async function installSkill(name, opts) {
   }
   const targets = [
     { remote: `skills/${name}/SKILL.md`, local: path.join(opts.dest, "skills", name, "SKILL.md") },
-    {
-      remote: `skills/${name}/SKILL-ID.md`,
-      local: path.join(opts.dest, "skills", name, "SKILL-ID.md"),
-      optional: true,
-    },
   ];
   const written = [];
   for (const t of targets) {
@@ -175,7 +167,6 @@ async function installSkill(name, opts) {
     try {
       content = await fetchFile(opts.repo, opts.branch, t.remote);
     } catch (err) {
-      if (t.optional) continue;
       throw err;
     }
     if ((await exists(t.local)) && !opts.force) {
@@ -202,7 +193,7 @@ async function addPointerBlock(opts) {
       break;
     }
   }
-  const routerName = opts.lang === "id" ? "ACIDMIND-ID.md" : "AcidMind.md";
+  const routerName = "AcidMind.md";
   if (content.includes(routerName)) {
     console.log(`pointer block already present in ${entryFile ? path.basename(entryFile) : "entry file"}`);
     return;
@@ -221,7 +212,7 @@ async function addPointerBlock(opts) {
 async function cmdInit(positional, opts) {
   const dirArg = positional[0];
   if (dirArg) opts.dest = path.resolve(dirArg);
-  const routerFile = opts.lang === "id" ? "ACIDMIND-ID.md" : "AcidMind.md";
+  const routerFile = "AcidMind.md";
   const routerDest = path.join(opts.dest, routerFile);
 
   console.log(`Installing AcidMind into ${opts.dest}\n`);
@@ -259,7 +250,7 @@ async function cmdAdd(positional, opts) {
 }
 
 async function cmdRouter(opts) {
-  const routerFile = opts.lang === "id" ? "ACIDMIND-ID.md" : "AcidMind.md";
+  const routerFile = "AcidMind.md";
   const destPath = path.join(opts.dest, routerFile);
   const content = await fetchFile(opts.repo, opts.branch, routerFile);
   await mkdir(opts.dest, { recursive: true });

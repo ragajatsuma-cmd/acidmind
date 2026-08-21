@@ -1,6 +1,4 @@
-[![ID](https://img.shields.io/badge/docs-ID-lightgrey?style=flat-square)](./README-ID.md)
-[![EN](https://img.shields.io/badge/docs-EN-2ea44f?style=flat-square)](./README.md)
-[![Version](https://img.shields.io/badge/version-1.3.1-orange?style=flat-square)](./CHANGELOG.md)
+[![Version](https://img.shields.io/badge/version-1.4.0-orange?style=flat-square)](./CHANGELOG.md)
 [![License](https://img.shields.io/badge/license-MIT-blue?style=flat-square)](./LICENSE)
 [![Skills](https://img.shields.io/badge/skills-9-8a2be2?style=flat-square)](#the-skill-family)
 [![Node](https://img.shields.io/badge/node-%3E%3D18-brightgreen?style=flat-square&logo=nodedotjs&logoColor=white)](https://nodejs.org)
@@ -170,7 +168,6 @@ More operations:
 ```bash
 npx github:ragajatsuma-cmd/acidmind list                                  # skills & editions
 npx github:ragajatsuma-cmd/acidmind add ruthless-critic badass-critic     # specific skills only
-npx github:ragajatsuma-cmd/acidmind router --lang id                      # just the router, Indonesian
 ```
 
 Once the package is published to npm, the shorter form also works: `npx acidmind-cli init`.
@@ -277,9 +274,7 @@ Core principles across all lenses: understand before critiquing · the purpose t
 ```
 acidmind/
 ├── AcidMind.md               # router / index — start here
-├── ACIDMIND-ID.md            # router, Indonesian reference draft
 ├── README.md                 # this file
-├── README-ID.md              # project overview (Indonesian)
 ├── CHANGELOG.md
 ├── LICENSE
 ├── .claude-plugin/

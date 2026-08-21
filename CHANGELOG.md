@@ -2,6 +2,14 @@
 
 All notable changes to AcidMind are documented in this file.
 
+## [1.4.1] — 2026-08-22
+
+### Removed
+
+- **Indonesian-language distribution** — the project is now English-only: deleted
+  `README-ID.md`, `ACIDMIND-ID.md`, and all `SKILL-ID.md` drafts; dropped the `--lang` CLI
+  flag and ID file fetching from the installer.
+
 ## [1.4.0] — 2026-08-22
 
 ### Added
