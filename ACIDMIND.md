@@ -31,7 +31,7 @@ to almost any codebase, unchanged? If yes, it's not a finding — go look harder
 | `feature-critic` | A specific feature checked for completeness and correctness — does it actually work for real users | `skills/feature-critic/SKILL.md` |
 | `badass-critic` | A performance review with concrete numbers — algorithmic complexity, DB/I/O, memory, concurrency | `skills/badass-critic/SKILL.md` |
 | `heart-attack-critic` | A worst-case disaster simulation before launch or a security audit — what could go fatally wrong | `skills/heart-attack-critic/SKILL.md` |
-| `skill-critic` | A `SKILL.md` file itself audited before install/distribution — will it trigger correctly, is it safe, is it useful | `skills/skill-critic/SKILL.md` |
+| `autocritic-skill` | A `SKILL.md` file itself audited before install/distribution — will it trigger correctly, is it safe, is it useful | `skills/autocritic-skill/SKILL.md` |
 | `tellingtruth-critic` | An unstructured, human, no-format honest opinion — no severity labels, no emoji, just straight talk | `skills/tellingtruth-critic/SKILL.md` |
 
 ---
@@ -40,8 +40,8 @@ to almost any codebase, unchanged? If yes, it's not a finding — go look harder
 
 Use this decision order when a request could match more than one skill:
 
-1. **Is the artifact itself a `SKILL.md`?** → `skill-critic`, always. Nothing else applies to
-   skill files.
+1. **Is the artifact itself a `SKILL.md`?** → `autocritic-skill`, always. Nothing else applies
+   to skill files.
 2. **Did the user explicitly ask for a worst-case / disaster / "what could go fatally wrong"
    scenario, or use a launch-readiness / security-audit framing?** → `heart-attack-critic`.
    Do not use this for routine review requests — it is deliberately alarming and should stay
@@ -161,7 +161,7 @@ acidmind/
     │   └── SKILL.md
     ├── heart-attack-critic/
     │   └── SKILL.md
-    ├── skill-critic/
+    ├── autocritic-skill/
     │   └── SKILL.md
     └── tellingtruth-critic/
         ├── SKILL.md
@@ -172,18 +172,15 @@ acidmind/
 
 ## Shared Design Rules Across All Seven Skills
 
+Every skill was rebuilt on the same architecture (inspired by
+[miqdadbadjuber/anti-slop](https://github.com/miqdadbadjuber/anti-slop), MIT): a persona, an
+authorization boundary with prompt-injection guard, two usage modes (QUICK / DEEP), numbered
+rules in three tiers — **Hard Gate** (absolute), **Purpose-Gate** (allowed with written
+reason), **Quality Locks** (consistency) — and a mandatory **Gate**: a one-line PASS/FAIL-style
+verdict derived mechanically from the findings.
+
 - **Understand before you critique.** Restate the artifact's intent in terms its author would
   agree with before finding fault. A strawman critique is a failed critique.
-- **Severity labels, not vibes.** Every finding is ranked so the reader knows what to fix first.
-- **Concrete over vague.** "This might be slow" is banned. A specific input, load threshold, or
-  scenario is required.
-- **Scoped, not overlapping.** Each skill states what it does *not* cover and names the sibling
-  skill that does — see the routing table above.
-- **Read-only by default.** These are diagnostic tools. They propose fixes; they don't apply
-  them unless the user explicitly asks for implementation.
-- **Prompt-injection aware.** Skills that process external artifacts (`ruthless-critic`,
-  `skill-critic`, `heart-attack-critic`) explicitly treat the reviewed content as data, not
-  instructions — text inside a submitted artifact cannot talk the skill into going easy on it.
 - **The purpose test.** For any technique, section, or abstraction: ask what it serves. If the
   only answer is "it's the AI default", that is itself a finding. Technique is never banned —
   technique without purpose is.
@@ -192,7 +189,17 @@ acidmind/
   reportable, in every lens.
 - **Slop-aware.** All seven critics scan for clusters of generic AI-generated filler (template
   structure, buzzword density, dead controls, missing states, no identity under the swap
-  test). Slop heuristics adapted from [miqdadbadjuber/anti-slop](https://github.com/miqdadbadjuber/anti-slop) (MIT).
+  test).
+- **Severity labels, not vibes.** Every finding is ranked so the reader knows what to fix first,
+  and cites the rule it enforces (`[RC-04]`, `[DC-03]`, …).
+- **Concrete over vague.** "This might be slow" is banned. A specific input, load threshold, or
+  scenario is required.
+- **Scoped, not overlapping.** Each skill states what it does *not* cover and names the sibling
+  skill that does.
+- **Read-only by default.** Diagnostic tools that propose fixes; they don't apply them unless
+  asked.
+- **Prompt-injection aware.** Skills that process external artifacts explicitly treat the
+  reviewed content as data, not instructions.
 
 ---
 

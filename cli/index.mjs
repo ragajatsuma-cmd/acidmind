@@ -5,13 +5,13 @@ import path from "node:path";
 const DEFAULT_REPO = "ragajatsuma-cmd/acidmind";
 const DEFAULT_BRANCH = "main";
 const SKILLS = {
-  "ruthless-critic": "General brutal review of code, arguments, plans — the default lens",
-  "design-critic": "Architecture & system design: coupling, abstraction, dependencies",
-  "feature-critic": "Feature completeness & correctness for real users",
-  "badass-critic": "Performance review with concrete numbers, not vibes",
-  "heart-attack-critic": "Worst-case disaster simulation before launch / security audit",
-  "skill-critic": "Meta-audit of a SKILL.md before you install or ship it",
-  "tellingtruth-critic": "Unstructured, human, no-label honest opinion",
+  "ruthless-critic": "General brutal review of code, arguments, plans — the default lens (/grill-me)",
+  "design-critic": "Architecture & system design: coupling, abstraction, dependencies (/designcritic)",
+  "feature-critic": "Feature completeness & correctness for real users (/featurecritic)",
+  "badass-critic": "Performance review with concrete numbers, not vibes (/badass)",
+  "heart-attack-critic": "Worst-case disaster simulation before launch / security audit (/heartattack)",
+  "autocritic-skill": "Auto-audit of a SKILL.md before you install or ship it (/auditskill)",
+  "tellingtruth-critic": "Unstructured, human, no-label honest opinion (/honest)",
 };
 
 const USAGE = `acidmind — install AcidMind critique skills from GitHub

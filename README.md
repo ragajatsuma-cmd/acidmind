@@ -43,7 +43,7 @@ its own `SKILL.md`:
 - **`feature-critic`** — feature completeness and correctness for real users
 - **`badass-critic`** — performance review with concrete numbers, not vibes
 - **`heart-attack-critic`** — worst-case disaster simulation before launch or a security audit
-- **`skill-critic`** — meta: audits a `SKILL.md` file itself before you install or ship it
+- **`autocritic-skill`** — meta: auto-audits a `SKILL.md` file itself before you install or ship it
 - **`tellingtruth-critic`** — unstructured, human, no-label honest opinion
 
 Each skill is **read-only by default**: it diagnoses and prescribes, it doesn't rewrite your
@@ -146,6 +146,25 @@ Then place the file(s) wherever your other agent rules files live.
 
 ---
 
+## Commands
+
+Each skill activates on its own slash command (or plain natural language):
+
+| Command | Skill | Use when |
+|---|---|---|
+| `/grill-me`, `/critique`, `/roast`, `/review` | `ruthless-critic` | General brutal review of anything — the default lens |
+| `/designcritic` | `design-critic` | Architecture / system design review |
+| `/featurecritic` | `feature-critic` | Does this feature actually work end-to-end? |
+| `/badass`, `/perfcritic` | `badass-critic` | Performance review with concrete numbers |
+| `/heartattack`, `/disaster` | `heart-attack-critic` | Worst-case disaster simulation pre-launch |
+| `/auditskill`, `/autocritic` | `autocritic-skill` | Audit a `SKILL.md` before install/ship |
+| `/tellingtruth`, `/honest` | `tellingtruth-critic` | Plain human honesty, no labels |
+
+Slash commands work in agents that support them; in any agent, the phrases in the table (or a
+plain "review/critique/audit" request) route through `ACIDMIND.md`.
+
+---
+
 ## Which Skill Do I Want?
 
 - Reviewing **code, an argument, or a plan in general** → `ruthless-critic`
@@ -153,7 +172,7 @@ Then place the file(s) wherever your other agent rules files live.
 - Worried a **feature** doesn't actually work end-to-end → `feature-critic`
 - Worried the system will be **slow** under real load → `badass-critic`
 - About to **launch** and want to know what could catastrophically go wrong → `heart-attack-critic`
-- Built a **new skill** and want to know if it will actually trigger and work → `skill-critic`
+- Built a **new skill** and want to know if it will actually trigger and work → `autocritic-skill`
 - Just want a **straight, human answer** without severity labels and emoji headers → `tellingtruth-critic`
 
 Full routing logic, including how to handle requests that span more than one axis, is in
@@ -179,7 +198,7 @@ acidmind/
     ├── feature-critic/SKILL.md
     ├── badass-critic/SKILL.md
     ├── heart-attack-critic/SKILL.md
-    ├── skill-critic/SKILL.md
+    ├── autocritic-skill/SKILL.md
     ├── tellingtruth-critic/SKILL.md
     └── cli/
         ├── package.json
