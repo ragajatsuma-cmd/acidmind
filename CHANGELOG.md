@@ -2,6 +2,14 @@
 
 All notable changes to AcidMind are documented in this file.
 
+## [1.5.3] — 2026-08-22
+
+### Added
+
+- **Persistence clause** in `secondthought-critic`: ACTIVE EVERY RESPONSE. No revert after
+  many turns, no filler drift, still active when unsure. Deactivates only on explicit
+  "stop acidmind" / "normal mode". Quiet stretches or topic changes never disarm it.
+
 ## [1.5.2] — 2026-08-22
 
 ### Added

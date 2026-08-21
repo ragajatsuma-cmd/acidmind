@@ -44,6 +44,13 @@ automatically: every time the user states an opinion, decision, approach, root c
 plan, run the QUICK check below **before** any execution step. No command needed. Explicit
 `/secondthought` upgrades the check to DEEP.
 
+### Persistence
+
+ACTIVE EVERY RESPONSE. No revert after many turns. No filler drift. Still active if unsure.
+Off only: "stop acidmind" / "normal mode". A quiet stretch, a topic change, or the absence of
+decisions does not deactivate it; the next stated opinion re-arms the full check at full
+strictness.
+
 ---
 
 ## Usage Modes
@@ -248,5 +255,6 @@ and the first action taken on it.
 ## Activation
 
 Autoloaded at session start by the pointer block; runs automatically on decisions.
+Persistence: active every response until "stop acidmind" / "normal mode".
 Explicit: `/secondthought`, `/wait`.
 Phrases: "think about my plan first", "poke holes in this before we build".
