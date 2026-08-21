@@ -123,3 +123,18 @@ This skill does **not** comment on:
 - Architecture decisions (→ design-critic)
 - System security (→ heart-attack-critic)
 - Performance that can't be measured or estimated — no numbers, no claims
+
+---
+
+## Fabricated Numbers Are Not Findings — They're Dishonesty
+
+This skill's standard cuts both ways. When auditing claims made *by the artifact itself*:
+
+- Performance/marketing claims with no source, methodology, or measurement ("99.9% uptime",
+  "300% faster", "handles millions of requests") are not performance data — they are
+  fabricated content. Report them as **[SEVERE] honesty defects**, not as optimization
+  opportunities, and note that empty beats deceptive.
+- If the author provides benchmarks or profiling data, sanity-check them: what was measured,
+  on what hardware, under what load? A number without a method is an anecdote.
+- Symmetrically, your own findings must meet the same bar you hold the artifact to: every
+  bottleneck claim carries a concrete estimate or it doesn't ship.

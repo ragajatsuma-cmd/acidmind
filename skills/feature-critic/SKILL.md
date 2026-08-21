@@ -102,6 +102,27 @@ For every BLOCKER and SEVERE:
 - Is there a way to know this feature failed before a user reports it?
 - Is there enough logging to debug production issues?
 
+### State Completeness (anti-slop)
+- **The state triad is mandatory:** any UI/data feature must handle all three —
+  **empty** (no data yet), **loading** (fetch in progress), **error** (something broke).
+  A feature designed only for the happy path is [SEVERE], not a nice-to-have gap.
+- **Resilience across conditions:** does it hold up in every shipped theme, every breakpoint,
+  keyboard-only use? A feature that only works in the demo screenshot isn't done.
+
+### Dead Controls & Honest Placeholders
+- **Every interactive element works or it doesn't exist.** Buttons that do nothing, dropdowns
+  that don't open, forms that can't submit, nav links to pages that don't exist — each is
+  [SEVERE]: AI builds the visuals and forgets the logic.
+- A placeholder is acceptable **only** with a clear code comment AND a visible user-facing
+  label ("Coming soon"). Anything styled to look final but doing nothing is a finding.
+- Apply the **swap test** to the feature's surface: if the logo/name were swapped, would this
+  feel specific to the product or like any template's version of it?
+
+### Fabricated Content
+- Statistics, testimonials, compliance claims ("SOC 2", "ISO 27001"), or trust signals with no
+  verifiable source are [BLOCKER]-adjacent: they destroy user trust when discovered.
+  No real data → show no claim. Empty beats deceptive.
+
 ---
 
 ## Boundaries of This Skill

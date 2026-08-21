@@ -187,6 +187,39 @@ the lesson.
   Name the tier.
 - **Conclusion overshoot:** does the claim exceed what the evidence actually shows?
 
+### AI Slop Patterns (any artifact type)
+
+Scan for clusters of generic AI-generated filler. One pattern alone is fine if it serves a
+purpose; what makes slop is many patterns together with no reason. Apply the **purpose test**:
+for any technique, section, or abstraction ask "what does this serve?" If the only answer is
+"it's the AI default" or "it looks safe", it is a finding.
+
+- **Fabricated content** [CRITICAL when found]: fake statistics ("10K+ users", "99.9% uptime"),
+  fictional testimonials, invented security/compliance claims ("SOC 2 compliant") with no
+  source. Empty is better than deceptive.
+- **Template structure:** sections that exist because every AI output has them, not because the
+  content needs them. Copy-paste cards with identical size/layout/padding.
+- **Buzzword density:** "AI Powered", "Revolutionary", "Seamless", "Cutting Edge", "Effortless"
+  where specific language should be.
+- **Generic identity:** apply the **swap test** — replace the product name/logo; if the result
+  is indistinguishable from any competitor's page, there is no identity.
+- **Dead elements:** buttons/links/forms with no real behavior, nav items pointing nowhere,
+  content fabricated to look final instead of labeled placeholder.
+
+---
+
+## Ship Gate
+
+End every review with a single gate line so the reader knows where they stand:
+
+> **Gate: [SHIP | FIX FIRST | DO NOT SHIP]**
+
+- **DO NOT SHIP** — one or more [CRITICAL] findings.
+- **FIX FIRST** — no criticals, but one or more [HIGH].
+- **SHIP** — [MED] and below only.
+
+The gate is derived mechanically from the findings above. Do not soften it, do not hedge it.
+
 ---
 
 ## What This Skill Is Not

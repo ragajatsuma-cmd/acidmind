@@ -112,6 +112,22 @@ Not a long list — a maximum of 5 highest-impact actions. For each:
 - Cross-border data transfer with no controls
 - Users unable to delete their own data (GDPR)
 
+### Fabricated Trust & Compliance (anti-slop)
+- **Claims of certifications the product doesn't have** — "SOC 2 compliant", "ISO 27001",
+  "enterprise-grade security", "audited by [firm]" displayed with no evidence. This is not a
+  copywriting flaw; it is **fraud exposure**: regulatory penalties, breach-of-contract claims,
+  and a trust collapse that outlives the technical incident.
+- **Fake social proof** — invented testimonials, AI-generated avatars, fabricated customer
+  counts. When users discover the deception, every real claim becomes suspect.
+- **The swap test for trust:** if the marketing surface is indistinguishable from any
+  competitor's (same fake stats, same template claims), assume nothing on it is verified —
+  then check whether anything load-bearing actually depends on it being true.
+
+### Build-Pipeline Integrity
+- Features implemented by external patch scripts rewriting source/CSS via string replacement
+  instead of living in source code — broken by design, undetectable in review, and a supply-
+  chain risk if the script ever changes.
+
 ---
 
 ## What This Skill Is Not For

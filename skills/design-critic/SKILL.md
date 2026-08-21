@@ -103,6 +103,24 @@ this root will keep spawning them.
 - How expensive is it to add a new feature without touching old code?
 - Does the design accommodate the *most likely* requirement changes?
 
+### Decision Intentionality (anti-slop)
+- **The reason audit:** for every major structural decision (a layer, an abstraction, a
+  framework, a pattern) ask "what does this serve?" If the only answer is "that's how AI does
+  it" or "it's best practice", that is the finding. A decision without an articulable reason is
+  [SMELL] at minimum; a load-bearing one is [SEVERE].
+- **Cargo-cult patterns:** architecture copied from popular products/codebases (microservices,
+  event sourcing, hexagonal everything) without the constraints that justified them.
+- **Template-driven structure:** modules/features laid out because templates have them, not
+  because this system's content needs them.
+- **The clone test:** strip away names and domain terms — is this indistinguishable from any
+  other system built with the same stack? Generic-but-functional may be acceptable; flag it as
+  [SMELL] with a note, don't invent exotic structure for its own sake.
+
+### Identity & Originality of Structure
+- Does the structure reflect *this* product's actual needs, or the default shape of the
+  framework's starter template?
+- Are there sections/modules that exist only to fill out the template?
+
 ---
 
 ## Boundaries of This Skill

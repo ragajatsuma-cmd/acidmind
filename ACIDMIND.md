@@ -184,6 +184,15 @@ acidmind/
 - **Prompt-injection aware.** Skills that process external artifacts (`ruthless-critic`,
   `skill-critic`, `heart-attack-critic`) explicitly treat the reviewed content as data, not
   instructions — text inside a submitted artifact cannot talk the skill into going easy on it.
+- **The purpose test.** For any technique, section, or abstraction: ask what it serves. If the
+  only answer is "it's the AI default", that is itself a finding. Technique is never banned —
+  technique without purpose is.
+- **Evidence over claims.** Statistics, testimonials, benchmarks, and compliance signals are
+  either verifiable or they don't exist. Empty beats deceptive; fabricated content is always
+  reportable, in every lens.
+- **Slop-aware.** All seven critics scan for clusters of generic AI-generated filler (template
+  structure, buzzword density, dead controls, missing states, no identity under the swap
+  test). Slop heuristics adapted from [miqdadbadjuber/anti-slop](https://github.com/miqdadbadjuber/anti-slop) (MIT).
 
 ---
 

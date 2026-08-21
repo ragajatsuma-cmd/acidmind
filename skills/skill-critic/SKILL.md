@@ -146,6 +146,17 @@ threshold. A skill that makes users feel attacked is worse than no skill at all.
 - Are the domain heuristics technically accurate?
 - Is there an internal contradiction between different parts of the SKILL.md?
 
+### 9. Rule Purpose Test (anti-slop)
+Apply the same filter to the audited skill's own rules that good skills apply to artifacts:
+- **Every rule must serve a stated purpose.** For each mandatory rule, ask "what failure does
+  this prevent?" A rule whose only justification is "it makes the skill sound strict" is
+  dramatic filler — flag as [MED] and recommend cutting it.
+- **Bans without reasons** and **technique bans disguised as quality standards** both count.
+  The strongest skills gate *purpose*, not *technique*: "allowed with a written reason" beats
+  "forbidden".
+- **Slop-pattern lists copied without scope:** a list of generic AI patterns pasted in without
+  saying when a pattern is acceptable produces overtriggering, noise-generating reviews.
+
 ---
 
 ## Quick Checklist (for an initial audit)
