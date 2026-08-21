@@ -4,7 +4,7 @@
 > — design, features, performance, security, meta-skill auditing, or plain human honesty — read
 > **on-demand**, not force-loaded into every session.
 
-`ACIDMIND.md` is the router. It doesn't contain the critique rules itself — it tells an agent
+`AcidMind.md` is the router. It doesn't contain the critique rules itself — it tells an agent
 *which* skill file to read once it recognizes the user wants a review, and *when not to bother*.
 The actual rules live in `skills/<name>/SKILL.md`.
 
@@ -31,6 +31,7 @@ to almost any codebase, unchanged? If yes, it's not a finding — go look harder
 | `feature-critic` | A specific feature checked for completeness and correctness — does it actually work for real users | `skills/feature-critic/SKILL.md` |
 | `badass-critic` | A performance review with concrete numbers — algorithmic complexity, DB/I/O, memory, concurrency | `skills/badass-critic/SKILL.md` |
 | `heart-attack-critic` | A worst-case disaster simulation before launch or a security audit — what could go fatally wrong | `skills/heart-attack-critic/SKILL.md` |
+| `blackhat-critic` | A red-team penetration review of their OWN app — attack paths a hired attacker would use, then hardening. Commands: `/blackhat`, `/pentest`, `/redteam` | `skills/blackhat-critic/SKILL.md` |
 | `autocritic-skill` | A `SKILL.md` file itself audited before install/distribution — will it trigger correctly, is it safe, is it useful | `skills/autocritic-skill/SKILL.md` |
 | `tellingtruth-critic` | An unstructured, human, no-format honest opinion — no severity labels, no emoji, just straight talk | `skills/tellingtruth-critic/SKILL.md` |
 | `unified-critic` | Everything checked at once — all seven lenses merged into one report with one gate. Commands: `/acidmind`, `/fullcritic`, `/panel` | `skills/unified-critic/SKILL.md` |
@@ -43,7 +44,10 @@ Use this decision order when a request could match more than one skill:
 
 1. **Is the artifact itself a `SKILL.md`?** → `autocritic-skill`, always. Nothing else applies
    to skill files.
-2. **Did the user explicitly ask for a worst-case / disaster / "what could go fatally wrong"
+2. **Did the user explicitly ask to attack/break into/penetrate their own app** (`/blackhat`,
+   pentest framing)? → `blackhat-critic`. It is offensive-path analysis on authorized targets
+   only; never for third-party systems.
+3. **Did the user explicitly ask for a worst-case / disaster / "what could go fatally wrong"
    scenario, or use a launch-readiness / security-audit framing?** → `heart-attack-critic`.
    Do not use this for routine review requests — it is deliberately alarming and should stay
    reserved for the moments that call for it.
@@ -80,9 +84,10 @@ routing table above against whatever files are already on disk and install nothi
    `GEMINI.md`, or whichever the running agent reads). Get approval first. Never modify the
    entry file silently.
 2. **Ask which skills to install** (multi-select):
-   - **1. All eight** (recommended) — every critic plus the unified panel.
+   - **1. All nine** (recommended) — every critic plus the unified panel.
    - Individual: `ruthless-critic`, `design-critic`, `feature-critic`, `badass-critic`,
-     `heart-attack-critic`, `autocritic-skill`, `tellingtruth-critic`, `unified-critic`.
+     `heart-attack-critic`, `blackhat-critic`, `autocritic-skill`,
+     `tellingtruth-critic`, `unified-critic`.
    - New skills appear here as they ship; never offer a skill that doesn't exist in this
      version.
 3. **Automated path (recommended):** offer the CLI — `npx acidmind-cli init` copies the router,
@@ -97,7 +102,7 @@ routing table above against whatever files are already on disk and install nothi
    <!-- acidmind:start -->
    ## Code & Design Review
    If the task involves reviewing, critiquing, auditing, or roasting code, a design,
-   a feature, performance, security posture, or a skill file, read `ACIDMIND.md` first
+   a feature, performance, security posture, or a skill file, read `AcidMind.md` first
    to pick the right lens, then read the matching file under `skills/`.
    For a full-panel review of everything at once, read `skills/unified-critic/SKILL.md`
    (command: /acidmind).
@@ -127,7 +132,7 @@ entry-point file:
 ```
 ## Code & Design Review
 If the task involves reviewing, critiquing, auditing, or roasting code, a design,
-a feature, performance, security posture, or a skill file, read `ACIDMIND.md` first
+a feature, performance, security posture, or a skill file, read `AcidMind.md` first
 to pick the right lens, then read the matching file under `skills/`.
 ```
 
@@ -176,7 +181,7 @@ need and paste it at the start of your prompt.
 ## How to Get the Files
 
 ```
-curl -o ACIDMIND.md https://raw.githubusercontent.com/<your-username>/acidmind/main/ACIDMIND.md
+curl -o AcidMind.md https://raw.githubusercontent.com/<your-username>/acidmind/main/AcidMind.md
 ```
 
 Or grab a single skill directly:
@@ -197,7 +202,7 @@ git clone https://github.com/<your-username>/acidmind.git
 
 ```
 acidmind/
-├── ACIDMIND.md              # this file — the router / index
+├── AcidMind.md              # this file — the router / index
 ├── ACIDMIND-ID.md           # Indonesian version of this router
 ├── README.md                # project overview (English)
 ├── README-ID.md             # project overview (Indonesian)
@@ -212,6 +217,8 @@ acidmind/
     ├── badass-critic/
     │   └── SKILL.md
     ├── heart-attack-critic/
+    │   └── SKILL.md
+    ├── blackhat-critic/
     │   └── SKILL.md
     ├── autocritic-skill/
     │   └── SKILL.md

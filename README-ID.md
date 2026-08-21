@@ -11,7 +11,7 @@
 
 ## Apa Ini?
 
-`ACIDMIND.md` adalah file router, dan `skills/` menyimpan tujuh skill kritik spesialis, masing-
+`AcidMind.md` adalah file router, dan `skills/` menyimpan tujuh skill kritik spesialis, masing-
 masing dengan `SKILL.md`-nya sendiri:
 
 - **`ruthless-critic`** — review brutal umum untuk kode, argumen, rencana, artifact apa pun
@@ -40,15 +40,15 @@ Kebanyakan proyek yang memakai AI coding agent sudah punya file entry-point (`AG
 `CLAUDE.md`, `GEMINI.md`, dll) yang **selalu** dibaca agent di awal sesi. File itu biasanya
 berisi info umum proyek: stack, konvensi, perintah build/test.
 
-`ACIDMIND.md` **tidak** dimaksudkan untuk digabung atau di-copy-paste ke file entry-point itu.
-Sebagai gantinya, simpan direktori `skills/` dan `ACIDMIND.md` di mana pun file aturan agent
+`AcidMind.md` **tidak** dimaksudkan untuk digabung atau di-copy-paste ke file entry-point itu.
+Sebagai gantinya, simpan direktori `skills/` dan `AcidMind.md` di mana pun file aturan agent
 lainnya berada (root proyek, `.agent/`, `.ai/`, atau serupa), lalu tambahkan **satu blok
 pointer** ke file entry-point yang sudah ada:
 
 ```
 ## Code & Design Review
 Jika tugas melibatkan review, kritik, audit, atau roast terhadap kode, desain,
-fitur, performa, postur keamanan, atau file skill, baca `ACIDMIND.md` dulu
+fitur, performa, postur keamanan, atau file skill, baca `AcidMind.md` dulu
 untuk memilih lensa yang tepat, lalu baca file yang cocok di bawah `skills/`.
 ```
 
@@ -105,7 +105,7 @@ sudah ada, `--no-pointer` pada `init` agar tidak menyentuh `AGENTS.md`/`CLAUDE.m
 Unduh file router langsung dari command line:
 
 ```
-curl -o ACIDMIND.md https://raw.githubusercontent.com/<username-anda>/acidmind/main/ACIDMIND.md
+curl -o AcidMind.md https://raw.githubusercontent.com/<username-anda>/acidmind/main/AcidMind.md
 ```
 
 Atau versi Indonesia:
@@ -145,7 +145,7 @@ ada di [`ACIDMIND-ID.md`](./ACIDMIND-ID.md#logika-routing).
 
 ```
 acidmind/
-├── ACIDMIND.md               # router / index (Inggris) — mulai dari sini
+├── AcidMind.md               # router / index (Inggris) — mulai dari sini
 ├── ACIDMIND-ID.md            # router, versi Indonesia
 ├── README.md                 # file ini (Inggris)
 ├── README-ID.md               # file ini (Indonesia)

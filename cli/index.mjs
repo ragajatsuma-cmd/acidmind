@@ -10,6 +10,7 @@ const SKILLS = {
   "feature-critic": "Feature completeness & correctness for real users (/featurecritic)",
   "badass-critic": "Performance review with concrete numbers, not vibes (/badass)",
   "heart-attack-critic": "Worst-case disaster simulation before launch / security audit (/heartattack)",
+  "blackhat-critic": "Red-team penetration review of your own app, attacker-style (/blackhat)",
   "autocritic-skill": "Auto-audit of a SKILL.md before you install or ship it (/auditskill)",
   "tellingtruth-critic": "Unstructured, human, no-label honest opinion (/honest)",
   "unified-critic": "All seven lenses merged into one panel review with one gate (/acidmind)",
@@ -20,7 +21,7 @@ const USAGE = `acidmind — install AcidMind critique skills from GitHub
 Usage:
   acidmind init [dir]            Install the router + all 7 skills
   acidmind add <skill>...        Install one or more specific skills
-  acidmind router                Install just ACIDMIND.md (the router)
+  acidmind router                Install just AcidMind.md (the router)
   acidmind list                  List available skills
 
 Options:
@@ -163,7 +164,7 @@ async function addPointerBlock(opts) {
       break;
     }
   }
-  const routerName = opts.lang === "id" ? "ACIDMIND-ID.md" : "ACIDMIND.md";
+  const routerName = opts.lang === "id" ? "ACIDMIND-ID.md" : "AcidMind.md";
   if (content.includes(routerName)) {
     console.log(`pointer block already present in ${entryFile ? path.basename(entryFile) : "entry file"}`);
     return;
@@ -182,7 +183,7 @@ async function addPointerBlock(opts) {
 async function cmdInit(positional, opts) {
   const dirArg = positional[0];
   if (dirArg) opts.dest = path.resolve(dirArg);
-  const routerFile = opts.lang === "id" ? "ACIDMIND-ID.md" : "ACIDMIND.md";
+  const routerFile = opts.lang === "id" ? "ACIDMIND-ID.md" : "AcidMind.md";
   const routerDest = path.join(opts.dest, routerFile);
 
   console.log(`Installing AcidMind into ${opts.dest}\n`);
@@ -205,7 +206,7 @@ async function cmdInit(positional, opts) {
     console.log("");
     await addPointerBlock(opts);
   }
-  console.log("\nDone. Your agent now reads ACIDMIND.md on review requests.");
+  console.log("\nDone. Your agent now reads AcidMind.md on review requests.");
 }
 
 async function cmdAdd(positional, opts) {
@@ -220,7 +221,7 @@ async function cmdAdd(positional, opts) {
 }
 
 async function cmdRouter(opts) {
-  const routerFile = opts.lang === "id" ? "ACIDMIND-ID.md" : "ACIDMIND.md";
+  const routerFile = opts.lang === "id" ? "ACIDMIND-ID.md" : "AcidMind.md";
   const destPath = path.join(opts.dest, routerFile);
   const content = await fetchFile(opts.repo, opts.branch, routerFile);
   await mkdir(opts.dest, { recursive: true });

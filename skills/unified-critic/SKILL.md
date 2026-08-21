@@ -58,10 +58,12 @@ Fixed order, one shared preamble:
 3. **badass-critic** — performance, numbers mandatory.
 4. **heart-attack-critic** — ONLY when launch/security framing exists or the user asked for
    worst cases. Its activation boundary is respected even inside the panel.
-5. **ruthless-critic** — general flaws + AI-slop scan (catch-all for what the above missed).
-6. **autocritic-skill** — ONLY if the artifact itself is a `SKILL.md`; then it replaces steps
-   1–5 entirely (nothing else applies to skill files).
-7. **tellingtruth-critic** — not a data pass: its voice writes the closing honest paragraph.
+5. **blackhat-critic** — ONLY when explicitly requested (`/pentest` framing) AND target
+   authorization is confirmed; its BH-00 boundary applies without exception.
+6. **ruthless-critic** — general flaws + AI-slop scan (catch-all for what the above missed).
+7. **autocritic-skill** — ONLY if the artifact itself is a `SKILL.md`; then it replaces steps
+   1–6 entirely (nothing else applies to skill files).
+8. **tellingtruth-critic** — not a data pass: its voice writes the closing honest paragraph.
 
 ---
 

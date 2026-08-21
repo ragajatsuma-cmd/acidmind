@@ -35,7 +35,7 @@ prints (in green) on every run; the image banner lives at
 
 ## What Is This?
 
-`ACIDMIND.md` is a router file, and `skills/` holds seven specialist critique skills, each with
+`AcidMind.md` is a router file, and `skills/` holds seven specialist critique skills, each with
 its own `SKILL.md`:
 
 - **`ruthless-critic`** — general brutal review of code, arguments, plans, any artifact
@@ -43,6 +43,8 @@ its own `SKILL.md`:
 - **`feature-critic`** — feature completeness and correctness for real users
 - **`badass-critic`** — performance review with concrete numbers, not vibes
 - **`heart-attack-critic`** — worst-case disaster simulation before launch or a security audit
+- **`blackhat-critic`** — red-team penetration review of your own app: attack paths a hired
+  attacker would use, then a hardening plan (command: `/blackhat`)
 - **`autocritic-skill`** — meta: auto-audits a `SKILL.md` file itself before you install or ship it
 - **`tellingtruth-critic`** — unstructured, human, no-label honest opinion
 - **`unified-critic`** — the panel: runs all seven lenses over one artifact and merges them
@@ -65,15 +67,15 @@ Most projects using an AI coding agent already have an entry-point file (`AGENTS
 `CLAUDE.md`, `GEMINI.md`, etc.) that the agent **always** reads at the start of a session. That
 file usually holds general project info: stack, conventions, build/test commands.
 
-`ACIDMIND.md` is **not** meant to be merged or copy-pasted into that entry-point file. Instead,
-keep the `skills/` directory and `ACIDMIND.md` wherever your other rules files live (project
+`AcidMind.md` is **not** meant to be merged or copy-pasted into that entry-point file. Instead,
+keep the `skills/` directory and `AcidMind.md` wherever your other rules files live (project
 root, `.agent/`, `.ai/`, or similar), and add a **single pointer block** to your existing
 entry-point file:
 
 ```
 ## Code & Design Review
 If the task involves reviewing, critiquing, auditing, or roasting code, a design,
-a feature, performance, security posture, or a skill file, read `ACIDMIND.md` first
+a feature, performance, security posture, or a skill file, read `AcidMind.md` first
 to pick the right lens, then read the matching file under `skills/`.
 ```
 
@@ -93,7 +95,7 @@ Code, Codex, Cursor, Windsurf, or any other agent capable of reading a reference
 ### Claude / Claude Code native install
 
 On Claude.ai or Claude Code you don't need the router pattern at all — install skills natively
-so Claude discovers and triggers them itself. See [`ACIDMIND.md`](./ACIDMIND.md#claude--claude-code-native-skill-install)
+so Claude discovers and triggers them itself. See [`AcidMind.md`](./AcidMind.md#claude--claude-code-native-skill-install)
 for packaging instructions.
 
 ### Manual / one-off prompt
@@ -129,7 +131,7 @@ files, `--no-pointer` with `init` to skip touching `AGENTS.md`/`CLAUDE.md`.
 Download the router file directly from the command line:
 
 ```
-curl -o ACIDMIND.md https://raw.githubusercontent.com/<your-username>/acidmind/main/ACIDMIND.md
+curl -o AcidMind.md https://raw.githubusercontent.com/<your-username>/acidmind/main/AcidMind.md
 ```
 
 Or the Indonesian version:
@@ -159,12 +161,13 @@ Each skill activates on its own slash command (or plain natural language):
 | `/featurecritic` | `feature-critic` | Does this feature actually work end-to-end? |
 | `/badass`, `/perfcritic` | `badass-critic` | Performance review with concrete numbers |
 | `/heartattack`, `/disaster` | `heart-attack-critic` | Worst-case disaster simulation pre-launch |
+| `/blackhat`, `/pentest`, `/redteam` | `blackhat-critic` | Red-team penetration review of your own app |
 | `/auditskill`, `/autocritic` | `autocritic-skill` | Audit a `SKILL.md` before install/ship |
 | `/tellingtruth`, `/honest` | `tellingtruth-critic` | Plain human honesty, no labels |
 | `/acidmind`, `/fullcritic`, `/panel` | `unified-critic` | All seven lenses merged into one report + one gate |
 
 Slash commands work in agents that support them; in any agent, the phrases in the table (or a
-plain "review/critique/audit" request) route through `ACIDMIND.md`.
+plain "review/critique/audit" request) route through `AcidMind.md`.
 
 ---
 
@@ -180,7 +183,7 @@ plain "review/critique/audit" request) route through `ACIDMIND.md`.
 - Want **everything checked at once** before launch or handoff, in one merged report → `/acidmind` (`unified-critic`)
 
 Full routing logic, including how to handle requests that span more than one axis, is in
-[`ACIDMIND.md`](./ACIDMIND.md#routing-logic).
+[`AcidMind.md`](./AcidMind.md#routing-logic).
 
 ---
 
@@ -188,7 +191,7 @@ Full routing logic, including how to handle requests that span more than one axi
 
 ```
 acidmind/
-├── ACIDMIND.md               # router / index — start here
+├── AcidMind.md               # router / index — start here
 ├── ACIDMIND-ID.md            # router, Indonesian
 ├── README.md                 # this file
 ├── README-ID.md              # this file, Indonesian
@@ -205,6 +208,7 @@ acidmind/
     ├── feature-critic/SKILL.md
     ├── badass-critic/SKILL.md
     ├── heart-attack-critic/SKILL.md
+    ├── blackhat-critic/SKILL.md
     ├── autocritic-skill/SKILL.md
     ├── tellingtruth-critic/SKILL.md
     └── unified-critic/SKILL.md

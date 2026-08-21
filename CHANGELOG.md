@@ -2,6 +2,25 @@
 
 All notable changes to AcidMind are documented in this file.
 
+## [1.3.0] — 2026-08-22
+
+### Added
+
+- **`blackhat-critic`** — the red-team persona (commands: `/blackhat`, `/pentest`, `/redteam`).
+  Attacks the user's own website/application like a hired blackhat: kill-chain sweep (recon,
+  auth bypass, injection, IDOR, business-logic abuse, secrets, dependencies), each successful
+  path reported as Entry → Chain → Impact with a difficulty label and a hardening blueprint.
+  Gate: `HARDENED / ATTACK SURFACE REMAINS / COMPROMISED BY DESIGN`. BH-00 is absolute:
+  authorized targets only — the skill refuses third-party targets and never produces
+  ready-to-run exploits.
+- Router routing step for explicit pentest framing; `unified-critic` panel includes the
+  blackhat lens only on explicit request with authorization confirmed.
+
+### Changed
+
+- **Router file renamed** `ACIDMIND.md` → `AcidMind.md`; all references updated across
+  READMEs, CLI, wizard pointer block, and docs.
+
 ## [1.2.0] — 2026-08-22
 
 ### Added
@@ -11,7 +30,7 @@ All notable changes to AcidMind are documented in this file.
   resolves conflicts as explicit trade-offs, and ends with exactly one unified Gate line
   (`SHIP / FIX FIRST / DO NOT SHIP`, mapped from each lens's own gate). Includes sub-agent
   guidance for agents that support parallel lens passes.
-- **First-Run Install Wizard** in `ACIDMIND.md`: runs once when the router is read in a
+- **First-Run Install Wizard** in `AcidMind.md`: runs once when the router is read in a
   project without an AcidMind pointer block — declares the setup, asks which of the eight
   skills to install, offers the automated CLI path (`npx acidmind-cli init`) or manual user
   fetching, appends a marker-wrapped pointer block (`<!-- acidmind:start/end -->`) so re-runs
@@ -63,7 +82,7 @@ All notable changes to AcidMind are documented in this file.
   - `heart-attack-critic` — worst-case disaster simulation for pre-launch / security audit
   - `autocritic-skill` — meta-audit of `SKILL.md` files before install or distribution
   - `tellingtruth-critic` — unstructured, human, no-label honest opinion
-- `ACIDMIND.md` / `ACIDMIND-ID.md` — router file with a skill-selection table and explicit
+- `AcidMind.md` / `ACIDMIND-ID.md` — router file with a skill-selection table and explicit
   routing logic for requests that could match more than one skill.
 - `README.md` / `README-ID.md` — bilingual project overview, router-pattern setup guide, and
   native Claude/Claude Code install instructions.

@@ -4,7 +4,7 @@
 > — desain, fitur, performa, keamanan, audit skill itu sendiri, atau kejujuran manusiawi biasa —
 > dibaca **sesuai kebutuhan**, bukan dipaksa dimuat di setiap sesi.
 
-`ACIDMIND.md` adalah router. File ini tidak berisi aturan kritik itu sendiri — ia memberitahu
+`AcidMind.md` adalah router. File ini tidak berisi aturan kritik itu sendiri — ia memberitahu
 agent skill *mana* yang harus dibaca setelah mengenali pengguna ingin sebuah review, dan *kapan
 tidak perlu repot*. Aturan sebenarnya ada di `skills/<name>/SKILL.md`.
 
@@ -76,7 +76,7 @@ entry-point yang sudah ada:
 ```
 ## Code & Design Review
 Jika tugas melibatkan review, kritik, audit, atau roast terhadap kode, desain,
-fitur, performa, postur keamanan, atau file skill, baca `ACIDMIND.md` dulu
+fitur, performa, postur keamanan, atau file skill, baca `AcidMind.md` dulu
 untuk memilih lensa yang tepat, lalu baca file yang cocok di bawah `skills/`.
 ```
 
@@ -125,7 +125,7 @@ di awal prompt kamu.
 ## Cara Mengambil File
 
 ```
-curl -o ACIDMIND.md https://raw.githubusercontent.com/<username-anda>/acidmind/main/ACIDMIND.md
+curl -o AcidMind.md https://raw.githubusercontent.com/<username-anda>/acidmind/main/AcidMind.md
 ```
 
 Atau ambil satu skill langsung:
@@ -146,7 +146,7 @@ git clone https://github.com/<username-anda>/acidmind.git
 
 ```
 acidmind/
-├── ACIDMIND.md              # file ini — router / index
+├── AcidMind.md              # file ini — router / index
 ├── ACIDMIND-ID.md           # versi Indonesia router ini
 ├── README.md                # gambaran proyek (Inggris)
 ├── README-ID.md             # gambaran proyek (Indonesia)
