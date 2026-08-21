@@ -2,6 +2,17 @@
 
 All notable changes to AcidMind are documented in this file.
 
+## [1.6.0] — 2026-08-22
+
+### Added
+
+- **Update notification & auto-install**: installs now record a `.acidmind.json` manifest
+  (version, edition, skills). New CLI commands: `status` (compares installed vs latest on
+  GitHub) and `update` (auto-installs the latest router + edition skills, force-refreshes
+  files, preserves everything outside the pointer-block markers in the entry file).
+  The pointer block now also asks the agent to run a one-per-session version check and
+  notify the user when a newer release exists.
+
 ## [1.5.4] — 2026-08-22
 
 ### Added

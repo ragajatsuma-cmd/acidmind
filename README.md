@@ -147,9 +147,25 @@ For a full-panel review of everything at once, read `skills/unified-critic/SKILL
 (command: /acidmind).
 At session start, also read `skills/secondthought-critic/SKILL.md`: from then on,
 whenever the user states an opinion or plan, critique it before executing anything.
+Update check (once per session): read `.acidmind.json`; with web access, compare its
+version against https://raw.githubusercontent.com/ragajatsuma-cmd/acidmind/main/VERSION —
+if newer, notify the user and offer: npx github:ragajatsuma-cmd/acidmind update
 ```
 
 Then copy the repo's `skills/` directory beside it.
+
+### Updates 🔔
+
+Installs record a `.acidmind.json` manifest (version, edition, skills).
+
+```bash
+npx github:ragajatsuma-cmd/acidmind status   # installed vs latest
+npx github:ragajatsuma-cmd/acidmind update   # auto-install latest, no questions asked
+```
+
+`update` force-refreshes the router and your edition's skills, and preserves your entry file
+(it only replaces the marker-wrapped pointer block). Your agent also helps: the pointer block
+asks it to check the version once per session and notify you when a newer release exists.
 
 ---
 

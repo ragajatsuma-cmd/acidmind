@@ -114,6 +114,9 @@ routing table above against whatever files are already on disk and install nothi
    (command: /acidmind).
    At session start, also read `skills/secondthought-critic/SKILL.md`: from then on,
    whenever the user states an opinion or plan, critique it before executing anything.
+   Update check (once per session): read `.acidmind.json`; with web access, compare its
+   version against https://raw.githubusercontent.com/ragajatsuma-cmd/acidmind/main/VERSION —
+   if newer, notify the user and offer: npx github:ragajatsuma-cmd/acidmind update
    <!-- acidmind:end -->
    ```
    If an older pointer block exists without markers, replace just that block.

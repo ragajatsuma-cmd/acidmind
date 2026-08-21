@@ -41,6 +41,8 @@ Commands:
   init [dir]            Install the router + one edition of skills + pointer block
   add <skill>...        Install one or more specific skills
   router                Install just AcidMind.md (the router)
+  status                Compare installed version against latest on GitHub
+  update                Auto-install the latest version (preserves entry file)
   list                  List available skills and editions
 
 Editions (--edition <name>, default: core):
@@ -131,6 +133,32 @@ function editionSkills(edition) {
   return list;
 }
 
+const MANIFEST = ".acidmind.json";
+
+async function fetchLatestVersion(opts) {
+  const raw = await fetchFile(opts.repo, opts.branch, "VERSION");
+  return raw.trim();
+}
+
+async function readManifest(dest) {
+  const p = path.join(dest, MANIFEST);
+  if (!(await exists(p))) return null;
+  try {
+    return JSON.parse(await readFile(p, "utf8"));
+  } catch {
+    return null;
+  }
+}
+
+async function writeManifest(dest, patch) {
+  const p = path.join(dest, MANIFEST);
+  const prev = (await readManifest(dest)) || {};
+  const next = { ...prev, ...patch, updatedAt: new Date().toISOString() };
+  await writeFile(p, JSON.stringify(next, null, 2) + "\n", "utf8");
+  console.log(`  manifest: ${MANIFEST} (v${next.version})`);
+  return next;
+}
+
 async function fetchFile(repo, branch, remotePath) {
   const url = `https://raw.githubusercontent.com/${repo}/${branch}/${remotePath}`;
   const res = await fetch(url);
@@ -158,6 +186,9 @@ For a full-panel review of everything at once, read \`skills/unified-critic/SKIL
 (command: /acidmind).
 At session start, also read \`skills/secondthought-critic/SKILL.md\`: from then on,
 whenever the user states an opinion or plan, critique it before executing anything.
+Update check (once per session): read \`.acidmind.json\`; with web access, compare its
+version against https://raw.githubusercontent.com/ragajatsuma-cmd/acidmind/main/VERSION —
+if newer, notify the user and offer: npx github:ragajatsuma-cmd/acidmind update
 `.trimEnd();
 
 async function installSkill(name, opts) {
@@ -241,6 +272,19 @@ async function cmdInit(positional, opts) {
     console.log("");
     await addPointerBlock(opts);
   }
+
+  let version = "unknown";
+  try {
+    version = await fetchLatestVersion(opts);
+  } catch {}
+  await writeManifest(opts.dest, {
+    version,
+    edition: opts.edition,
+    repo: opts.repo,
+    branch: opts.branch,
+    skills: editionSkills(opts.edition),
+  });
+
   console.log("\nDone. Your agent now reads AcidMind.md on review requests.");
 }
 
@@ -250,9 +294,80 @@ async function cmdAdd(positional, opts) {
     process.exitCode = 1;
     return;
   }
+  const installed = [];
   for (const skill of positional) {
-    await installSkill(skill, opts);
+    const written = await installSkill(skill, opts);
+    installed.push(...written);
   }
+  const manifest = await readManifest(opts.dest);
+  if (manifest) {
+    const skills = new Set([...(manifest.skills || []), ...positional.filter((s) => SKILLS[s])]);
+    await writeManifest(opts.dest, { skills: [...skills] });
+  }
+}
+
+async function cmdStatus(opts) {
+  const manifest = await readManifest(opts.dest);
+  if (!manifest) {
+    console.log(`No ${MANIFEST} found in ${opts.dest}. Is AcidMind installed here? Run: acidmind init`);
+    process.exitCode = 1;
+    return;
+  }
+  let latest;
+  try {
+    latest = await fetchLatestVersion(opts);
+  } catch (err) {
+    console.error(`error: cannot reach ${opts.repo} (${err.message})`);
+    process.exitCode = 1;
+    return;
+  }
+  console.log(`installed: v${manifest.version} (edition: ${manifest.edition || "unknown"}, ${manifest.skills.length} skills)`);
+  console.log(`latest:    v${latest}`);
+  if (manifest.version === latest) {
+    console.log("\nUp to date.");
+  } else {
+    console.log(`\nUpdate available. Run: npx github:ragajatsuma-cmd/acidmind update`);
+    process.exitCode = 1;
+  }
+}
+
+async function cmdUpdate(positional, opts) {
+  const manifest = await readManifest(opts.dest);
+  if (!manifest) {
+    console.log(`No ${MANIFEST} found in ${opts.dest}. Run: acidmind init`);
+    process.exitCode = 1;
+    return;
+  }
+  const edition = opts.edition && opts.edition !== "core" ? opts.edition : manifest.edition || "core";
+  const latest = await fetchLatestVersion(opts);
+  if (manifest.version === latest && !opts.force) {
+    console.log(`Already up to date (v${latest}). Use --force to reinstall anyway.`);
+    return;
+  }
+  console.log(`Updating AcidMind: v${manifest.version} -> v${latest}\n`);
+
+  const routerFile = "AcidMind.md";
+  const routerDest = path.join(opts.dest, routerFile);
+  const content = await fetchFile(opts.repo, opts.branch, routerFile);
+  await mkdir(opts.dest, { recursive: true });
+  await writeFile(routerDest, content, "utf8");
+  console.log(`  updated: ${path.relative(process.cwd(), routerDest)}`);
+  console.log("");
+  for (const skill of editionSkills(edition)) {
+    await installSkill(skill, { ...opts, force: true });
+  }
+  if (opts.pointer) {
+    console.log("");
+    await addPointerBlock(opts);
+  }
+  await writeManifest(opts.dest, {
+    version: latest,
+    edition,
+    repo: opts.repo,
+    branch: opts.branch,
+    skills: editionSkills(edition),
+  });
+  console.log("\nUpdate complete. Changelog: https://github.com/ragajatsuma-cmd/acidmind/blob/main/CHANGELOG.md");
 }
 
 async function cmdRouter(opts) {
@@ -300,6 +415,12 @@ async function main() {
       break;
     case "router":
       await cmdRouter(opts);
+      break;
+    case "status":
+      await cmdStatus(opts);
+      break;
+    case "update":
+      await cmdUpdate(positional, opts);
       break;
     case "list":
       cmdList();
