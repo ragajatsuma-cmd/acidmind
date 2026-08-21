@@ -1,0 +1,29 @@
+{
+  "name": "acidmind-cli",
+  "version": "0.0.1",
+  "description": "Install AcidMind critique skills for AI agents from GitHub into any project",
+  "type": "module",
+  "bin": {
+    "acidmind": "index.mjs"
+  },
+  "files": [
+    "index.mjs"
+  ],
+  "engines": {
+    "node": ">=18"
+  },
+  "keywords": [
+    "ai-agents",
+    "claude",
+    "codex",
+    "skills",
+    "code-review",
+    "critique"
+  ],
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ragajatsuma-cmd/acidmind.git",
+    "directory": "cli"
+  }
+}
