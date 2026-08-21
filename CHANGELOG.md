@@ -2,6 +2,15 @@
 
 All notable changes to AcidMind are documented in this file.
 
+## [1.3.1] — 2026-08-22
+
+### Changed
+
+- **Installer now runs via npx directly from GitHub** — no clone or npm publish required:
+  `npx github:ragajatsuma-cmd/acidmind init`. Added a root `package.json` exposing the
+  `acidmind` bin; CLI help text and README Quick Start updated. (`npx acidmind-cli` remains
+  available once the package is published to npm.)
+
 ## [1.3.0] — 2026-08-22
 
 ### Added

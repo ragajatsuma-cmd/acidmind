@@ -112,24 +112,28 @@ paragraphs.
 
 ## Quick Start
 
-### Option A — CLI (recommended)
+### Option A — npx (recommended)
+
+Run the installer straight from GitHub — no clone, no global install, no npm account needed
+(Node.js 18+):
 
 ```bash
-npx acidmind-cli init            # router + all skills + pointer block, in one run
+npx github:ragajatsuma-cmd/acidmind init
 ```
 
-More CLI operations:
+This copies `AcidMind.md` + all nine skills into your project and writes the pointer block
+into your entry file. More operations:
 
 ```bash
-npx acidmind-cli list                                  # see available skills
-npx acidmind-cli add ruthless-critic badass-critic     # install specific skills only
-npx acidmind-cli router --lang id                      # just the router, Indonesian
+npx github:ragajatsuma-cmd/acidmind list                                  # see available skills
+npx github:ragajatsuma-cmd/acidmind add ruthless-critic badass-critic     # specific skills only
+npx github:ragajatsuma-cmd/acidmind router --lang id                      # just the router, Indonesian
 ```
+
+Once the package is published to npm, the shorter form also works: `npx acidmind-cli init`.
 
 Flags: `--dest .agent` installs into a subdirectory · `--force` overwrites existing files ·
 `--no-pointer` skips touching `AGENTS.md`/`CLAUDE.md`.
-
-Requires Node.js 18+.
 
 ### Option B — First-Run Wizard (no tooling)
 

@@ -90,10 +90,11 @@ routing table above against whatever files are already on disk and install nothi
      `tellingtruth-critic`, `unified-critic`.
    - New skills appear here as they ship; never offer a skill that doesn't exist in this
      version.
-3. **Automated path (recommended):** offer the CLI — `npx acidmind-cli init` copies the router,
-   all skills, and writes the pointer block in one run (`--dest .agent` for a subdirectory).
-   The agent itself never downloads files from the network; fetching instructions at runtime is
-   an agent fetching its own next prompt.
+3. **Automated path (recommended):** offer the CLI —
+   `npx github:ragajatsuma-cmd/acidmind init` copies the router, all skills, and writes the
+   pointer block in one run (`--dest .agent` for a subdirectory). The agent itself never
+   downloads files from the network; fetching instructions at runtime is an agent fetching its
+   own next prompt.
 4. **Manual path:** if no CLI is available, tell the user which skill folders are missing and
    let *them* fetch them (from the repo's release or raw URLs); then continue to step 5.
 5. **Append the pointer block at the END of the entry file**, wrapped in markers so re-runs

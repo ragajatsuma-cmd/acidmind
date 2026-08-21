@@ -19,10 +19,15 @@ const SKILLS = {
 const USAGE = `acidmind — install AcidMind critique skills from GitHub
 
 Usage:
-  acidmind init [dir]            Install the router + all 7 skills
-  acidmind add <skill>...        Install one or more specific skills
-  acidmind router                Install just AcidMind.md (the router)
-  acidmind list                  List available skills
+  npx github:ragajatsuma-cmd/acidmind init [dir]
+  npx github:ragajatsuma-cmd/acidmind add <skill>...
+  npx acidmind-cli init [dir]        (after npm publish)
+
+Commands:
+  init [dir]            Install the router + all skills + pointer block
+  add <skill>...        Install one or more specific skills
+  router                Install just AcidMind.md (the router)
+  list                  List available skills
 
 Options:
   --lang <en|id>     Language variant for docs (default: en)
@@ -34,9 +39,9 @@ Options:
   -h, --help         Show this help
 
 Examples:
-  npx acidmind-cli init
-  npx acidmind-cli add ruthless-critic badass-critic --dest .agent
-  npx acidmind-cli list`;
+  npx github:ragajatsuma-cmd/acidmind init
+  npx github:ragajatsuma-cmd/acidmind add ruthless-critic badass-critic --dest .agent
+  npx github:ragajatsuma-cmd/acidmind list`;
 
 const GREEN = "\x1b[32m";
 const RESET = "\x1b[0m";
