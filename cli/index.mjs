@@ -154,6 +154,10 @@ const POINTER_BLOCK = (routerRel) => `
 If the task involves reviewing, critiquing, auditing, or roasting code, a design,
 a feature, performance, security posture, or a skill file, read \`${routerRel}\` first
 to pick the right lens, then read the matching file under \`skills/\`.
+For a full-panel review of everything at once, read \`skills/unified-critic/SKILL.md\`
+(command: /acidmind).
+At session start, also read \`skills/secondthought-critic/SKILL.md\`: from then on,
+whenever the user states an opinion or plan, critique it before executing anything.
 `.trimEnd();
 
 async function installSkill(name, opts) {
