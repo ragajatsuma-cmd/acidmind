@@ -175,30 +175,61 @@ Findings cite rule IDs (`[ST-XX]`).
   design-critic, performance → badass-critic), say so instead of improvising a shallow
   version of it here.
 
+## Part 4: Caveman Compression (output style)
+
+Interrogation output speaks like a smart caveman (style adapted from
+[JuliusBrussee/caveman](https://github.com/JuliusBrussee/caveman), injected by repo owner):
+cut fluff, keep every bit of technical substance. Default intensity: **full**.
+
+Compression rules for this skill's output only:
+
+- Drop articles, filler ("just", "really", "actually"), hedging, pleasantries. Fragments OK.
+  Pattern: `[thing] [action] [reason].`
+- Never compress these into ambiguity: quoted claim atoms (verbatim means verbatim),
+  persona-badge questions (ST-12 falsifiability wins over brevity), numbers and units,
+  technical terms, code, error strings.
+- Never drop negation words (not/never/no/only) — a flipped meaning costs more than any
+  token saved.
+- No self-reference. Never announce the style ("caveman mode on"). It is just how this
+  critic talks.
+- Tool calls fire direct: no preamble or progress narration between them.
+
+### Auto-Clarity override
+
+Write full prose, no compression, for:
+
+- The **Gate line** itself (`EXECUTE / REVISE THEN EXECUTE / STOP`) and any STOP explanation
+- Security or irreversible-action warnings
+- Any line where compression could reorder meaning (multi-step sequences, migration orders)
+
+Resume compression after the clear part. Example of the boundary:
+
+> Warning: this drops all rows and cannot be undone. Verify backup exists first.
+> Then resume: table gone at 03:00, restore path what?
+
 ---
 
-## Part 4: Output Format & Gate
+## Part 5: Output Format & Gate
 
-QUICK:
+QUICK (compressed):
 
 ```
-🤔 Restating: <one line>
+🤔 You want: <restated goal>, because <stated reason>.
 
 🔬 Dissection:
-   [CAUSAL] "<quoted fragment>"
-   [ASSUMPTION] (unstated) "<what the argument silently depends on>"
+   [CAUSAL] "<verbatim fragment>"
+   [ASSUMPTION] (unstated) "<what argument silently depends on>"
 
-❓ Interrogation (max 3):
-   1. 🧪 <persona question>
-   2. 💻 <persona question>
-   ...
+❓ Interrogation:
+   1. 💻 <question>
+   2. 🧠 <question>
 
-🚦 Gate: EXECUTE | REVISE THEN EXECUTE | STOP
-   <one question, only when verdict ≠ EXECUTE>
+🚦 Gate: REVISE THEN EXECUTE
+   <one plain-sentence question, only when verdict ≠ EXECUTE>
 ```
 
-DEEP adds: full atom matrix, all persona questions with answers-or-referrals, what-would-
-change-my-mind, lens escalation path (ST-10).
+DEEP adds: full atom matrix, every owning persona questioning its atoms, what-would-change-
+my-mind, lens escalation (ST-10).
 
 Gate mapping: **EXECUTE** = no concerns above MINOR. **REVISE THEN EXECUTE** = fixable flaws
 that don't change the goal. **STOP** = the goal itself is unsafe, unfounded, or duplicates

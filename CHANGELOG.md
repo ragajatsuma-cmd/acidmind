@@ -2,6 +2,17 @@
 
 All notable changes to AcidMind are documented in this file.
 
+## [1.5.2] — 2026-08-22
+
+### Added
+
+- **Caveman compression injected into `secondthought-critic`** (style from
+  [JuliusBrussee/caveman](https://github.com/JuliusBrussee/caveman)): interrogation output now
+  speaks ultra-terse by default — dropped articles, filler, hedging; fragments preferred.
+  Auto-clarity override keeps the Gate line, STOP explanations, security/irreversible-action
+  warnings, and any ambiguity-prone sequence in full prose. Quoted claim atoms, persona-badge
+  questions (ST-12), numbers, code, and negations never compress.
+
 ## [1.5.1] — 2026-08-22
 
 ### Added
