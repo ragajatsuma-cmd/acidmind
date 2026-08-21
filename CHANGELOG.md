@@ -2,6 +2,16 @@
 
 All notable changes to AcidMind are documented in this file.
 
+## [1.5.4] — 2026-08-22
+
+### Added
+
+- **Intensity levels for caveman compression** in `secondthought-critic`: switchable via
+  `/caveman lite|full|ultra|wenyan-lite|wenyan-full|wenyan-ultra|off` (default: full).
+  Includes the full level table, tokenizer-backed rules (no invented abbreviations, no
+  arrows), wenyan classical modes, and language-preservation rule. `off` stops compression
+  only; the critic itself still requires "stop acidmind".
+
 ## [1.5.3] — 2026-08-22
 
 ### Added
