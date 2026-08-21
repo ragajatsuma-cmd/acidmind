@@ -50,7 +50,6 @@ const FALLBACK_BANNER = `
 :!:  !:! @!@!@!@! !@! !!@!@!@! :!:     :!: !@! !!@  !@! !!@!@!@!
 ::   ::: :!!@!@@! ::! :!!@!@@! :::     ::  ::! !:!  @:! :!!@!@@!
  :   : :  :  :! :   :  :  :! :  :      :     :  :   : :  :  :! :
-        seven critique skills for AI coding agents · v0.0.1
 `;
 
 async function loadBanner() {
