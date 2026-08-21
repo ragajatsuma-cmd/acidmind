@@ -1,6 +1,6 @@
 [![Version](https://img.shields.io/badge/version-1.6.0-orange?style=flat-square)](./CHANGELOG.md)
 [![License](https://img.shields.io/badge/license-MIT-blue?style=flat-square)](./LICENSE)
-[![Skills](https://img.shields.io/badge/skills-9-8a2be2?style=flat-square)](#-the-skill-family)
+[![Skills](https://img.shields.io/badge/skills-10-8a2be2?style=flat-square)](#-the-skill-family)
 [![Node](https://img.shields.io/badge/node-%3E%3D18-brightgreen?style=flat-square&logo=nodedotjs&logoColor=white)](https://nodejs.org)
 [![Stars](https://img.shields.io/github/stars/ragajatsuma-cmd/acidmind?style=flat-square&color=yellow)](https://github.com/ragajatsuma-cmd/acidmind/stargazers)
 [![Last Commit](https://img.shields.io/github/last-commit/ragajatsuma-cmd/acidmind/main?style=flat-square&logo=git&logoColor=white)](https://github.com/ragajatsuma-cmd/acidmind/commits/main)
@@ -9,7 +9,7 @@
 
 ![AcidMind banner](./assets/banner.jpeg)
 
-Nine critique skills for AI coding agents. One router. Zero generic reviews.
+Ten critique skills for AI coding agents. One router. Zero generic reviews.
 
 When your agent reviews code without a lens, it produces the same soft paragraph every time:
 praise, three nitpicks, a hedge. AcidMind replaces that with specialists that answer the
@@ -21,7 +21,7 @@ Every review ends with one mechanical verdict line:
 
 > **Gate: SHIP | FIX FIRST | DO NOT SHIP**
 
-Skills load on demand. Reviewing code costs four files of context, not nine skills' worth on
+Skills load on demand. Reviewing code costs five files of context, not ten skills' worth on
 every session.
 
 ---
@@ -46,7 +46,7 @@ Three properties hold across the family:
 1. **Read-only by default.** Skills diagnose and prescribe fixes. None rewrites your code
    unless you explicitly ask for implementation.
 2. **Scoped, not overlapping.** Each skill states what it does not cover and names the sibling
-   that covers it. Installing all nine never produces nine opinions on the same paragraph.
+   that covers it. Installing all ten never produces ten opinions on the same paragraph.
 3. **Purpose-gated, not style-gated.** Technique is never banned. Technique without a stated
    purpose is a finding.
 
@@ -97,8 +97,8 @@ No clone, no global install, no npm account. Requires Node.js 18+.
 npx github:ragajatsuma-cmd/acidmind init
 ```
 
-This installs `AcidMind.md`, the core edition (four daily lenses), and writes the pointer
-block into your entry file.
+This installs `AcidMind.md`, the core edition (the four daily lenses plus the autoloaded
+secondthought critic), and writes the pointer block into your entry file.
 
 **Editions:** start small, grow when needed.
 
@@ -120,7 +120,7 @@ Flags: `--dest .agent` installs into a subdirectory, `--force` overwrites existi
 
 ### Option 2: Claude Code plugin
 
-Installs all nine skills plus nine prewired slash commands:
+Installs all ten skills plus prewired slash commands:
 
 ```bash
 /plugin marketplace add https://github.com/ragajatsuma-cmd/acidmind
@@ -189,10 +189,12 @@ Slash commands require agent support. Everywhere else, plain language routes thr
 
 One skill breaks the on-demand rule by design: **`secondthought-critic`** loads at session
 start via the pointer block and runs automatically. Whenever your message contains a decision,
-diagnosis, or plan ("it's slow because of N+1", "let's just delete it"), it restates your
-position, raises at most three falsifiable concerns, and issues a gate
-(`EXECUTE / REVISE THEN EXECUTE / STOP`) **before** any execution step. It stays silent on
-trivia, respects your override exactly once, and never re-litigates a settled decision.
+diagnosis, or plan ("it's slow because of N+1", "let's just delete it"), it dissects your
+statement into claim atoms (including unstated assumptions), lets each family persona
+interrogate the atoms it owns with signature questions, and issues a gate
+(`EXECUTE / REVISE THEN EXECUTE / STOP`) **before** any execution step. Output is compressed
+caveman-style (`/caveman lite|full|ultra|wenyan-*`), it stays silent on trivia, respects your
+override exactly once, and never re-litigates a settled decision.
 
 ---
 
@@ -208,6 +210,8 @@ trivia, respects your override exactly once, and never re-litigates a settled de
 - Auditing a SKILL.md file: `autocritic-skill`.
 - An honest opinion without severity labels: `tellingtruth-critic`.
 - Everything checked at once before a launch or handoff: `unified-critic` via `/acidmind`.
+- Automatic critique of your own opinions and plans before the agent acts: already included
+  via the autoloaded `secondthought-critic`.
 
 ---
 
@@ -216,6 +220,7 @@ trivia, respects your override exactly once, and never re-litigates a settled de
 ```
 acidmind/
 ├── AcidMind.md               router / index, start here
+├── VERSION                   current release number (checked by status/update)
 ├── README.md                 this file
 ├── CHANGELOG.md              release history
 ├── LICENSE                   MIT
@@ -249,7 +254,7 @@ acidmind/
 `blackhat-critic` assumes the role of an attacker against targets you own or have written
 permission to test. It refuses anything else. It describes attack paths, preconditions, and
 defenses. It does not produce ready-to-run exploit payloads and does not execute anything
-against live systems. All nine skills are read-only diagnosticians unless you explicitly ask
+against live systems. All ten skills are read-only diagnosticians unless you explicitly ask
 for implementation.
 
 ---
