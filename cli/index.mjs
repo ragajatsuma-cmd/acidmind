@@ -111,7 +111,6 @@ async function installSkill(name, opts) {
   if (!SKILLS[name]) {
     throw new Error(`Unknown skill "${name}". Run \`acidmind list\` to see options.`);
   }
-  const langUpper = opts.lang.toUpperCase();
   const targets = [
     { remote: `skills/${name}/SKILL.md`, local: path.join(opts.dest, "skills", name, "SKILL.md") },
     {
@@ -122,9 +121,6 @@ async function installSkill(name, opts) {
   ];
   const written = [];
   for (const t of targets) {
-    const localPath = t.local.endsWith("SKILL-ID.md")
-      ? t.local.replace(/SKILL(-ID)?\.md$/, langUpper === "ID" ? "SKILL-ID.md" : "SKILL.md")
-      : t.local;
     let content;
     try {
       content = await fetchFile(opts.repo, opts.branch, t.remote);
@@ -132,21 +128,14 @@ async function installSkill(name, opts) {
       if (t.optional) continue;
       throw err;
     }
-    const destPath =
-      langUpper === "ID" && !localPath.endsWith("SKILL-ID.md")
-        ? null // ID variant handled by its own target below
-        : langUpper === "EN" && localPath.endsWith("SKILL-ID.md")
-          ? null
-          : localPath;
-    if (!destPath) continue;
-    if ((await exists(destPath)) && !opts.force) {
-      console.log(`  skipped (exists): ${path.relative(process.cwd(), destPath)}`);
+    if ((await exists(t.local)) && !opts.force) {
+      console.log(`  skipped (exists): ${path.relative(process.cwd(), t.local)}`);
       continue;
     }
-    await mkdir(path.dirname(destPath), { recursive: true });
-    await writeFile(destPath, content, "utf8");
-    written.push(destPath);
-    console.log(`  installed: ${path.relative(process.cwd(), destPath)}`);
+    await mkdir(path.dirname(t.local), { recursive: true });
+    await writeFile(t.local, content, "utf8");
+    written.push(t.local);
+    console.log(`  installed: ${path.relative(process.cwd(), t.local)}`);
   }
   return written;
 }
