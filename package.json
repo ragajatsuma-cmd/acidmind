@@ -1,6 +1,6 @@
 {
   "name": "acidmind-cli",
-  "version": "0.0.1",
+  "version": "1.6.0",
   "description": "AcidMind installer CLI - install nine specialist critique skills for AI coding agents into any project",
   "type": "module",
   "bin": {
