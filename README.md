@@ -45,6 +45,8 @@ its own `SKILL.md`:
 - **`heart-attack-critic`** — worst-case disaster simulation before launch or a security audit
 - **`autocritic-skill`** — meta: auto-audits a `SKILL.md` file itself before you install or ship it
 - **`tellingtruth-critic`** — unstructured, human, no-label honest opinion
+- **`unified-critic`** — the panel: runs all seven lenses over one artifact and merges them
+  into a single report with one gate (command: `/acidmind`)
 
 Each skill is **read-only by default**: it diagnoses and prescribes, it doesn't rewrite your
 work unless you explicitly ask it to. Each skill states — in its own frontmatter and body —
@@ -159,6 +161,7 @@ Each skill activates on its own slash command (or plain natural language):
 | `/heartattack`, `/disaster` | `heart-attack-critic` | Worst-case disaster simulation pre-launch |
 | `/auditskill`, `/autocritic` | `autocritic-skill` | Audit a `SKILL.md` before install/ship |
 | `/tellingtruth`, `/honest` | `tellingtruth-critic` | Plain human honesty, no labels |
+| `/acidmind`, `/fullcritic`, `/panel` | `unified-critic` | All seven lenses merged into one report + one gate |
 
 Slash commands work in agents that support them; in any agent, the phrases in the table (or a
 plain "review/critique/audit" request) route through `ACIDMIND.md`.
@@ -174,6 +177,7 @@ plain "review/critique/audit" request) route through `ACIDMIND.md`.
 - About to **launch** and want to know what could catastrophically go wrong → `heart-attack-critic`
 - Built a **new skill** and want to know if it will actually trigger and work → `autocritic-skill`
 - Just want a **straight, human answer** without severity labels and emoji headers → `tellingtruth-critic`
+- Want **everything checked at once** before launch or handoff, in one merged report → `/acidmind` (`unified-critic`)
 
 Full routing logic, including how to handle requests that span more than one axis, is in
 [`ACIDMIND.md`](./ACIDMIND.md#routing-logic).
@@ -192,6 +196,9 @@ acidmind/
 ├── assets/
 │   ├── banner.txt            # ASCII banner printed by the CLI
 │   └── banner.jpeg           # image banner shown on GitHub
+├── cli/
+│   ├── package.json
+│   └── index.mjs
 └── skills/
     ├── ruthless-critic/SKILL.md
     ├── design-critic/SKILL.md
@@ -200,14 +207,12 @@ acidmind/
     ├── heart-attack-critic/SKILL.md
     ├── autocritic-skill/SKILL.md
     ├── tellingtruth-critic/SKILL.md
-    └── cli/
-        ├── package.json
-        └── index.mjs
+    └── unified-critic/SKILL.md
 ```
 
 ---
 
-## Design Principles Shared Across All Seven Skills
+## Design Principles Shared Across All Skills
 
 - **Understand before you critique.** Every skill restates the artifact's intent in terms its
   author would agree with before finding fault — a strawman critique is a failed critique.

@@ -2,6 +2,27 @@
 
 All notable changes to AcidMind are documented in this file.
 
+## [1.2.0] — 2026-08-22
+
+### Added
+
+- **`unified-critic`** — the panel skill (commands: `/acidmind`, `/fullcritic`, `/panel`). Runs
+  all seven lenses over one artifact in a fixed order, deduplicates findings across lenses,
+  resolves conflicts as explicit trade-offs, and ends with exactly one unified Gate line
+  (`SHIP / FIX FIRST / DO NOT SHIP`, mapped from each lens's own gate). Includes sub-agent
+  guidance for agents that support parallel lens passes.
+- **First-Run Install Wizard** in `ACIDMIND.md`: runs once when the router is read in a
+  project without an AcidMind pointer block — declares the setup, asks which of the eight
+  skills to install, offers the automated CLI path (`npx acidmind-cli init`) or manual user
+  fetching, appends a marker-wrapped pointer block (`<!-- acidmind:start/end -->`) so re-runs
+  replace instead of duplicate, and asks the default usage mode (QUICK/DEEP) once.
+
+### Changed
+
+- Router table and repo structure updated for eight skills; "spanning multiple axes" requests
+  now explicitly route to `unified-critic` instead of running skills back-to-back.
+- CLI (`acidmind list` / `add` / `init`) now covers `unified-critic`.
+
 ## [1.1.0] — 2026-08-22
 
 ### Changed

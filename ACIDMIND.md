@@ -33,6 +33,7 @@ to almost any codebase, unchanged? If yes, it's not a finding — go look harder
 | `heart-attack-critic` | A worst-case disaster simulation before launch or a security audit — what could go fatally wrong | `skills/heart-attack-critic/SKILL.md` |
 | `autocritic-skill` | A `SKILL.md` file itself audited before install/distribution — will it trigger correctly, is it safe, is it useful | `skills/autocritic-skill/SKILL.md` |
 | `tellingtruth-critic` | An unstructured, human, no-format honest opinion — no severity labels, no emoji, just straight talk | `skills/tellingtruth-critic/SKILL.md` |
+| `unified-critic` | Everything checked at once — all seven lenses merged into one report with one gate. Commands: `/acidmind`, `/fullcritic`, `/panel` | `skills/unified-critic/SKILL.md` |
 
 ---
 
@@ -59,7 +60,58 @@ Use this decision order when a request could match more than one skill:
 
 If a request spans more than one axis (e.g. "review this PR" touching both design and
 performance), lead with the dominant concern and note in one line that the other axis exists —
-don't run every skill's full output back-to-back.
+don't run every skill's full output back-to-back. If the user wants *everything* checked at
+once (pre-launch, handoff), that is exactly what `unified-critic` (`/acidmind`) is for.
+
+---
+
+## First-Run Install Wizard
+
+This section runs **once**, the first time this file is read in a project where no AcidMind
+pointer block exists yet. It is an **offer, not a requirement**: if the user declines, use the
+routing table above against whatever files are already on disk and install nothing.
+
+**Skip this section entirely** if the project's entry file already contains an
+`<!-- acidmind:start -->` block — AcidMind is already installed here.
+
+1. **Declare the setup before doing anything.** Tell the user you will (a) place the chosen
+   skill folder(s) under `skills/<name>/` next to this file, and (b) append an AcidMind
+   pointer block at the end of the project's entry file (`AGENTS.md`, `CLAUDE.md`,
+   `GEMINI.md`, or whichever the running agent reads). Get approval first. Never modify the
+   entry file silently.
+2. **Ask which skills to install** (multi-select):
+   - **1. All eight** (recommended) — every critic plus the unified panel.
+   - Individual: `ruthless-critic`, `design-critic`, `feature-critic`, `badass-critic`,
+     `heart-attack-critic`, `autocritic-skill`, `tellingtruth-critic`, `unified-critic`.
+   - New skills appear here as they ship; never offer a skill that doesn't exist in this
+     version.
+3. **Automated path (recommended):** offer the CLI — `npx acidmind-cli init` copies the router,
+   all skills, and writes the pointer block in one run (`--dest .agent` for a subdirectory).
+   The agent itself never downloads files from the network; fetching instructions at runtime is
+   an agent fetching its own next prompt.
+4. **Manual path:** if no CLI is available, tell the user which skill folders are missing and
+   let *them* fetch them (from the repo's release or raw URLs); then continue to step 5.
+5. **Append the pointer block at the END of the entry file**, wrapped in markers so re-runs
+   replace the block instead of duplicating it:
+   ```md
+   <!-- acidmind:start -->
+   ## Code & Design Review
+   If the task involves reviewing, critiquing, auditing, or roasting code, a design,
+   a feature, performance, security posture, or a skill file, read `ACIDMIND.md` first
+   to pick the right lens, then read the matching file under `skills/`.
+   For a full-panel review of everything at once, read `skills/unified-critic/SKILL.md`
+   (command: /acidmind).
+   <!-- acidmind:end -->
+   ```
+   If an older pointer block exists without markers, replace just that block.
+6. **Ask the default usage mode once:** QUICK (verdict + top findings + gate) or DEEP (full
+   report)? Note the answer in one line right below the pointer block, e.g.
+   `Default mode: DEEP.` Each critic also accepts "quick" / "deep" per request.
+
+Notes:
+- The entry file is read at session start, so a newly written pointer takes effect from the
+  next session.
+- The wizard needs file-write access for step 5 only, and network access never.
 
 ---
 
@@ -163,14 +215,15 @@ acidmind/
     │   └── SKILL.md
     ├── autocritic-skill/
     │   └── SKILL.md
-    └── tellingtruth-critic/
-        ├── SKILL.md
-        └── SKILL-ID.md      # original Indonesian draft, kept for reference
+    ├── tellingtruth-critic/
+    │   └── SKILL.md
+    └── unified-critic/
+        └── SKILL.md
 ```
 
 ---
 
-## Shared Design Rules Across All Seven Skills
+## Shared Design Rules Across All Skills
 
 Every skill was rebuilt on the same architecture (inspired by
 [miqdadbadjuber/anti-slop](https://github.com/miqdadbadjuber/anti-slop), MIT): a persona, an

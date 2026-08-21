@@ -12,6 +12,7 @@ const SKILLS = {
   "heart-attack-critic": "Worst-case disaster simulation before launch / security audit (/heartattack)",
   "autocritic-skill": "Auto-audit of a SKILL.md before you install or ship it (/auditskill)",
   "tellingtruth-critic": "Unstructured, human, no-label honest opinion (/honest)",
+  "unified-critic": "All seven lenses merged into one panel review with one gate (/acidmind)",
 };
 
 const USAGE = `acidmind — install AcidMind critique skills from GitHub
