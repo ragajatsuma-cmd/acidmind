@@ -2,6 +2,19 @@
 
 All notable changes to AcidMind are documented in this file.
 
+## [1.5.0] — 2026-08-22
+
+### Added
+
+- **`secondthought-critic`** — the pause before execution (autoloaded). Runs automatically at
+  every session via the pointer block: whenever the user states an opinion, diagnosis, or
+  plan, it restates the position, raises up to three falsifiable concerns, and issues a Gate
+  (`EXECUTE / REVISE THEN EXECUTE / STOP`) **before any execution step**, interrupting when
+  needed. Stays silent on trivia (ST-02), respects user override exactly once (ST-04), and
+  never re-litigates settled decisions. Commands: `/secondthought`, `/wait`.
+- Pointer block now instructs agents to load it at session start; `core` edition grows to
+  five skills (secondthought included by default), family is now ten skills.
+
 ## [1.4.1] — 2026-08-22
 
 ### Removed

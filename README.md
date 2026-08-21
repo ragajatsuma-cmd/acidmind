@@ -39,6 +39,7 @@ every session.
 | `autocritic-skill` | 🎭 The auditor | Will this SKILL.md trigger correctly and produce useful output? | `/auditskill` |
 | `tellingtruth-critic` | 💬 The honest friend | What would a smart friend actually say about this? | `/tellingtruth`, `/honest` |
 | `unified-critic` | 🧩 The panel moderator | What does every lens say at once, merged into one report? | `/acidmind`, `/fullcritic` |
+| `secondthought-critic` | 🤔 The pause before execution | **Autoloaded every session:** when you state an opinion or plan, it critiques it before the agent acts on it | automatic, `/secondthought`, `/wait` |
 
 Three properties hold across the family:
 
@@ -103,9 +104,9 @@ block into your entry file.
 
 | Edition | Installs | For |
 |---|---|---|
-| `core` (default) | ruthless, design, feature, badass | Daily code review |
+| `core` (default) | ruthless, design, feature, badass, secondthought | Daily code review |
 | `security` | core + heart-attack, blackhat | Teams shipping to production |
-| `full` | all nine skills | Pre-launch audits, power users |
+| `full` | all ten skills | Pre-launch audits, power users |
 
 ```bash
 npx github:ragajatsuma-cmd/acidmind init --edition security
@@ -144,6 +145,8 @@ a feature, performance, security posture, or a skill file, read `AcidMind.md` fi
 to pick the right lens, then read the matching file under `skills/`.
 For a full-panel review of everything at once, read `skills/unified-critic/SKILL.md`
 (command: /acidmind).
+At session start, also read `skills/secondthought-critic/SKILL.md`: from then on,
+whenever the user states an opinion or plan, critique it before executing anything.
 ```
 
 Then copy the repo's `skills/` directory beside it.
@@ -166,6 +169,14 @@ Slash commands require agent support. Everywhere else, plain language routes thr
 | `/auditskill` `/autocritic` | autocritic-skill |
 | `/tellingtruth` `/honest` | tellingtruth-critic |
 | `/acidmind` `/fullcritic` `/panel` | unified-critic |
+| *(automatic)* `/secondthought` `/wait` | secondthought-critic |
+
+One skill breaks the on-demand rule by design: **`secondthought-critic`** loads at session
+start via the pointer block and runs automatically. Whenever your message contains a decision,
+diagnosis, or plan ("it's slow because of N+1", "let's just delete it"), it restates your
+position, raises at most three falsifiable concerns, and issues a gate
+(`EXECUTE / REVISE THEN EXECUTE / STOP`) **before** any execution step. It stays silent on
+trivia, respects your override exactly once, and never re-litigates a settled decision.
 
 ---
 
@@ -211,7 +222,8 @@ acidmind/
     ├── blackhat-critic       🥷
     ├── autocritic-skill      🎭
     ├── tellingtruth-critic   💬
-    └── unified-critic        🧩
+    ├── unified-critic        🧩
+    └── secondthought-critic  🤔 (autoloaded)
 ```
 
 ---

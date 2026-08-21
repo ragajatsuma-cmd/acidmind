@@ -85,10 +85,11 @@ routing table above against whatever files are already on disk and install nothi
    entry file silently.
 2. **Ask which edition to install** (single choice):
    - **1. Core** (recommended default) — the four daily lenses: `ruthless-critic`,
-     `design-critic`, `feature-critic`, `badass-critic`.
+     `design-critic`, `feature-critic`, `badass-critic`, plus the autoloaded
+     `secondthought-critic`.
    - **2. Security** — core plus `heart-attack-critic` and `blackhat-critic`, for teams
      shipping to production.
-   - **3. Full** — all nine skills, including `autocritic-skill`, `tellingtruth-critic`,
+   - **3. Full** — all ten skills, including `autocritic-skill`, `tellingtruth-critic`,
      and the `unified-critic` panel.
    - **4. Pick individually** — list every skill for multi-select.
    New skills appear here as they ship; never offer a skill that doesn't exist in this
@@ -111,6 +112,8 @@ routing table above against whatever files are already on disk and install nothi
    to pick the right lens, then read the matching file under `skills/`.
    For a full-panel review of everything at once, read `skills/unified-critic/SKILL.md`
    (command: /acidmind).
+   At session start, also read `skills/secondthought-critic/SKILL.md`: from then on,
+   whenever the user states an opinion or plan, critique it before executing anything.
    <!-- acidmind:end -->
    ```
    If an older pointer block exists without markers, replace just that block.
@@ -227,7 +230,9 @@ acidmind/
     │   └── SKILL.md
     ├── tellingtruth-critic/
     │   └── SKILL.md
-    └── unified-critic/
+    ├── unified-critic/
+    │   └── SKILL.md
+    └── secondthought-critic/
         └── SKILL.md
 ```
 

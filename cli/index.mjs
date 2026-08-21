@@ -14,14 +14,16 @@ const SKILLS = {
   "autocritic-skill": "Auto-audit of a SKILL.md before you install or ship it (/auditskill)",
   "tellingtruth-critic": "Unstructured, human, no-label honest opinion (/honest)",
   "unified-critic": "All lenses merged into one panel review with one gate (/acidmind)",
+  "secondthought-critic": "Autoloaded: critiques your opinion/plan BEFORE the agent executes (/wait)",
 };
 const EDITIONS = {
-  core: ["ruthless-critic", "design-critic", "feature-critic", "badass-critic"],
+  core: ["ruthless-critic", "design-critic", "feature-critic", "badass-critic", "secondthought-critic"],
   security: [
     "ruthless-critic",
     "design-critic",
     "feature-critic",
     "badass-critic",
+    "secondthought-critic",
     "heart-attack-critic",
     "blackhat-critic",
   ],
