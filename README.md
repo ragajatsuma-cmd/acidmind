@@ -1,7 +1,12 @@
 [![ID](https://img.shields.io/badge/docs-ID-lightgrey?style=flat-square)](./README-ID.md)
 [![EN](https://img.shields.io/badge/docs-EN-2ea44f?style=flat-square)](./README.md)
-[![License: MIT](https://img.shields.io/badge/license-MIT-blue?style=flat-square)](./LICENSE)
-[![Version](https://img.shields.io/badge/version-1.3.0-orange?style=flat-square)](./CHANGELOG.md)
+[![Version](https://img.shields.io/badge/version-1.3.1-orange?style=flat-square)](./CHANGELOG.md)
+[![License](https://img.shields.io/badge/license-MIT-blue?style=flat-square)](./LICENSE)
+[![Skills](https://img.shields.io/badge/skills-9-8a2be2?style=flat-square)](#the-skill-family)
+[![Node](https://img.shields.io/badge/node-%3E%3D18-brightgreen?style=flat-square&logo=nodedotjs&logoColor=white)](https://nodejs.org)
+[![Stars](https://img.shields.io/github/stars/ragajatsuma-cmd/acidmind?style=flat-square&color=yellow)](https://github.com/ragajatsuma-cmd/acidmind/stargazers)
+[![Last Commit](https://img.shields.io/github/last-commit/ragajatsuma-cmd/acidmind/main?style=flat-square&logo=git&logoColor=white)](https://github.com/ragajatsuma-cmd/acidmind/commits/main)
+[![PRs Welcome](https://img.shields.io/badge/PRs-welcome-ff69b4?style=flat-square)](./CONTRIBUTING.md)
 
 # AcidMind
 
