@@ -2,6 +2,18 @@
 
 All notable changes to AcidMind are documented in this file.
 
+## [1.4.0] — 2026-08-22
+
+### Added
+
+- **Editions** — install experience simplified from a 9-way multi-select to one choice:
+  - `core` *(new default)*: ruthless, design, feature, badass — daily reviews.
+  - `security`: core + heart-attack-critic + blackhat-critic.
+  - `full`: all nine skills including the unified panel (`--all` shorthand).
+- CLI flags `--edition <core|security|full>` and `--all`; `acidmind list` now shows editions;
+  unknown editions fail with a helpful message. First-Run Wizard step 2 is now a single
+  edition choice instead of multi-select.
+
 ## [1.3.1] — 2026-08-22
 
 ### Added

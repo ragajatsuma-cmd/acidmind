@@ -13,7 +13,19 @@ const SKILLS = {
   "blackhat-critic": "Red-team penetration review of your own app, attacker-style (/blackhat)",
   "autocritic-skill": "Auto-audit of a SKILL.md before you install or ship it (/auditskill)",
   "tellingtruth-critic": "Unstructured, human, no-label honest opinion (/honest)",
-  "unified-critic": "All seven lenses merged into one panel review with one gate (/acidmind)",
+  "unified-critic": "All lenses merged into one panel review with one gate (/acidmind)",
+};
+const EDITIONS = {
+  core: ["ruthless-critic", "design-critic", "feature-critic", "badass-critic"],
+  security: [
+    "ruthless-critic",
+    "design-critic",
+    "feature-critic",
+    "badass-critic",
+    "heart-attack-critic",
+    "blackhat-critic",
+  ],
+  full: Object.keys(SKILLS),
 };
 
 const USAGE = `acidmind — install AcidMind critique skills from GitHub
@@ -24,12 +36,19 @@ Usage:
   npx acidmind-cli init [dir]        (after npm publish)
 
 Commands:
-  init [dir]            Install the router + all skills + pointer block
+  init [dir]            Install the router + one edition of skills + pointer block
   add <skill>...        Install one or more specific skills
   router                Install just AcidMind.md (the router)
-  list                  List available skills
+  list                  List available skills and editions
+
+Editions (--edition <name>, default: core):
+  core                  ruthless, design, feature, badass — daily reviews (4 skills)
+  security              core + heart-attack + blackhat — safe release (6 skills)
+  full                  all nine skills including autocritic, honest, panel
 
 Options:
+  --edition <name>   core | security | full (default: core)
+  --all              shorthand for --edition full
   --lang <en|id>     Language variant for docs (default: en)
   --dest <dir>       Destination directory (default: current directory)
   --repo <owner/name>  Source GitHub repo (default: ${DEFAULT_REPO})
@@ -40,6 +59,7 @@ Options:
 
 Examples:
   npx github:ragajatsuma-cmd/acidmind init
+  npx github:ragajatsuma-cmd/acidmind init --edition security
   npx github:ragajatsuma-cmd/acidmind add ruthless-critic badass-critic --dest .agent
   npx github:ragajatsuma-cmd/acidmind list`;
 
@@ -83,6 +103,7 @@ function parseArgs(argv) {
     branch: process.env.ACIDMIND_BRANCH || DEFAULT_BRANCH,
     force: false,
     pointer: true,
+    edition: "core",
   };
   const positional = [];
   for (let i = 0; i < argv.length; i++) {
@@ -93,10 +114,22 @@ function parseArgs(argv) {
     else if (a === "--branch") opts.branch = argv[++i];
     else if (a === "--force") opts.force = true;
     else if (a === "--no-pointer") opts.pointer = false;
+    else if (a === "--edition") opts.edition = argv[++i];
+    else if (a === "--all") opts.edition = "full";
     else if (a === "-h" || a === "--help") opts.help = true;
     else positional.push(a);
   }
   return { opts, positional };
+}
+
+function editionSkills(edition) {
+  const list = EDITIONS[edition];
+  if (!list) {
+    throw new Error(
+      `Unknown edition "${edition}". Choose one of: ${Object.keys(EDITIONS).join(", ")}.`,
+    );
+  }
+  return list;
 }
 
 async function fetchFile(repo, branch, remotePath) {
@@ -203,7 +236,7 @@ async function cmdInit(positional, opts) {
   }
 
   console.log("");
-  for (const skill of Object.keys(SKILLS)) {
+  for (const skill of editionSkills(opts.edition)) {
     await installSkill(skill, opts);
   }
 
@@ -239,7 +272,13 @@ function cmdList() {
   for (const [name, desc] of Object.entries(SKILLS)) {
     console.log(`  ${name.padEnd(22)} ${desc}`);
   }
-  console.log("\nInstall with: acidmind add <skill>...");
+  console.log("\nEditions (used with init):\n");
+  for (const [name, skills] of Object.entries(EDITIONS)) {
+    const label = name === "core" ? "default" : name === "full" ? "everything" : "release-ready";
+    console.log(`  ${name.padEnd(22)} ${skills.length} skills — ${label}`);
+  }
+  console.log("\nInstall with: acidmind init [--edition core|security|full]");
+  console.log("Or pick individually: acidmind add <skill>...");
 }
 
 async function main() {
@@ -277,5 +316,5 @@ async function main() {
 
 main().catch((err) => {
   console.error(`error: ${err.message}`);
-  process.exit(1);
+  process.exitCode = 1;
 });

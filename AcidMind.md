@@ -83,13 +83,17 @@ routing table above against whatever files are already on disk and install nothi
    pointer block at the end of the project's entry file (`AGENTS.md`, `CLAUDE.md`,
    `GEMINI.md`, or whichever the running agent reads). Get approval first. Never modify the
    entry file silently.
-2. **Ask which skills to install** (multi-select):
-   - **1. All nine** (recommended) — every critic plus the unified panel.
-   - Individual: `ruthless-critic`, `design-critic`, `feature-critic`, `badass-critic`,
-     `heart-attack-critic`, `blackhat-critic`, `autocritic-skill`,
-     `tellingtruth-critic`, `unified-critic`.
-   - New skills appear here as they ship; never offer a skill that doesn't exist in this
-     version.
+2. **Ask which edition to install** (single choice):
+   - **1. Core** (recommended default) — the four daily lenses: `ruthless-critic`,
+     `design-critic`, `feature-critic`, `badass-critic`.
+   - **2. Security** — core plus `heart-attack-critic` and `blackhat-critic`, for teams
+     shipping to production.
+   - **3. Full** — all nine skills, including `autocritic-skill`, `tellingtruth-critic`,
+     and the `unified-critic` panel.
+   - **4. Pick individually** — list every skill for multi-select.
+   New skills appear here as they ship; never offer a skill that doesn't exist in this
+   version. Missing skills can always be added later with `add <skill>` — choosing small
+   now costs nothing later.
 3. **Automated path (recommended):** offer the CLI —
    `npx github:ragajatsuma-cmd/acidmind init` copies the router, all skills, and writes the
    pointer block in one run (`--dest .agent` for a subdirectory). The agent itself never

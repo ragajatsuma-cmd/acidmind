@@ -148,11 +148,27 @@ Run the installer straight from GitHub — no clone, no global install, no npm a
 npx github:ragajatsuma-cmd/acidmind init
 ```
 
-This copies `AcidMind.md` + all nine skills into your project and writes the pointer block
-into your entry file. More operations:
+This copies `AcidMind.md` + the **core edition** (the four daily lenses) into your project and
+writes the pointer block into your entry file. No questions asked — you can always add more
+later with `add`.
+
+**Editions** — start small, grow when you need it:
+
+| Edition | Skills | For |
+|---|---|---|
+| `core` *(default)* | ruthless, design, feature, badass | Daily code review |
+| `security` | core + heart-attack, blackhat | Teams shipping to production |
+| `full` | all nine, including the panel | Power users, pre-launch audits |
 
 ```bash
-npx github:ragajatsuma-cmd/acidmind list                                  # see available skills
+npx github:ragajatsuma-cmd/acidmind init --edition security
+npx github:ragajatsuma-cmd/acidmind init --all          # shorthand for full
+```
+
+More operations:
+
+```bash
+npx github:ragajatsuma-cmd/acidmind list                                  # skills & editions
 npx github:ragajatsuma-cmd/acidmind add ruthless-critic badass-critic     # specific skills only
 npx github:ragajatsuma-cmd/acidmind router --lang id                      # just the router, Indonesian
 ```
