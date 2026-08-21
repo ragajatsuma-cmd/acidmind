@@ -39,7 +39,7 @@ Examples:
 const GREEN = "\x1b[32m";
 const RESET = "\x1b[0m";
 
-const BANNER = `${GREEN}
+const FALLBACK_BANNER = `
 @@@@@@           @@@      @@@ @@@@@@@@@@  @@@               @@@
 @@@@@@@@          @@@      @@@ @@@@@@@@@@@ @@@               @@@
 @@!  @@@                   @@@ @@! @@! @@!                   @@@
@@ -51,10 +51,21 @@ const BANNER = `${GREEN}
 ::   ::: :!!@!@@! ::! :!!@!@@! :::     ::  ::! !:!  @:! :!!@!@@!
  :   : :  :  :! :   :  :  :! :  :      :     :  :   : :  :  :! :
         seven critique skills for AI coding agents · v0.0.1
-${RESET}`;
+`;
+
+async function loadBanner() {
+  try {
+    const assetPath = new URL("../assets/banner.txt", import.meta.url);
+    return await readFile(assetPath, "utf8");
+  } catch {
+    return FALLBACK_BANNER;
+  }
+}
+
+let BANNER = FALLBACK_BANNER;
 
 function showBanner() {
-  console.log(BANNER);
+  console.log(`${GREEN}${BANNER}${RESET}`);
   console.log();
 }
 
@@ -226,6 +237,7 @@ function cmdList() {
 }
 
 async function main() {
+  BANNER = await loadBanner();
   const [, , command, ...rest] = process.argv;
   const { opts, positional } = parseArgs(rest);
 
