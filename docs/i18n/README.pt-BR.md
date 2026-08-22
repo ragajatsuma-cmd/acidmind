@@ -13,7 +13,7 @@
 
 8 habilidades de crítica para agentes de codificação de IA. Um roteador. Zero avaliações genéricas.
 
-Quando um agente revisa código sem lente, produz sempre o mesmo parágrafo morno: elogio, três detalhes menores, um fechamento vago. O AcidMind substitui isso por especialistas que respondem à pergunta que você realmente fez. Uma preocupação de arquitetura recebe uma revisão de arquitetura. Uma funcionalidade é testada com usuários reais, incluindo estados vazios. Um app pré-lançamento é atacado como um atacante real o atacaria — e devolvido com um plano de hardening.
+Quando um agente revisa código sem lente, produz sempre o mesmo parágrafo morno: elogio, três detalhes menores, um fechamento vago. O AcidMind substitui isso por especialistas que respondem à pergunta que você realmente fez. Uma preocupação de arquitetura recebe uma revisão de arquitetura. Uma funcionalidade é testada com usuários reais, incluindo estados vazios. Um app pré-lançamento é atacado como um atacante real o atacaria, e devolvido com um plano de hardening.
 
 Toda avaliação termina com um veredito mecânico de uma linha:
 
@@ -64,4 +64,4 @@ O Protocolo B do `security-critic` ataca apenas alvos que você possui ou tem pe
 
 ## Licença
 
-MIT — veja [LICENSE](../../LICENSE).
+MIT, veja [LICENSE](../../LICENSE).

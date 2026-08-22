@@ -9,7 +9,7 @@ Thanks for helping make AI agent reviews sharper. This guide covers the fast pat
 - **Sharper heuristics**: better severity rules, new slop patterns, new interrogation
   questions for `secondthought-critic`'s dissection protocol.
 - **Drift reports**: a skill's stated scope diverging from its actual behavior.
-- **CLI improvements** to the installer (`cli/index.mjs`) — keep it zero-dependency.
+- **CLI improvements** to the installer (`cli/index.mjs`), keep it zero-dependency.
 
 ## Ground Rules
 
@@ -38,7 +38,7 @@ node scripts/sync.mjs
 
 It verifies skill counts, router table rows, CLI map entries, and version badges against the
 canonical facts (folders in `skills/`, top header in `CHANGELOG.md`). PRs that introduce
-drift will be asked to fix it — the script tells you exactly where.
+drift will be asked to fix it, the script tells you exactly where.
 
 ## License
 

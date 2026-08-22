@@ -1,6 +1,6 @@
 {
-  "name": "acidmind-cli",
-  "version": "1.9.0",
+  "name": "@ragajatsuma-cmd/acidmind-cli",
+  "version": "2.4.0",
   "description": "AcidMind installer CLI - install nine specialist critique skills for AI coding agents into any project",
   "type": "module",
   "bin": {
@@ -30,5 +30,8 @@
   },
   "scripts": {
     "start": "node cli/index.mjs"
+  },
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com"
   }
 }

@@ -32,7 +32,7 @@ const USAGE = `acidmind — install AcidMind critique skills from GitHub
 Usage:
   npx github:ragajatsuma-cmd/acidmind init [dir]
   npx github:ragajatsuma-cmd/acidmind add <skill>...
-  npx acidmind-cli init [dir]        (after npm publish)
+  (global npm install: see README "For CI and advanced users")
 
 Commands:
   init [dir]            Install the router + one edition of skills + pointer block
@@ -133,8 +133,16 @@ function editionSkills(edition) {
 const MANIFEST = ".acidmind.json";
 
 async function fetchLatestVersion(opts) {
-  const raw = await fetchFile(opts.repo, opts.branch, "VERSION");
-  return raw.trim();
+  // raw.githubusercontent.com CDN propagation can 404 briefly after a push; retry once.
+  for (let attempt = 1; attempt <= 2; attempt++) {
+    try {
+      const raw = await fetchFile(opts.repo, opts.branch, "VERSION");
+      return raw.trim();
+    } catch (err) {
+      if (attempt === 2) throw err;
+      await new Promise((r) => setTimeout(r, 3000));
+    }
+  }
 }
 
 async function readManifest(dest) {
@@ -197,12 +205,7 @@ async function installSkill(name, opts) {
   ];
   const written = [];
   for (const t of targets) {
-    let content;
-    try {
-      content = await fetchFile(opts.repo, opts.branch, t.remote);
-    } catch (err) {
-      throw err;
-    }
+    const content = await fetchFile(opts.repo, opts.branch, t.remote);
     if ((await exists(t.local)) && !opts.force) {
       console.log(`  skipped (exists): ${path.relative(process.cwd(), t.local)}`);
       continue;

@@ -64,4 +64,4 @@ npx github:ragajatsuma-cmd/acidmind update   # 자동 업데이트
 
 ## 라이선스
 
-MIT — [LICENSE](../../LICENSE) 참조.
+MIT, [LICENSE](../../LICENSE) 참조.

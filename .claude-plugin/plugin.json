@@ -1,7 +1,7 @@
 {
   "name": "acidmind",
   "version": "1.3.1",
-  "description": "Nine specialist critique skills for AI coding agents: general critique, architecture, features, performance, disaster simulation, red-team pentest, skill auditing, plain honesty, and a unified panel. One router, zero generic reviews.",
+  "description": "Eight critique skills for AI coding agents: brutal review with three registers (including whole-repo AUTOPSY), architecture, features, performance, security (disaster simulation + red team with optional Strix/Wallbreaker live bridges), skill auditing, and a unified panel. One router, zero generic reviews.",
   "author": {
     "name": "ragajatsuma-cmd",
     "url": "https://github.com/ragajatsuma-cmd"

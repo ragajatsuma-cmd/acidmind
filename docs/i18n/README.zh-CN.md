@@ -64,4 +64,4 @@ npx github:ragajatsuma-cmd/acidmind update   # 自动更新
 
 ## 许可证
 
-MIT — 参见 [LICENSE](../../LICENSE)。
+MIT, 参见 [LICENSE](../../LICENSE)。

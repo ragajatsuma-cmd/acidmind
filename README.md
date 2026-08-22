@@ -10,7 +10,7 @@
     <a href="docs/i18n/README.es.md">Español</a>
   </p>
   <p>
-    <a href="./CHANGELOG.md"><img alt="Version" src="https://img.shields.io/badge/version-2.3.0-orange?style=for-the-badge"></a>
+    <a href="./CHANGELOG.md"><img alt="Version" src="https://img.shields.io/badge/version-2.4.0-orange?style=for-the-badge"></a>
     <a href="./LICENSE"><img alt="License" src="https://img.shields.io/badge/license-MIT-blue?style=for-the-badge"></a>
     <img alt="Skills" src="https://img.shields.io/badge/skills-8-8a2be2?style=for-the-badge">
     <a href="https://nodejs.org"><img alt="Node" src="https://img.shields.io/badge/node-%3E%3D18-brightgreen?style=for-the-badge&logo=nodedotjs&logoColor=white"></a>
@@ -55,7 +55,7 @@ every session.
 
 | Skill | Persona | What it answers | Command |
 |---|---|---|---|
-| `ruthless-critic` | 🧪 The acid test — three registers: **ROAST** (default), **AUTOPSY** (whole-repo raw-register autopsy), **HONEST** (plain human opinion) | Where does this artifact break, specifically? What would a smart friend actually say? | `/grill-me`, `/critique`, `/autopsy`, `/tellingtruth`, `/honest` |
+| `ruthless-critic` | 🧪 The acid test, three registers: **ROAST** (default), **AUTOPSY** (whole-repo raw-register autopsy), **HONEST** (plain human opinion) | Where does this artifact break, specifically? What would a smart friend actually say? | `/grill-me`, `/critique`, `/autopsy`, `/tellingtruth`, `/honest` |
 | `design-critic` | 🧠 The architect | Will this structure survive its next three requirement changes? | `/designcritic` |
 | `feature-critic` | 🔪 The dissection | Does this feature work for real users, in every state? | `/featurecritic` |
 | `badass-critic` | 💻 The performance engineer | At what load does this fall over, measured how? | `/badass`, `/perfcritic` |
@@ -114,7 +114,7 @@ Each skill follows the same architecture (adapted from
 
 ### Option 1: npx (recommended)
 
-No clone, no global install, no npm account. Requires Node.js 18+.
+Run straight from GitHub, no clone, no global install, no npm account (Node.js 18+):
 
 ```bash
 npx github:ragajatsuma-cmd/acidmind init
@@ -123,7 +123,7 @@ npx github:ragajatsuma-cmd/acidmind init
 This installs `AcidMind.md`, the core edition (the four daily lenses plus the autoloaded
 secondthought critic), and writes the pointer block into your entry file.
 
-**Editions:** start small, grow when needed.
+**Editions**, start small, grow when needed:
 
 | Edition | Installs | For |
 |---|---|---|
@@ -150,16 +150,13 @@ Installs all eight skills plus prewired slash commands:
 /plugin install acidmind@acidmind
 ```
 
-### Option 3: First-run wizard
+### Option 3: No tooling (wizard or manual)
 
 Drop [`AcidMind.md`](./AcidMind.md) next to your entry file and ask your agent to read it.
-On first read it offers a wizard: choose an edition, confirm the target directory, and it
-writes a pointer block wrapped in `<!-- acidmind:start/end -->` markers so later runs replace
-instead of duplicate.
-
-### Option 4: Manual
-
-Paste this block into your entry-point file (`AGENTS.md`, `CLAUDE.md`, `GEMINI.md`):
+On first read it offers a wizard that picks an edition and writes a pointer block wrapped in
+`<!-- acidmind:start/end -->` markers so later runs replace instead of duplicate. Prefer zero
+automation? Paste this block yourself into your entry-point file (`AGENTS.md`, `CLAUDE.md`,
+`GEMINI.md`) and copy the repo's `skills/` directory beside it:
 
 ```md
 ## Code & Design Review
@@ -175,7 +172,27 @@ version against https://raw.githubusercontent.com/ragajatsuma-cmd/acidmind/main/
 if newer, notify the user and offer: npx github:ragajatsuma-cmd/acidmind update
 ```
 
-Then copy the repo's `skills/` directory beside it.
+<details>
+<summary>For CI and advanced users: global npm install from GitHub Packages</summary>
+
+The CLI is published to the GitHub Packages npm registry as
+[`@ragajatsuma-cmd/acidmind-cli`](https://github.com/ragajatsuma-cmd/acidmind/pkgs/npm/%40ragajatsuma-cmd%2Facidmind-cli)
+by an automated workflow on every release. Installing from GitHub Packages requires a
+personal access token (classic) with `read:packages` scope:
+
+1. Create the token at github.com → Settings → Developer settings → Personal access tokens
+   (classic).
+2. Add these lines to your `~/.npmrc`:
+   ```shell
+   @ragajatsuma-cmd:registry=https://npm.pkg.github.com
+   //npm.pkg.github.com/:_authToken=YOUR_TOKEN
+   ```
+3. Install and run anywhere:
+   ```bash
+   npm install -g @ragajatsuma-cmd/acidmind-cli
+   acidmind init --edition security
+   ```
+</details>
 
 ### Updates 🔔
 
@@ -191,7 +208,7 @@ no longer part of your edition, and preserves your entry file (it only replaces 
 marker-wrapped pointer block). Your agent also helps: the pointer block asks it to check the
 version once per session and notify you when a newer release exists.
 
-Tip: add `.acidmind.json` to your project's `.gitignore` — it is local install state, not
+Tip: add `.acidmind.json` to your project's `.gitignore`, it is local install state, not
 project configuration.
 
 ---
@@ -263,13 +280,15 @@ acidmind/
 ├── .claude-plugin/
 │   ├── plugin.json           Claude Code plugin manifest
 │   └── marketplace.json      listing for /plugin marketplace add
+├── .github/workflows/        auto-publish to GitHub Packages on release
 ├── commands/                 prewired slash commands, one per critic
+├── docs/i18n/                translated READMEs (ko / ja / zh-CN / pt-BR / es)
+├── scripts/sync.mjs          single source of truth sync (version + counts)
 ├── assets/
 │   ├── banner.txt            ASCII banner printed by the CLI
 │   └── banner.jpeg           image banner shown on GitHub
-├── cli/
-│   ├── package.json          npm package manifest
-│   └── index.mjs             zero-dependency installer CLI
+├── CONTRIBUTING.md           contribution guide
+├── cli/index.mjs             zero-dependency installer CLI
 └── skills/                   one folder per skill, each with SKILL.md
     ├── ruthless-critic       🧪 (ROAST / AUTOPSY / HONEST registers)
     ├── design-critic         🧠
@@ -290,7 +309,7 @@ written permission to test. It refuses anything else. It describes attack paths,
 preconditions, and defenses. It does not produce ready-to-run exploit payloads and does not
 execute anything against live systems itself; when explicitly requested and authorized, it
 may delegate dynamic scanning to the installed [Strix](https://github.com/usestrix/strix)
-agent, which runs in its own Docker sandbox under the same authorization rules — and LLM
+agent, which runs in its own Docker sandbox under the same authorization rules, and LLM
 red-team testing to [Wallbreaker](https://github.com/JailbrokenAI/wallbreaker), under BH-15's
 own-models-only rule. Seven of the eight skills are pure read-only diagnosticians unless you
 explicitly ask for implementation; `security-critic` is the documented exception, static by

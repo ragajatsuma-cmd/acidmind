@@ -39,6 +39,16 @@ if (version) {
   }
 }
 
+// --- root package.json ---
+const pkg = JSON.parse(readFileSync("package.json", "utf8"));
+if (version && pkg.version !== version) {
+  pkg.version = version;
+  writeFileSync("package.json", JSON.stringify(pkg, null, 2) + "\n");
+  console.log(`  synced: package.json ${pkg.version ?? "?"} -> ${version}`);
+} else {
+  console.log("  ok: package.json matches CHANGELOG");
+}
+
 // --- README badges ---
 let readme = readFileSync("README.md", "utf8");
 readme = readme.replace(

@@ -2,16 +2,40 @@
 
 All notable changes to AcidMind are documented in this file.
 
-## [2.3.0] — 2026-08-22
+## [2.4.0], 2026-08-22
 
 ### Added
 
-- **International documentation** — translated READMEs in Korean, Japanese, Simplified
+- **Output Style Doctrine** in the router: every critic writes findings anti-slop (no em
+  dashes, no banned marketing buzzwords) and caveman-tight (findings lines drop articles,
+  filler, hedging; reasoning and Gate lines stay full prose). Register exceptions documented:
+  HONEST uses plain prose; secondthought may compress further via `/caveman`.
+- `scripts/antislop.mjs --check` promoted to the official pre-release lint (quoted slop-table
+  examples exempt); repo currently lints clean.
+
+## [2.3.1], 2026-08-22
+
+### Added
+
+- **GitHub Packages npm distribution**: package renamed to the required scoped form
+  `@ragajatsuma-cmd/acidmind-cli`, scoped registry configured via `.npmrc` +
+  `publishConfig`, and a GitHub Actions workflow (`.github/workflows/npm-publish.yml`) that
+  auto-publishes with `GITHUB_TOKEN` on every published release. Users can now install
+  globally: `npm install -g @ragajatsuma-cmd/acidmind-cli` (requires a classic PAT with
+  `read:packages`).
+- `scripts/sync.mjs` now also syncs `package.json` version from the CHANGELOG header;
+  duplicate `cli/package.json` removed (root manifest is canonical).
+
+## [2.3.0], 2026-08-22
+
+### Added
+
+- **International documentation**, translated READMEs in Korean, Japanese, Simplified
   Chinese, Portuguese (BR), and Spanish under `docs/i18n/`, with a centered language
   navigator and for-the-badge shield row in the main README (style referenced from
   MatrAIx-Persona-8B).
 
-## [2.2.1] — 2026-08-22
+## [2.2.1], 2026-08-22
 
 ### Changed
 
@@ -19,12 +43,12 @@ All notable changes to AcidMind are documented in this file.
   personas), applied consistently across Usage Modes, Step C merge rules, ST-17 hard limits,
   and the output template.
 
-## [2.2.0] — 2026-08-22
+## [2.2.0], 2026-08-22
 
 ### Added
 
 - **Cognitive failure catalog** in `secondthought-critic` dissection: four named reasoning
-  patterns with signature counter-questions — WRONG-TARGET (barking up the wrong tree),
+  patterns with signature counter-questions, WRONG-TARGET (barking up the wrong tree),
   OVERSCOPE (biting off more than you can chew), EVASION (beating around the bush), TUNNEL
   (missing the forest for the trees).
 - **ST-17 Anti-paralysis clause**: one interrogation round per decision, max three QUICK
@@ -34,7 +58,7 @@ All notable changes to AcidMind are documented in this file.
   sarcasm (8-second attention ceiling), assertive-not-aggressive candor, and self-disclosure
   of the critique's own weakest point before the reader finds it.
 
-## [2.1.0] — 2026-08-22
+## [2.1.0], 2026-08-22
 
 ### Added
 
@@ -43,31 +67,31 @@ All notable changes to AcidMind are documented in this file.
     new axes for split-hairs waste, the 8-second intent test, aesthetics-vs-accessibility
     collisions, template cut corners, motion/CSS forensics (DOM thrash, selector collisions,
     unexplainable properties), and frontend-backend desync.
-  - `badass-critic`: new rendering & motion cost axis — frame budgets, CPU spikes from heavy
+  - `badass-critic`: new rendering & motion cost axis, frame budgets, CPU spikes from heavy
     transitions/parallax, memory leaks from micro-interaction overload, CSS payload bloat;
     animation masking data latency is treated as a latency problem in costume.
   - `feature-critic`: visual blockers that break the core task (low-contrast navigation,
     overlays over inputs) are `[BLOCKER]`, not design taste; the 8-second intent test added.
 
-## [2.0.0] — 2026-08-22
+## [2.0.0], 2026-08-22
 
 ### Changed
 
 - **Consolidation: the family is now 8 skills** (down from 10):
-  - `heart-attack-critic` + `blackhat-critic` merged into **`security-critic`** — one lens,
+  - `heart-attack-critic` + `blackhat-critic` merged into **`security-critic`**, one lens,
     two protocols: Protocol A (disaster simulation, HA-rules) and Protocol B (red-team attack
     paths, BH-rules) with both live bridges (Strix, Wallbreaker). All old commands still work
     (`/heartattack`, `/disaster`, `/blackhat`, `/pentest`, `/redteam`).
   - `tellingtruth-critic` absorbed into **`ruthless-critic`** as its HONEST register
     (`/tellingtruth`, `/honest`). The AUTOPSY register (`/autopsy`) also lands here: a
     whole-repo brutal autopsy in raw street register, deliberately exempt from tone
-    calibration and anti-slop copywriting filters, with two surviving guardrails — every
+    calibration and anti-slop copywriting filters, with two surviving guardrails, every
     insult welded to a verifiable defect, and final ownership stays human.
 - Router, wizard, CLI map, plugin commands, unified-critic panel order, secondthought persona
   table, and README all updated to the eight-skill structure; routing steps renumbered;
   security-edition references corrected everywhere.
 
-## [1.9.5] — 2026-08-22
+## [1.9.5], 2026-08-22
 
 ### Added
 
@@ -76,10 +100,10 @@ All notable changes to AcidMind are documented in this file.
   goal and constraints; confirm every surviving concern bears on that goal and no constraint
   was silently dropped mid-dissection.
 - **Documented enforcement precedent** for undisclosed AI authorship in `ruthless-critic`
-  (Vilnius University: ten students expelled) — the slop pattern now carries real-world
+  (Vilnius University: ten students expelled), the slop pattern now carries real-world
   consequence evidence, not just ethics framing.
 
-## [1.9.4] — 2026-08-22
+## [1.9.4], 2026-08-22
 
 ### Added
 
@@ -93,22 +117,22 @@ All notable changes to AcidMind are documented in this file.
 - **Undisclosed AI authorship** added to the slop scan: deliverables presenting AI-generated
   work as unaided human output where disclosure matters are a trust defect.
 
-## [1.9.3] — 2026-08-22
+## [1.9.3], 2026-08-22
 
 ### Added
 
 - **Full Davies ch.9 framework** (from the complete chapter text, replacing the metadata-only
   injection of 1.9.2):
-  - `ruthless-critic` argument anatomy now covers all four structural elements — contention,
+  - `ruthless-critic` argument anatomy now covers all four structural elements, contention,
     tiered reasons/premises, inference indicators, and the **evidence layer beneath reasons**
-    — plus **co-premises** (joined premises that collapse together), objections and rebuttals
+   , plus **co-premises** (joined premises that collapse together), objections and rebuttals
     as first-class map nodes, and Davies' **six assessment checks**: true reasons, valid
     inference, author bias/vested interest, relevance, evidence sufficiency, evidence quality.
   - `secondthought-critic` dissection gains three attack heuristics: attack the lowest failing
     tier (not first-tier symptoms), one question per co-premise joint, and no-evidence atoms
     are the highest-yield targets.
 
-## [1.9.2] — 2026-08-22
+## [1.9.2], 2026-08-22
 
 ### Added
 
@@ -121,11 +145,11 @@ All notable changes to AcidMind are documented in this file.
 - `secondthought-critic` dissection now uses the same indicator-word seams to label claim
   atoms, and asks a dedicated evidence question for seam-less opinions.
 
-## [1.9.1] — 2026-08-22
+## [1.9.1], 2026-08-22
 
 ### Added
 
-- **`scripts/sync.mjs`** — single source of truth sync: version comes from the top CHANGELOG
+- **`scripts/sync.mjs`**, single source of truth sync: version comes from the top CHANGELOG
   header, skills count from the `skills/` folders. Syncs `VERSION` and README badges, and
   fails loudly on drift (CLI map gaps, missing router rows, hardcoded counts in living docs).
   Release flow is now: edit `CHANGELOG.md`, run `node scripts/sync.mjs`, commit.
@@ -133,11 +157,11 @@ All notable changes to AcidMind are documented in this file.
   and legacy files (`SKILL-ID.md`) still present from old installs get cleaned up.
 - `CONTRIBUTING.md` (the PRs-welcome badge no longer points at a dead file).
 
-## [1.9.0] — 2026-08-22
+## [1.9.0], 2026-08-22
 
 ### Added
 
-- **Codebase crawl protocols** — critics now actively explore repositories instead of waiting
+- **Codebase crawl protocols**, critics now actively explore repositories instead of waiting
   for pasted artifacts:
   - `design-critic` gains **Part 0: Architecture Crawl**: crawl order (entry points, module
     map, dependency direction, design docs, growth edges), evidence rules (every finding cites
@@ -147,10 +171,10 @@ All notable changes to AcidMind are documented in this file.
     before judging.
   - `badass-critic`: hot-path discovery crawl (routes, collection loops, ORM-in-iteration,
     unpaged queries, per-request clients, sync I/O in async flows).
-  - `ruthless-critic`: recon-first note — context reads before fault-finding, proof citations,
+  - `ruthless-critic`: recon-first note, context reads before fault-finding, proof citations,
     sampled-confidence tags.
 
-## [1.8.0] — 2026-08-22
+## [1.8.0], 2026-08-22
 
 ### Added
 
@@ -170,11 +194,11 @@ All notable changes to AcidMind are documented in this file.
 ### Added
 
 - **Command collision audit rule (AS-14)** in `autocritic-skill`: detect commands claimed by
-  other installed skills/plugins, severity `[HIGH]`, with a fix blueprint — namespace
+  other installed skills/plugins, severity `[HIGH]`, with a fix blueprint, namespace
   (`/acidmind:critique`), precedence convention in the entry file, or drop the alias.
 - "Command collisions" guidance added to README Commands section.
 
-## [1.7.0] — 2026-08-22
+## [1.7.0], 2026-08-22
 
 ### Added
 
@@ -187,7 +211,7 @@ All notable changes to AcidMind are documented in this file.
   PRs), BH-14 (re-scan fix loop to confirm chains broken). Without Strix installed, behavior
   is unchanged: static analysis only.
 
-## [1.6.0] — 2026-08-22
+## [1.6.0], 2026-08-22
 
 ### Added
 
@@ -198,7 +222,7 @@ All notable changes to AcidMind are documented in this file.
   The pointer block now also asks the agent to run a one-per-session version check and
   notify the user when a newer release exists.
 
-## [1.5.4] — 2026-08-22
+## [1.5.4], 2026-08-22
 
 ### Added
 
@@ -208,7 +232,7 @@ All notable changes to AcidMind are documented in this file.
   arrows), wenyan classical modes, and language-preservation rule. `off` stops compression
   only; the critic itself still requires "stop acidmind".
 
-## [1.5.3] — 2026-08-22
+## [1.5.3], 2026-08-22
 
 ### Added
 
@@ -216,18 +240,18 @@ All notable changes to AcidMind are documented in this file.
   many turns, no filler drift, still active when unsure. Deactivates only on explicit
   "stop acidmind" / "normal mode". Quiet stretches or topic changes never disarm it.
 
-## [1.5.2] — 2026-08-22
+## [1.5.2], 2026-08-22
 
 ### Added
 
 - **Caveman compression injected into `secondthought-critic`** (style from
   [JuliusBrussee/caveman](https://github.com/JuliusBrussee/caveman)): interrogation output now
-  speaks ultra-terse by default — dropped articles, filler, hedging; fragments preferred.
+  speaks ultra-terse by default, dropped articles, filler, hedging; fragments preferred.
   Auto-clarity override keeps the Gate line, STOP explanations, security/irreversible-action
   warnings, and any ambiguity-prone sequence in full prose. Quoted claim atoms, persona-badge
   questions (ST-12), numbers, code, and negations never compress.
 
-## [1.5.1] — 2026-08-22
+## [1.5.1], 2026-08-22
 
 ### Added
 
@@ -239,11 +263,11 @@ All notable changes to AcidMind are documented in this file.
   New rules ST-11 to ST-14: attack atoms never the person, falsifiable questions only,
   unstated assumptions surfaced, answers strike concerns permanently.
 
-## [1.5.0] — 2026-08-22
+## [1.5.0], 2026-08-22
 
 ### Added
 
-- **`secondthought-critic`** — the pause before execution (autoloaded). Runs automatically at
+- **`secondthought-critic`**, the pause before execution (autoloaded). Runs automatically at
   every session via the pointer block: whenever the user states an opinion, diagnosis, or
   plan, it restates the position, raises up to three falsifiable concerns, and issues a Gate
   (`EXECUTE / REVISE THEN EXECUTE / STOP`) **before any execution step**, interrupting when
@@ -252,31 +276,31 @@ All notable changes to AcidMind are documented in this file.
 - Pointer block now instructs agents to load it at session start; `core` edition grows to
   five skills (secondthought included by default), family is now ten skills.
 
-## [1.4.1] — 2026-08-22
+## [1.4.1], 2026-08-22
 
 ### Removed
 
-- **Indonesian-language distribution** — the project is now English-only: deleted
+- **Indonesian-language distribution**, the project is now English-only: deleted
   `README-ID.md`, `ACIDMIND-ID.md`, and all `SKILL-ID.md` drafts; dropped the `--lang` CLI
   flag and ID file fetching from the installer.
 
-## [1.4.0] — 2026-08-22
+## [1.4.0], 2026-08-22
 
 ### Added
 
-- **Editions** — install experience simplified from a 9-way multi-select to one choice:
-  - `core` *(new default)*: ruthless, design, feature, badass — daily reviews.
+- **Editions**, install experience simplified from a 9-way multi-select to one choice:
+  - `core` *(new default)*: ruthless, design, feature, badass, daily reviews.
   - `security`: core + heart-attack-critic + blackhat-critic.
   - `full`: all nine skills including the unified panel (`--all` shorthand).
 - CLI flags `--edition <core|security|full>` and `--all`; `acidmind list` now shows editions;
   unknown editions fail with a helpful message. First-Run Wizard step 2 is now a single
   edition choice instead of multi-select.
 
-## [1.3.1] — 2026-08-22
+## [1.3.1], 2026-08-22
 
 ### Added
 
-- **Claude Code plugin packaging** — `.claude-plugin/plugin.json` + `marketplace.json` make
+- **Claude Code plugin packaging**, `.claude-plugin/plugin.json` + `marketplace.json` make
   AcidMind installable as a plugin:
   `/plugin marketplace add https://github.com/ragajatsuma-cmd/acidmind` then
   `/plugin install acidmind@acidmind`. Nine prewired slash commands (`commands/*.md`) map
@@ -285,21 +309,21 @@ All notable changes to AcidMind are documented in this file.
 
 ### Changed
 
-- **Installer now runs via npx directly from GitHub** — no clone or npm publish required:
+- **Installer now runs via npx directly from GitHub**, no clone or npm publish required:
   `npx github:ragajatsuma-cmd/acidmind init`. Added a root `package.json` exposing the
   `acidmind` bin; CLI help text and README Quick Start updated. (`npx acidmind-cli` remains
   available once the package is published to npm.)
 
-## [1.3.0] — 2026-08-22
+## [1.3.0], 2026-08-22
 
 ### Added
 
-- **`blackhat-critic`** — the red-team persona (commands: `/blackhat`, `/pentest`, `/redteam`).
+- **`blackhat-critic`**, the red-team persona (commands: `/blackhat`, `/pentest`, `/redteam`).
   Attacks the user's own website/application like a hired blackhat: kill-chain sweep (recon,
   auth bypass, injection, IDOR, business-logic abuse, secrets, dependencies), each successful
   path reported as Entry → Chain → Impact with a difficulty label and a hardening blueprint.
   Gate: `HARDENED / ATTACK SURFACE REMAINS / COMPROMISED BY DESIGN`. BH-00 is absolute:
-  authorized targets only — the skill refuses third-party targets and never produces
+  authorized targets only, the skill refuses third-party targets and never produces
   ready-to-run exploits.
 - Router routing step for explicit pentest framing; `unified-critic` panel includes the
   blackhat lens only on explicit request with authorization confirmed.
@@ -309,17 +333,17 @@ All notable changes to AcidMind are documented in this file.
 - **Router file renamed** `ACIDMIND.md` → `AcidMind.md`; all references updated across
   READMEs, CLI, wizard pointer block, and docs.
 
-## [1.2.0] — 2026-08-22
+## [1.2.0], 2026-08-22
 
 ### Added
 
-- **`unified-critic`** — the panel skill (commands: `/acidmind`, `/fullcritic`, `/panel`). Runs
+- **`unified-critic`**, the panel skill (commands: `/acidmind`, `/fullcritic`, `/panel`). Runs
   all seven lenses over one artifact in a fixed order, deduplicates findings across lenses,
   resolves conflicts as explicit trade-offs, and ends with exactly one unified Gate line
   (`SHIP / FIX FIRST / DO NOT SHIP`, mapped from each lens's own gate). Includes sub-agent
   guidance for agents that support parallel lens passes.
 - **First-Run Install Wizard** in `AcidMind.md`: runs once when the router is read in a
-  project without an AcidMind pointer block — declares the setup, asks which of the eight
+  project without an AcidMind pointer block, declares the setup, asks which of the eight
   skills to install, offers the automated CLI path (`npx acidmind-cli init`) or manual user
   fetching, appends a marker-wrapped pointer block (`<!-- acidmind:start/end -->`) so re-runs
   replace instead of duplicate, and asks the default usage mode (QUICK/DEEP) once.
@@ -330,15 +354,15 @@ All notable changes to AcidMind are documented in this file.
   now explicitly route to `unified-critic` instead of running skills back-to-back.
 - CLI (`acidmind list` / `add` / `init`) now covers `unified-critic`.
 
-## [1.1.0] — 2026-08-22
+## [1.1.0], 2026-08-22
 
 ### Changed
 
 - **Full rebuild of all seven skills** on a shared architecture inspired by
   [miqdadbadjuber/anti-slop](https://github.com/miqdadbadjuber/anti-slop) (MIT): each skill now
   has an explicit persona, an authorization boundary with prompt-injection guard, two usage
-  modes (QUICK / DEEP), numbered rules in three tiers — **Hard Gate** (absolute),
-  **Purpose-Gate** (allowed with written reason), **Quality Locks** (consistency) — and a
+  modes (QUICK / DEEP), numbered rules in three tiers, **Hard Gate** (absolute),
+  **Purpose-Gate** (allowed with written reason), **Quality Locks** (consistency), and a
   mandatory one-line **Gate** verdict derived mechanically from the findings
   (`SHIP / FIX FIRST / DO NOT SHIP`, `LAUNCH READY / PATCH FIRST / DO NOT LAUNCH`, etc.).
 - Findings now cite rule IDs (`[RC-04]`, `[DC-03]`, `[HA-06]`, …) so every critique is
@@ -358,21 +382,21 @@ All notable changes to AcidMind are documented in this file.
   evidence over claims (empty beats deceptive), and AI-slop awareness.
 - Slash-command table in README for invoking each critic.
 
-## [1.0.0] — 2026-08-22
+## [1.0.0], 2026-08-22
 
 ### Added
 
 - Initial release of the AcidMind skill family: seven specialist critique skills.
-  - `ruthless-critic` — general brutal review of code, arguments, plans, or any artifact
-  - `design-critic` — architecture and system design review
-  - `feature-critic` — feature completeness and correctness review
-  - `badass-critic` — performance review with concrete numbers
-  - `heart-attack-critic` — worst-case disaster simulation for pre-launch / security audit
-  - `autocritic-skill` — meta-audit of `SKILL.md` files before install or distribution
-  - `tellingtruth-critic` — unstructured, human, no-label honest opinion
-- `AcidMind.md` / `ACIDMIND-ID.md` — router file with a skill-selection table and explicit
+  - `ruthless-critic`, general brutal review of code, arguments, plans, or any artifact
+  - `design-critic`, architecture and system design review
+  - `feature-critic`, feature completeness and correctness review
+  - `badass-critic`, performance review with concrete numbers
+  - `heart-attack-critic`, worst-case disaster simulation for pre-launch / security audit
+  - `autocritic-skill`, meta-audit of `SKILL.md` files before install or distribution
+  - `tellingtruth-critic`, unstructured, human, no-label honest opinion
+- `AcidMind.md` / `ACIDMIND-ID.md`, router file with a skill-selection table and explicit
   routing logic for requests that could match more than one skill.
-- `README.md` / `README-ID.md` — bilingual project overview, router-pattern setup guide, and
+- `README.md` / `README-ID.md`, bilingual project overview, router-pattern setup guide, and
   native Claude/Claude Code install instructions.
 - Pre-packaged `.skill` files for all seven skills under `packages/`, ready to upload via
   Claude's **Save skill** flow.

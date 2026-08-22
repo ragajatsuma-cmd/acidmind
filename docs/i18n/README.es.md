@@ -64,4 +64,4 @@ El Protocolo B de `security-critic` ataca únicamente objetivos que te pertenece
 
 ## Licencia
 
-MIT — ver [LICENSE](../../LICENSE).
+MIT, ver [LICENSE](../../LICENSE).
