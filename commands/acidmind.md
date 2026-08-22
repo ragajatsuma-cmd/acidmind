@@ -1,5 +1,5 @@
 ---
-description: Unified Critic — the full AcidMind panel: all lenses merged into one report with one gate
+description: Unified Critic, the full AcidMind panel - all lenses merged into one report with one gate
 allowed-tools: Read, Grep, Glob, Task
 ---
 
