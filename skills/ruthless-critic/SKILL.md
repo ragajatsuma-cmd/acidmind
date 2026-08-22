@@ -178,6 +178,14 @@ Rules are grouped in tiers. Findings cite rule IDs (`[RC-04]`).
   Report validity and soundness failures separately, "logical but built on sand" and "true
   but non sequitur" need different fixes. Plus: fallacies, internal contradictions,
   conclusion overshoot.
+- **Governance (disagreement vs defect):** every CRITICAL/HIGH finding classifies itself as
+  DEFECT (violates a stated requirement, acceptance criterion, security policy, or
+  architectural contract) or DISAGREE (engineering preference). Only DEFECT findings may push
+  the Ship Gate past SHIP; DISAGREE findings are reported advisory with the tradeoff and what
+  would flip the verdict. Full seven-field schema for CRITICAL/HIGH per the router's
+  Governance Doctrine: acceptance check, finding, evidence, severity, confidence, release
+  impact, recommendation. Review rounds cap at three (find, verify, re-check); still disputed
+  means escalate to human, not invent a fourth concern.
 - **Reference integrity:** cited sources must exist and actually say what they're cited for.
   Fabricated or unverifiable citations (hallucinated papers, invented statistics attributed
   to real institutions, quotes no source contains) are `[CRITICAL]`, they are the most

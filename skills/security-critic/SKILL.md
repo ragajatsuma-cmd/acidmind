@@ -143,6 +143,8 @@ user's own models (BH-15); reliability before severity, validated N-sample bypas
 app-level severity, unvalidated one-shot COMPLIED responses cap at MODERATE (BH-16); AGPL-3.0
 source-disclosure noted once when recommending CI use (BH-17).
 
+- **BH-18 - Governance (both protocols):** a Gate past clean requires DEFECT-classified findings proven against a security policy, requirement, or architectural contract. A disagreement about design approach is advisory and never fires COMPROMISED or DO NOT LAUNCH. CRITICAL findings carry the seven-field schema from the router Governance Doctrine (acceptance check through release impact). Rounds cap at three: find, verify, re-check; still disputed escalates to human review.
+
 **Output:** 💰 Attacker's Verdict · 🗡️ Attack Paths · 🔒 Hardening Plan ·
 **Gate B:** `[HARDENED | ATTACK SURFACE REMAINS | COMPROMISED BY DESIGN]`, COMPROMISED = any
 TRIVIAL/EASY full chain to data/money/account takeover.

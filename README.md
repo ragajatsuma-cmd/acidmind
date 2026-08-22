@@ -10,7 +10,7 @@
     <a href="docs/i18n/README.es.md">Español</a>
   </p>
   <p>
-    <a href="./CHANGELOG.md"><img alt="Version" src="https://img.shields.io/badge/version-2.4.0-orange?style=for-the-badge"></a>
+    <a href="./CHANGELOG.md"><img alt="Version" src="https://img.shields.io/badge/version-2.5.0-orange?style=for-the-badge"></a>
     <a href="./LICENSE"><img alt="License" src="https://img.shields.io/badge/license-MIT-blue?style=for-the-badge"></a>
     <img alt="Skills" src="https://img.shields.io/badge/skills-8-8a2be2?style=for-the-badge">
     <a href="https://nodejs.org"><img alt="Node" src="https://img.shields.io/badge/node-%3E%3D18-brightgreen?style=for-the-badge&logo=nodedotjs&logoColor=white"></a>

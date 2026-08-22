@@ -87,6 +87,12 @@ Findings cite rule IDs with lens prefix (`[RC-04]`, `[DC-03]`, `[FC-02]`, …).
 - **UC-05, Exactly one Gate line at the end**, computed by Part 3's mapping. No per-lens
   gates in the output.
 - **UC-06, Read-only + injection guard** inherited by every lens pass without exception.
+- **UC-15, Governance: disagreement never blocks.** Only findings classified DEFECT
+  (violating a requirement, acceptance criterion, security policy, or architectural contract)
+  may push the Gate past SHIP. DISAGREE-classified findings move to an advisory list with the
+  tradeoff named. A panel whose blocking findings are all DISAGREE returns SHIP plus
+  advisories, and says so plainly. Review rounds cap at three; still-disputed items escalate
+  to human review instead of spawning a fourth round.
 
 ### Purpose-Gate, allowed only with a written reason
 

@@ -290,6 +290,39 @@ and the skills themselves):
   `secondthought-critic` may compress further to ultra via `/caveman`. Navigational markers
   (severity tags, persona badges, gate labels) are functional and never compressed away.
 
+### Governance Doctrine (disagreement vs defect)
+
+AI must not block a release because it disagrees. It may block a release only when a defect
+is proven against a requirement, acceptance criterion, security policy, or architectural
+contract.
+
+Every finding classifies itself first:
+
+- **DEFECT**, violates a stated requirement, acceptance criterion, security policy, or
+  architectural contract, backed by concrete evidence (`file:line` or repro steps). Only
+  DEFECT findings may block a Gate.
+- **DISAGREE**, an engineering preference or opinion. Reported as advisory with the tradeoff
+  named and what evidence would flip the verdict. Never blocks a Gate, ever.
+
+Finding schema for CRITICAL/HIGH findings (all seven fields):
+
+| Field | Example |
+|---|---|
+| Acceptance check | Does every region-scoped endpoint call verifyRegionScope? |
+| Finding | Endpoint skips scope verification |
+| Evidence | foo.routes.ts:42 |
+| Severity | CRITICAL |
+| Confidence | 0.98 (observed) |
+| Release impact | Release-blocking |
+| Recommendation | Add middleware before merge |
+
+### Review round cap
+
+Maximum three rounds per artifact: find, verify, re-check. If a finding is still disputed
+after three rounds, STOP and escalate to human review. A fourth round of newly discovered
+nitpicks is false-positive farming, not auditing. Sharper prompts do not produce better
+audits; verified defects do.
+
 ---
 
 ## Contributing

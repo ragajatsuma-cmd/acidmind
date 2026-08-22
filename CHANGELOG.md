@@ -2,6 +2,21 @@
 
 All notable changes to AcidMind are documented in this file.
 
+## [2.5.0], 2026-08-22
+
+### Added
+
+- **Governance Doctrine** (router + ruthless-critic + unified-critic + security-critic),
+  from external review feedback: every CRITICAL/HIGH finding now classifies as DEFECT
+  (proven against a requirement, acceptance criterion, security policy, or architectural
+  contract) or DISAGREE (engineering preference). Only DEFECT findings may push a Gate past
+  SHIP; DISAGREE findings are advisory with tradeoffs named. CRITICAL/HIGH findings carry a
+  seven-field schema: acceptance check, finding, evidence, severity, confidence, release
+  impact, recommendation.
+- **Review round cap**: maximum three rounds per artifact (find, verify, re-check); still-
+  disputed items escalate to human review instead of spawning a fourth round of nitpicks.
+  Codified in the router doctrine, ruthless governance rules, UC-15, and BH-18.
+
 ## [2.4.0], 2026-08-22
 
 ### Added

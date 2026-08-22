@@ -1,0 +1,380 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AcidMind ,  Eight critique skills for AI coding agents. One router.</title>
+<meta name="description" content="Eight critique skills for AI coding agents. One router. Every review ends in a mechanical verdict.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;900&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/motion@11.11.17/dist/motion.min.js"></script>
+<style>
+  :root{
+    --color-black:#040604;
+    --color-neon:#39ff14;
+    --lime:#a8ff4d;
+    --mint:#e7ffe0;
+    --mint-dim:#d1ff8f;
+    --text:#e6f2e6;
+    --muted:#8ba394;
+    --line:rgba(57,255,20,.16);
+    --line-soft:rgba(57,255,20,.09);
+    --amber:#ffb454;
+    --red:#ff5252;
+    --font-sans:"Inter",-apple-system,"Segoe UI",sans-serif;
+    --font-mono:"JetBrains Mono",ui-monospace,SFMono-Regular,monospace;
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  html,body{overflow-x:clip}
+  body{
+    font-family:var(--font-sans);
+    background:var(--color-black);
+    color:var(--text);
+    line-height:1.6;
+    background-image:linear-gradient(#39ff140d 0 1px,#0000 1px 9px),linear-gradient(90deg,#39ff140d 0 1px,#0000 1px 9px);
+  }
+  ::selection{background:var(--color-neon);color:#040604}
+  a{color:inherit;text-decoration:none}
+  a:hover{text-decoration:none;color:var(--color-neon)}
+  :focus-visible{outline:2px solid var(--color-neon);outline-offset:3px;border-radius:2px}
+  .wrap{max-width:1120px;margin:0 auto;padding-left:clamp(18px,4vw,44px);padding-right:clamp(18px,4vw,44px)}
+  .mono{font-family:var(--font-mono)}
+  .skip{position:absolute;left:-999px;top:10px;z-index:99;background:var(--color-neon);color:#040604;padding:8px 16px;font-weight:600}
+  .skip:focus{left:12px}
+
+  /* nav */
+  nav{
+    position:sticky;top:0;z-index:50;
+    display:flex;align-items:center;gap:28px;
+    padding:16px clamp(18px,4vw,44px);
+    background:rgba(4,6,4,.82);backdrop-filter:blur(12px);
+    border-bottom:1px solid var(--line-soft);
+  }
+  .brand{display:flex;align-items:center;gap:10px;font-weight:700;font-size:15px;letter-spacing:.02em}
+  .brand svg{display:block}
+  .nav-links{display:flex;gap:22px;margin-left:auto;font-size:13.5px;color:var(--muted)}
+  .nav-links a:hover{color:var(--color-neon)}
+  .nav-cta{
+    border:1px solid var(--color-neon);color:var(--color-neon)!important;
+    padding:6px 14px;border-radius:999px;font-family:var(--font-mono);font-size:12px;
+  }
+  .nav-cta:hover{background:var(--color-neon);color:#040604!important}
+  @media(max-width:720px){.nav-links a:not(.nav-cta){display:none}}
+
+  /* hero */
+  .hero{padding:clamp(70px,11vh,130px) 0 clamp(56px,8vh,90px);position:relative}
+  .hero::after{
+    content:"";position:absolute;inset:0;pointer-events:none;
+    background:linear-gradient(110deg,rgba(4,6,4,.5),rgba(4,6,4,.92) 55%,rgba(4,6,4,.98));
+  }
+  .hero > *{position:relative;z-index:1}
+  .eyebrow{
+    display:inline-flex;align-items:center;gap:8px;
+    font-family:var(--font-mono);font-size:12px;letter-spacing:.18em;text-transform:uppercase;
+    color:var(--color-neon);border:1px solid var(--line);border-radius:999px;padding:6px 16px;margin-bottom:26px;
+  }
+  .eyebrow i{width:7px;height:7px;border-radius:50%;background:var(--color-neon);box-shadow:0 0 10px var(--color-neon)}
+  h1{
+    font-size:clamp(38px,6vw,72px);line-height:1.02;letter-spacing:-.03em;font-weight:900;
+    max-width:15ch;margin-bottom:22px;
+  }
+  h1 span{color:var(--color-neon)}
+  .sub{max-width:56ch;color:var(--muted);font-size:clamp(16px,1.7vw,19px);margin-bottom:34px}
+  .sub b{color:var(--text);font-weight:600}
+  .hero-cta{display:flex;gap:14px;flex-wrap:wrap;margin-bottom:30px}
+  .btn-primary,.btn-ghost{
+    font-family:var(--font-mono);font-size:13.5px;padding:13px 22px;border-radius:8px;cursor:pointer;
+    display:inline-flex;align-items:center;gap:10px;border:1px solid transparent;transition:all .18s ease;
+  }
+  .btn-primary{background:var(--color-neon);color:#040604;font-weight:700}
+  .btn-primary:hover{box-shadow:0 0 32px rgba(57,255,20,.35);transform:translateY(-1px)}
+  .btn-ghost{border-color:var(--line);color:var(--text);background:transparent}
+  .btn-ghost:hover{border-color:var(--color-neon);color:var(--color-neon)}
+  .gate-strip{
+    display:inline-flex;align-items:center;gap:12px;flex-wrap:wrap;
+    font-family:var(--font-mono);font-size:11.5px;color:var(--muted);
+  }
+  .gate-chip{padding:4px 12px;border-radius:6px;border:1px solid var(--line)}
+  .g-fix{color:var(--amber);border-color:rgba(255,180,84,.4)}
+
+  /* sections */
+  section{padding:clamp(58px,9vh,100px) 0;border-top:1px solid var(--line-soft)}
+  .sec-eyebrow{font-family:var(--font-mono);font-size:11.5px;letter-spacing:.2em;text-transform:uppercase;color:var(--color-neon);margin-bottom:12px;display:block}
+  h2{font-size:clamp(27px,3.4vw,42px);letter-spacing:-.02em;font-weight:800;line-height:1.08;margin-bottom:14px}
+  .sec-sub{color:var(--muted);max-width:58ch;font-size:16.5px}
+
+  /* how it works */
+  .how{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:14px;margin-top:36px}
+  @media(max-width:800px){.how{grid-template-columns:1fr}}
+  .how-card{border:1px solid var(--line);border-radius:12px;padding:26px 24px;background:rgba(57,255,20,.02)}
+  .how-card .n{font-family:var(--font-mono);color:var(--color-neon);font-size:13px;margin-bottom:12px;display:block}
+  .how-card h3{font-size:18px;margin-bottom:8px;font-weight:700}
+  .how-card p{color:var(--muted);font-size:14.5px}
+
+  /* skill grid */
+  .skills{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px;margin-top:38px}
+  @media(max-width:800px){.skills{grid-template-columns:1fr}}
+  .skill{
+    border:1px solid var(--line);border-radius:12px;padding:24px 22px;
+    background:linear-gradient(160deg,rgba(57,255,20,.04),transparent 55%);
+    transition:border-color .18s ease,transform .18s ease;
+  }
+  .skill:hover{border-color:var(--color-neon);transform:translateY(-2px)}
+  .skill-top{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:10px;gap:10px}
+  .skill h3{font-size:17px;font-weight:700}
+  .skill h3 em{font-style:normal;color:var(--color-neon);font-family:var(--font-mono);font-size:12px;margin-left:8px}
+  .skill .tag{font-family:var(--font-mono);font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);white-space:nowrap}
+  .skill .q{color:var(--text);font-size:14.5px;font-weight:500;margin-bottom:8px}
+  .skill p.desc{color:var(--muted);font-size:13.5px}
+  .skill.autoload{border-color:rgba(57,255,20,.45)}
+  .autoload-badge{font-family:var(--font-mono);font-size:10px;color:#040604;background:var(--color-neon);border-radius:4px;padding:2px 7px;font-weight:700;letter-spacing:.08em}
+
+  /* gates demo */
+  .gates-demo{margin-top:38px;border:1px solid var(--line);border-radius:12px;overflow:hidden}
+  .gates-head{display:flex;justify-content:space-between;padding:12px 18px;border-bottom:1px solid var(--line);font-family:var(--font-mono);font-size:11.5px;color:var(--muted);letter-spacing:.1em}
+  .gates-body{display:flex;flex-direction:column}
+  .gates-row{display:flex;gap:16px;padding:15px 18px;border-bottom:1px solid var(--line-soft);align-items:baseline;flex-wrap:wrap}
+  .gates-row:last-child{border-bottom:none}
+  .gates-row code{font-family:var(--font-mono);font-size:12.5px;color:var(--text)}
+  .gates-row code b{color:var(--color-neon);font-weight:400}
+  .chip{margin-left:auto;font-family:var(--font-mono);font-size:11.5px;padding:3px 12px;border-radius:6px;white-space:nowrap}
+  .c-ship{color:var(--color-neon);border:1px solid rgba(57,255,20,.4)}
+  .c-fix{color:var(--amber);border:1px solid rgba(255,180,84,.4)}
+  .c-stop{color:var(--red);border:1px solid rgba(255,82,82,.4)}
+
+  /* editions */
+  .editions{margin-top:38px;border:1px solid var(--line);border-radius:12px;overflow:hidden}
+  .ed{display:flex;gap:20px;padding:20px 24px;border-bottom:1px solid var(--line-soft);align-items:center;flex-wrap:wrap}
+  .ed:last-child{border-bottom:none}
+  .ed:hover{background:rgba(57,255,20,.03)}
+  .ed b{font-family:var(--font-mono);font-size:15px;color:var(--color-neon);min-width:96px}
+  .ed span{color:var(--muted);font-size:14px;flex:1;min-width:200px}
+  .ed code{font-family:var(--font-mono);font-size:12px;color:var(--text);background:rgba(57,255,20,.06);padding:7px 12px;border-radius:6px;white-space:nowrap}
+
+  /* principles */
+  .principles{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px;margin-top:38px}
+  @media(max-width:800px){.principles{grid-template-columns:1fr}}
+  .prin{border-left:2px solid var(--color-neon);padding:4px 0 4px 18px}
+  .prin b{display:block;margin-bottom:6px;font-size:15.5px}
+  .prin p{color:var(--muted);font-size:13.5px}
+
+  /* bridges */
+  .bridge-list{display:flex;gap:12px;margin-top:30px;flex-wrap:wrap}
+  .bridge-card{flex:1;min-width:260px;border:1px dashed var(--line);border-radius:12px;padding:20px 22px}
+  .bridge-card b{font-family:var(--font-mono);color:var(--color-neon);font-size:13px;letter-spacing:.1em;text-transform:uppercase}
+  .bridge-card p{color:var(--muted);font-size:13.5px;margin-top:8px}
+
+  footer{border-top:1px solid var(--line-soft);padding:40px 0 64px;margin-top:30px}
+  .foot{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap;align-items:baseline}
+  .foot p{font-family:var(--font-mono);font-size:12px;color:var(--muted)}
+  .foot p b{color:var(--color-neon);font-weight:400}
+  .foot-links{display:flex;gap:20px;font-size:13px;color:var(--muted)}
+
+  [data-reveal]{opacity:0}
+  @media(prefers-reduced-motion:reduce){[data-reveal]{opacity:1}}
+</style>
+</head>
+<body>
+<nav aria-label="Main">
+  <a class="brand" href="#top">
+    <svg width="20" height="25" viewBox="0 0 24 30" fill="none" aria-hidden="true">
+      <path d="M12 1C12 1 3.5 11.5 3.5 18A8.5 8.5 0 0 0 20.5 18C20.5 11.5 12 1 12 1Z" stroke="#39ff14" stroke-width="1.6"/>
+      <path d="M8.2 15.5c1.4-2.6 3.4-.4 4.4-2.4M9 19.5c1.8-.8 2.2 1 3.8.2M13.6 13.6c1.6 1.2 2.8-.2 2.6 2.2" stroke="#39ff14" stroke-width="1.3" stroke-linecap="round"/>
+      <path d="M10 3v6L5 18a3 3 0 0 0 2.7 4h8.6A3 3 0 0 0 19 18L14 9V3" stroke="#39ff14" stroke-width=".01" opacity="0"/>
+    </svg>
+    ACIDMIND
+  </a>
+  <div class="nav-links">
+    <a href="#family">Skills</a>
+    <a href="#gates">Gates</a>
+    <a href="#install">Install</a>
+    <a class="nav-cta" href="https://github.com/ragajatsuma-cmd/acidmind">GitHub ↗</a>
+  </div>
+</nav>
+
+<header id="top" class="wrap hero">
+  <span class="eyebrow"><i></i>Forensic critique lab // v2.4.0</span>
+  <h1>Reviews end in <span>verdicts,</span> not vibes.</h1>
+  <p class="sub">
+    Eight specialist critics dissect your repo like an autopsy table.
+    <b>Architecture, features, performance, security.</b>
+    Findings cite rule IDs and file lines. One mechanical line closes every case.
+  </p>
+  <div class="hero-cta">
+    <button class="btn-primary mono" data-copy="npx github:ragajatsuma-cmd/acidmind init" id="copyHero">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16v16H4z"/><path d="M9 4V2h6v2"/></svg>
+      npx github:ragajatsuma-cmd/acidmind init
+    </button>
+    <a class="btn-ghost" href="https://github.com/ragajatsuma-cmd/acidmind">View repository</a>
+  </div>
+  <div class="gate-strip">
+    <span>Every report ends mechanically.</span>
+    <span class="gate-chip">Gate: SHIP</span>
+    <span class="gate-chip g-fix">Gate: FIX FIRST</span>
+    <span class="gate-chip c-stop">Gate: DO NOT SHIP</span>
+  </div>
+</header>
+
+<section id="how" class="wrap">
+  <span class="sec-eyebrow">// chain of custody</span>
+  <h2>Pick the lens. Receive the verdict.</h2>
+  <p class="sec-sub">Ask for a review, roast, pentest, feature audit, or full panel. The router picks exactly one specialist so findings stay sharp instead of blended.</p>
+  <div class="how">
+    <div class="how-card" data-reveal>
+      <span class="n">STEP 01</span>
+      <h3>Ask</h3>
+      <p>"Review this PR", "pentest my API", "is this feature done?" Plain language routes through AcidMind.md, no special syntax required.</p>
+    </div>
+    <div class="how-card" data-reveal>
+      <span class="n">STEP 02</span>
+      <h3>Receive</h3>
+      <p>Findings arrive with cited rules and file lines, then close with one mechanical gate derived from severity. Never softened, never hedged.</p>
+    </div>
+  </div>
+</section>
+
+<section id="family" class="wrap">
+  <span class="sec-eyebrow">// the skill family</span>
+  <h2>The skill family</h2>
+  <p class="sec-sub">Pick the lens, not the vibe. Each critic states what it does not cover and names the sibling that does.</p>
+  <div class="skills">
+    <div class="skill" data-reveal>
+      <div class="skill-top"><h3>ruthless-critic<em>/grill-me</em></h3><span class="tag">🧪 Default lens</span></div>
+      <p class="q">The acid test. Three registers: ROAST, AUTOPSY, HONEST.</p>
+      <p class="desc">Default lens for any review, argument, or plan. Whole-repo autopsy on demand.</p>
+    </div>
+    <div class="skill" data-reveal>
+      <div class="skill-top"><h3>design-critic<em>/designcritic</em></h3><span class="tag">🧠 Architect</span></div>
+      <p class="q">Will this structure survive its next three requirement changes?</p>
+      <p class="desc">Boundaries, coupling, layering, and future pressure on the structure.</p>
+    </div>
+    <div class="skill" data-reveal>
+      <div class="skill-top"><h3>feature-critic<em>/featurecritic</em></h3><span class="tag">🔪 Dissection</span></div>
+      <p class="q">Does this feature work for real users, in every state?</p>
+      <p class="desc">Empty states, edge cases, recoverability, and completion criteria.</p>
+    </div>
+    <div class="skill" data-reveal>
+      <div class="skill-top"><h3>badass-critic<em>/badass</em></h3><span class="tag">💻 Performance</span></div>
+      <p class="q">At what load does this fall over, measured how?</p>
+      <p class="desc">Bottlenecks, measurement plans, and the load point of failure.</p>
+    </div>
+    <div class="skill autoload" data-reveal>
+      <div class="skill-top"><h3>security-critic<em>/heartattack /blackhat</em></h3><span class="tag">😠🥷 Dual hat</span></div>
+      <p class="q">What could go fatally wrong? How would someone break in?</p>
+      <p class="desc">Protocol A disaster simulation + Protocol B authorized red-team, with optional Strix and Wallbreaker live bridges.</p>
+    </div>
+    <div class="skill" data-reveal>
+      <div class="skill-top"><h3>autocritic-skill<em>/auditskill</em></h3><span class="tag">🎭 Meta</span></div>
+      <p class="q">Will this SKILL.md trigger correctly and produce useful output?</p>
+      <p class="desc">Audits a skill file for trigger clarity and output quality.</p>
+    </div>
+    <div class="skill" data-reveal>
+      <div class="skill-top"><h3>unified-critic<em>/acidmind</em></h3><span class="tag">🧩 Panel</span></div>
+      <p class="q">What does every lens say at once, merged into one report?</p>
+      <p class="desc">All lenses in one report, zero overlapping verdicts.</p>
+    </div>
+    <div class="skill autoload" data-reveal>
+      <div class="skill-top"><h3>secondthought-critic<em>/wait</em></h3><span class="tag"><span class="autoload-badge">AUTOLOAD</span></span></div>
+      <p class="q">Should this plan execute, or be revised first?</p>
+      <p class="desc">Autoloaded every session. Critiques your opinions before the agent acts.</p>
+    </div>
+  </div>
+
+  <div class="gates-demo" data-reveal>
+    <div class="gates-head"><span>SAMPLE VERDICTS // session log</span><span>v2.4.0</span></div>
+    <div class="gates-body">
+      <div class="gates-row"><code>acidmind review ./src/sync.ts · <b>[RC-02]</b> O(n²) loop times out at ~5k items · src/sync.ts:88</code><span class="chip c-fix">FIX FIRST</span></div>
+      <div class="gates-row"><code>/pentest api.local · <b>[BH-04][TRIVIAL]</b> password reset accepts token reuse, unauthenticated chain</code><span class="chip c-stop">COMPROMISED BY DESIGN</span></div>
+      <div class="gates-row"><code>you: just delete the users table · <b>[ST-08]</b> access logs checked? evidence offered: none</code><span class="chip c-fix">REVISE THEN EXECUTE</span></div>
+      <div class="gates-row"><code>/acidmind ./repo · <b>[UC-05]</b> panel merged: 14 findings, 3 duplicates struck</code><span class="chip c-ship">SHIP</span></div>
+    </div>
+  </div>
+</section>
+
+<section id="gates" class="wrap">
+  <span class="sec-eyebrow">// doctrine</span>
+  <h2>Three properties hold across the family.</h2>
+  <div class="principles">
+    <div class="prin" data-reveal>
+      <b>Read-only by default.</b>
+      <p>Skills diagnose and prescribe fixes. They do not rewrite code unless you ask.</p>
+    </div>
+    <div class="prin" data-reveal>
+      <b>Scoped, not overlapping.</b>
+      <p>Each critic states what it does not cover and names the sibling that covers it.</p>
+    </div>
+    <div class="prin" data-reveal>
+      <b>Purpose-gated, not style-gated.</b>
+      <p>Technique is allowed when it has a reason. Technique without purpose becomes a finding.</p>
+    </div>
+  </div>
+
+  <span class="sec-eyebrow" style="display:block;margin-top:54px">// live bridges</span>
+  <h2 style="font-size:clamp(22px,2.6vw,30px)">Authorized dynamic testing, delegated.</h2>
+  <div class="bridge-list">
+    <div class="bridge-card">
+      <b>Strix</b>
+      <p>Protocol B can delegate dynamic app scans to an installed Strix agent inside its own Docker sandbox. Validated PoCs outrank static reasoning.</p>
+    </div>
+    <div class="bridge-card">
+      <b>Wallbreaker</b>
+      <p>For AI-bearing targets, Protocol B delegates LLM jailbreak testing to Wallbreaker. Own models only, reliability validated before severity.</p>
+    </div>
+  </div>
+</section>
+
+<section id="install" class="wrap">
+  <span class="sec-eyebrow">// intake</span>
+  <h2>Editions. Run from GitHub. Start small.</h2>
+  <p class="sec-sub">Updates prune skills that leave your edition. Status compares installed against latest.</p>
+  <div class="editions" data-reveal>
+    <div class="ed"><b>core</b><span>ruthless, design, feature, badass, secondthought. Daily code review.</span><code>npx github:ragajatsuma-cmd/acidmind init</code></div>
+    <div class="ed"><b>security</b><span>core plus security-critic. Teams shipping to production.</span><code>... init --edition security</code></div>
+    <div class="ed"><b>full</b><span>all eight skills including autocritic and the unified panel.</span><code>... init --all</code></div>
+  </div>
+  <p class="sec-sub" style="margin-top:22px">Claude Code user? Install as a plugin:</p>
+  <code class="mono" style="font-family:var(--font-mono);font-size:12.5px;color:var(--text);display:block;background:rgba(57,255,20,.05);border:1px solid var(--line);border-radius:8px;padding:12px 16px;margin-top:12px">/plugin marketplace add https://github.com/ragajatsuma-cmd/acidmind<br>/plugin install acidmind@acidmind</code>
+</section>
+
+<footer class="wrap">
+  <div class="foot">
+    <p><b>ACIDMIND</b> · MIT LICENSED CRITIQUE SKILLS FOR AI CODING AGENTS · v2.4.0</p>
+    <div class="foot-links">
+      <a href="https://github.com/ragajatsuma-cmd/acidmind/blob/main/CHANGELOG.md">CHANGELOG</a>
+      <a href="https://github.com/ragajatsuma-cmd/acidmind/releases/tag/v2.4.0">RELEASE v2.4.0</a>
+      <a href="https://github.com/ragajatsuma-cmd/acidmind/blob/main/CONTRIBUTING.md">CONTRIBUTING</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+(function(){
+  const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  const M = window.Motion;
+
+  if (!reduced && M) {
+    const { animate, inView } = M;
+    document.querySelectorAll("[data-reveal]").forEach(el => {
+      inView(el, () => animate(el, { opacity:[0,1], transform:["translateY(18px)","translateY(0)"] }, { duration:.55, easing:[.22,1,.36,1] }), { amount:.15 });
+    });
+  } else {
+    document.querySelectorAll("[data-reveal]").forEach(el => el.style.opacity = 1);
+  }
+
+  const btn = document.getElementById("copyHero");
+  if (btn) {
+    const orig = btn.innerHTML;
+    btn.addEventListener("click", async () => {
+      try {
+        await navigator.clipboard.writeText("npx github:ragajatsuma-cmd/acidmind init");
+        btn.textContent = "copied to clipboard";
+        setTimeout(() => btn.innerHTML = orig, 1800);
+      } catch {}
+    });
+  }
+})();
+</script>
+</body>
+</html>
