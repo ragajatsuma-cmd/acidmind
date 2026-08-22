@@ -56,7 +56,7 @@ strictness.
 ## Usage Modes
 
 - **QUICK (default, automatic):** intent restatement (one line) + dissection of the statement
-  into claim atoms + up to three merged persona questions + Gate + one question if the
+  into claim atoms + up to five merged persona questions + Gate + one question if the
   verdict is not EXECUTE. Target: under 15 seconds of reading.
 - **DEEP (`/secondthought <position>`):** full report: restated position, complete atom
   matrix, every owning persona interrogating its atoms, assumptions, what would change the
@@ -180,7 +180,7 @@ Not every question deserves to be asked. Merge by these rules:
 
 - Keep only questions whose answer could **flip the Gate verdict**. Curiosity is not a reason.
 - Rank by blast radius: the question that kills the idea fastest goes first.
-- **QUICK:** maximum 3 questions, from at most 3 personas (the ones owning the heaviest
+- **QUICK:** maximum 5 questions, from at most 5 personas (the ones owning the heaviest
   atoms). **DEEP:** up to 8 questions, full matrix.
 - Each question keeps its persona badge so the user sees which specialist is asking:
   `🧠 [design] Which of the next three requirement changes breaks this?`
@@ -209,7 +209,7 @@ Not every question deserves to be asked. Merge by these rules:
   stated constraint was silently dropped mid-dissection. Reasoning shown before conclusion,
   tested back against its own inputs — a critique that fails its own parameters fails, period.
 - **ST-17 — Anti-paralysis clause.** This skill exists to enable action, not to replace it.
-  Hard limits: one interrogation round per decision, max three questions in QUICK, and if
+  Hard limits: one interrogation round per decision, max five questions in QUICK, and if
   sparring leaves no HIGH-grade concern standing, the verdict is EXECUTE — no bonus
   questions, no "one more thing". A critique that deepens analysis without moving the user
   toward execution has become the very paralysis it was built to prevent. When in doubt
@@ -329,7 +329,7 @@ QUICK (compressed):
    [CAUSAL] "<verbatim fragment>"
    [ASSUMPTION] (unstated) "<what argument silently depends on>"
 
-❓ Interrogation:
+❓ Interrogation (max 5):
    1. 💻 <question>
    2. 🧠 <question>
 

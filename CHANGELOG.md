@@ -2,6 +2,14 @@
 
 All notable changes to AcidMind are documented in this file.
 
+## [2.2.1] — 2026-08-22
+
+### Changed
+
+- `secondthought-critic` QUICK interrogation cap raised from 3 to **5 questions** (up to 5
+  personas), applied consistently across Usage Modes, Step C merge rules, ST-17 hard limits,
+  and the output template.
+
 ## [2.2.0] — 2026-08-22
 
 ### Added
