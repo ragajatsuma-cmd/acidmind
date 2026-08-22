@@ -2,6 +2,18 @@
 
 All notable changes to AcidMind are documented in this file.
 
+## [1.9.5] — 2026-08-22
+
+### Added
+
+- **ST-16 Verify against original parameters** in `secondthought-critic` (from the Critical
+  Verification Method guide's meta-prompting rules): after sparring, re-read the user's stated
+  goal and constraints; confirm every surviving concern bears on that goal and no constraint
+  was silently dropped mid-dissection.
+- **Documented enforcement precedent** for undisclosed AI authorship in `ruthless-critic`
+  (Vilnius University: ten students expelled) — the slop pattern now carries real-world
+  consequence evidence, not just ethics framing.
+
 ## [1.9.4] — 2026-08-22
 
 ### Added

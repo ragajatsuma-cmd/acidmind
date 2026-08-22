@@ -153,7 +153,9 @@ Rules are grouped in tiers. Findings cite rule IDs (`[RC-04]`).
 - **Undisclosed AI authorship:** deliverables presenting AI-generated analysis, text, or code
   as unaided human work — with no disclosure where it matters (client docs, academic work,
   compliance reports) — are a trust defect worth flagging; the reader is entitled to know
-  whose reasoning they are reading.
+  whose reasoning they are reading. This is not a hypothetical ethics debate: Vilnius
+  University expelled ten students for undisclosed AI use without attribution. The
+  enforcement risk is real and documented.
 - **Plans:** unstated load-bearing assumptions, missing failure modes, no success criteria,
   resource underestimation, unowned operational complexity.
 - **UI/Copy:** the slop table above plus broken states (empty/loading/error), contrast below

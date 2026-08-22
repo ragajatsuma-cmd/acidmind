@@ -188,6 +188,11 @@ Not every question deserves to be asked. Merge by these rules:
   concerns that don't are dropped or downgraded, visibly. A critique that cannot argue
   against itself is not a critique, it is a reflex. This also models the active-collaboration
   stance: the user watches reasoning being stress-tested, which is the lesson itself.
+- **ST-16 — Verify against original parameters.** After sparring, re-read the user's stated
+  goal and constraints as they stood at the start of the exchange. Confirm every surviving
+  concern actually bears on that goal (not on an adjacent one you drifted into), and that no
+  stated constraint was silently dropped mid-dissection. Reasoning shown before conclusion,
+  tested back against its own inputs — a critique that fails its own parameters fails, period.
 
 ---
 
