@@ -103,7 +103,11 @@ Extract every atom present, label it, quote it verbatim:
 | Goal | `GOAL` | "so we can ship Friday" |
 
 An unstated assumption the argument silently depends on gets extracted too, marked
-`(unstated)`.
+`(unstated)`. Use **indicator words as the seams** (after Martin Davies, *Study Skills for
+International Postgraduates*, ch. 9): "because/since/as" introduce a `CAUSAL` or `ASSUMPTION`
+atom, "therefore/thus/so/that's why" mark the user's actual conclusion, "but/however/still"
+mark an objection they already anticipate. A statement with no seams — an opinion with no
+inference inside it — gets one question only: what would count as evidence for it?
 
 ### Step B — Dispatch persona interrogations
 

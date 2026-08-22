@@ -2,6 +2,19 @@
 
 All notable changes to AcidMind are documented in this file.
 
+## [1.9.2] — 2026-08-22
+
+### Added
+
+- **Argument anatomy** injected into `ruthless-critic` (method after Martin Davies, *Study
+  Skills for International Postgraduates*, ch. 9 "Critical Thinking"): map contention /
+  premises / objections / rebuttals before judging; test **validity** (does the conclusion
+  follow?) separately from **soundness** (are the premises true?) and report which half
+  failed; trace indicator words ("because" = premise, "therefore" = conclusion,
+  "but" = objection) as the seams of the argument.
+- `secondthought-critic` dissection now uses the same indicator-word seams to label claim
+  atoms, and asks a dedicated evidence question for seam-less opinions.
+
 ## [1.9.1] — 2026-08-22
 
 ### Added

@@ -123,7 +123,16 @@ Rules are grouped in tiers. Findings cite rule IDs (`[RC-04]`).
 - **Code:** injection, auth bypass, hardcoded secrets, unsafe deserialization, missing rate
   limits; null deref, off-by-one, races, missing error paths; O(n²)+ hot paths, N+1 queries,
   blocking I/O; circular deps, god objects, leaky abstractions; dead code, magic numbers.
-- **Arguments:** fallacies, unsupported premises, internal contradictions, hidden assumptions,
+- **Arguments:** use argument anatomy (after Martin Davies, *Study Skills for International
+  Postgraduates*, ch. 9): map the **contention** (what is claimed), **premises** (what it
+  stands on), acknowledged **objections**, and offered **rebuttals** — most weak arguments
+  fail at one identifiable joint. Then test the two halves separately: **validity** (does the
+  conclusion follow from the premises?) vs **soundness** (are the premises true?); report
+  which half failed, since "logical but built on sand" and "true but non sequitur" need
+  different fixes. Indicator words are the seams: "because/since" mark premises,
+  "therefore/thus" mark conclusions, "but/however" mark objections — claims with no inference
+  connecting them are assertions, not arguments. Plus: fallacies, unsupported premises,
+  internal contradictions, hidden assumptions,
   conclusion overshoot.
 - **Plans:** unstated load-bearing assumptions, missing failure modes, no success criteria,
   resource underestimation, unowned operational complexity.
