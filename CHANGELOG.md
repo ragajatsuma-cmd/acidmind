@@ -2,6 +2,21 @@
 
 All notable changes to AcidMind are documented in this file.
 
+## [2.2.0] — 2026-08-22
+
+### Added
+
+- **Cognitive failure catalog** in `secondthought-critic` dissection: four named reasoning
+  patterns with signature counter-questions — WRONG-TARGET (barking up the wrong tree),
+  OVERSCOPE (biting off more than you can chew), EVASION (beating around the bush), TUNNEL
+  (missing the forest for the trees).
+- **ST-17 Anti-paralysis clause**: one interrogation round per decision, max three QUICK
+  questions, and EXECUTE when sparring leaves no HIGH concern standing. The autoloaded critic
+  is barred from becoming the paralysis it was built to prevent.
+- **Register style rules** for ruthless AUTOPSY & HONEST: relatable hooks over arrogant
+  sarcasm (8-second attention ceiling), assertive-not-aggressive candor, and self-disclosure
+  of the critique's own weakest point before the reader finds it.
+
 ## [2.1.0] — 2026-08-22
 
 ### Added

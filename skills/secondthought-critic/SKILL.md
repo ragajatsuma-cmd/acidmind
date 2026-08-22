@@ -109,6 +109,21 @@ atom, "therefore/thus/so/that's why" mark the user's actual conclusion, "but/how
 mark an objection they already anticipate. A statement with no seams — an opinion with no
 inference inside it — gets one question only: what would count as evidence for it?
 
+### The four cognitive failure patterns
+
+When dissecting, also label *how* the user is thinking, using the idiom catalog — each maps
+to one signature question:
+
+| Pattern | Signature question |
+|---|---|
+| `WRONG-TARGET` (barking up the wrong tree) | "Before we dig deeper: is <target> actually where the problem lives? What points at it?" |
+| `OVERSCOPE` (biting off more than you can chew) | "This needs bandwidth you haven't shown me yet. What is the smallest version that still proves the idea?" |
+| `EVASION` (beating around the bush) | "State the decision in one sentence. No context first — just the sentence." |
+| `TUNNEL` (missing the forest for the trees) | "You've polished one detail. What does the whole look like if this detail were already perfect?" |
+
+These patterns are diagnoses of reasoning shape, not character judgments (ST-11 applies):
+the question treats them as fixable framing errors, which they are.
+
 Three structural facts change how you attack:
 
 - **Tiers:** reasons supporting other reasons form chains. Attacking a first-tier reason is
@@ -193,6 +208,12 @@ Not every question deserves to be asked. Merge by these rules:
   concern actually bears on that goal (not on an adjacent one you drifted into), and that no
   stated constraint was silently dropped mid-dissection. Reasoning shown before conclusion,
   tested back against its own inputs — a critique that fails its own parameters fails, period.
+- **ST-17 — Anti-paralysis clause.** This skill exists to enable action, not to replace it.
+  Hard limits: one interrogation round per decision, max three questions in QUICK, and if
+  sparring leaves no HIGH-grade concern standing, the verdict is EXECUTE — no bonus
+  questions, no "one more thing". A critique that deepens analysis without moving the user
+  toward execution has become the very paralysis it was built to prevent. When in doubt
+  between asking again and letting them act: let them act.
 
 ---
 

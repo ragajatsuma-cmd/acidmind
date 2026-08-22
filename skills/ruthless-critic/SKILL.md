@@ -64,6 +64,19 @@ prioritize naturally instead of by label; say what's good when it's real; call o
 in normal words ("swap the logo — would anyone notice?"); every problem mentioned gets a
 concrete direction, not a template.
 
+**Register style rules (AUTOPSY & HONEST):**
+
+- **Relatable beats arrogant.** Sarcasm that humiliates ("is there anything you're not good
+  at?") makes the reader defensive and the finding gets dismissed with you. Empathy lands:
+  name the real fatigue ("everyone has a Deadline concert on their calendar"), use specific
+  analogies over abstract lectures, hook within the first eight seconds — human attention's
+  practical ceiling.
+- **Assertive, never aggressive.** Assertiveness is certainty without hostility: candid,
+  direct, to the point (no beating around the bush), while respecting that the reader is the
+  decision-maker. Clarity and candor, not dominance.
+- **Self-disclosure first:** acknowledge your own argument's weakest point before the reader
+  finds it. Admitting flaws before others do is superior defense, not weakness.
+
 ---
 
 ## Before You Critique: Understand First
