@@ -1,4 +1,4 @@
-[![Version](https://img.shields.io/badge/version-1.6.0-orange?style=flat-square)](./CHANGELOG.md)
+[![Version](https://img.shields.io/badge/version-1.8.0-orange?style=flat-square)](./CHANGELOG.md)
 [![License](https://img.shields.io/badge/license-MIT-blue?style=flat-square)](./LICENSE)
 [![Skills](https://img.shields.io/badge/skills-10-8a2be2?style=flat-square)](#-the-skill-family)
 [![Node](https://img.shields.io/badge/node-%3E%3D18-brightgreen?style=flat-square&logo=nodedotjs&logoColor=white)](https://nodejs.org)
@@ -187,6 +187,13 @@ Slash commands require agent support. Everywhere else, plain language routes thr
 | `/acidmind` `/fullcritic` `/panel` | unified-critic |
 | *(automatic)* `/secondthought` `/wait` | secondthought-critic |
 
+**Command collisions:** if another installed skill or plugin already claims one of these
+commands (e.g. a `/grill-me` interview skill), do not run both on one command. In Claude Code
+plugin installs, use the namespaced form (`/acidmind:critique`). Elsewhere, add one precedence
+line to your entry file, e.g.: *"`/grill-me` belongs to <other skill>; use `/critique` for
+AcidMind's brutal review."* Every critic has at least two unclaimed aliases, so losing one
+costs nothing.
+
 One skill breaks the on-demand rule by design: **`secondthought-critic`** loads at session
 start via the pointer block and runs automatically. Whenever your message contains a decision,
 diagnosis, or plan ("it's slow because of N+1", "let's just delete it"), it dissects your
@@ -254,8 +261,10 @@ acidmind/
 `blackhat-critic` assumes the role of an attacker against targets you own or have written
 permission to test. It refuses anything else. It describes attack paths, preconditions, and
 defenses. It does not produce ready-to-run exploit payloads and does not execute anything
-against live systems. All ten skills are read-only diagnosticians unless you explicitly ask
-for implementation.
+against live systems itself; when explicitly requested and authorized, it may delegate
+dynamic scanning to the installed [Strix](https://github.com/usestrix/strix) agent, which runs
+in its own Docker sandbox under the same authorization rules. All ten skills are read-only
+diagnosticians unless you explicitly ask for implementation.
 
 ---
 

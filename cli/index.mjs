@@ -47,7 +47,7 @@ Commands:
 
 Editions (--edition <name>, default: core):
   core                  ruthless, design, feature, badass — daily reviews (4 skills)
-  security              core + heart-attack + blackhat — safe release (6 skills)
+  security              core + heart-attack + blackhat — safe release (7 skills)
   full                  all nine skills including autocritic, honest, panel
 
 Options:

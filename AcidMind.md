@@ -1,8 +1,9 @@
 # AcidMind
 
-> A family of 7 specialist critique skills for AI coding agents. Each skill is a different lens
-> — design, features, performance, security, meta-skill auditing, or plain human honesty — read
-> **on-demand**, not force-loaded into every session.
+> A family of ten critique skills for AI coding agents: eight specialist critics, one
+> autoloaded pre-execution critic, and one panel moderator. Each skill is a different lens
+> — design, features, performance, security, LLM red-teaming, meta-skill auditing, or plain
+> human honesty — read **on-demand**, not force-loaded into every session.
 
 `AcidMind.md` is the router. It doesn't contain the critique rules itself — it tells an agent
 *which* skill file to read once it recognizes the user wants a review, and *when not to bother*.
@@ -22,7 +23,7 @@ to almost any codebase, unchanged? If yes, it's not a finding — go look harder
 
 ---
 
-## The Seven Skills
+## The Skills
 
 | Skill | Read this when the user wants... | File |
 |---|---|---|
@@ -34,7 +35,7 @@ to almost any codebase, unchanged? If yes, it's not a finding — go look harder
 | `blackhat-critic` | A red-team penetration review of their OWN app — attack paths a hired attacker would use, then hardening. Commands: `/blackhat`, `/pentest`, `/redteam` | `skills/blackhat-critic/SKILL.md` |
 | `autocritic-skill` | A `SKILL.md` file itself audited before install/distribution — will it trigger correctly, is it safe, is it useful | `skills/autocritic-skill/SKILL.md` |
 | `tellingtruth-critic` | An unstructured, human, no-format honest opinion — no severity labels, no emoji, just straight talk | `skills/tellingtruth-critic/SKILL.md` |
-| `unified-critic` | Everything checked at once — all seven lenses merged into one report with one gate. Commands: `/acidmind`, `/fullcritic`, `/panel` | `skills/unified-critic/SKILL.md` |
+| `unified-critic` | Everything checked at once — all other lenses merged into one report with one gate. Commands: `/acidmind`, `/fullcritic`, `/panel` | `skills/unified-critic/SKILL.md` |
 
 ---
 
@@ -136,7 +137,7 @@ Notes:
 Most projects using an AI coding agent already have an entry-point file (`AGENTS.md`,
 `CLAUDE.md`, `GEMINI.md`, etc.) that the agent **always** reads at the start of a session.
 
-Don't paste all seven skills into that file. Instead, keep this repo's `skills/` directory
+Don't paste all ten skills into that file. Instead, keep this repo's `skills/` directory
 wherever your other agent rules files live, and add a single pointer block to your existing
 entry-point file:
 
@@ -149,7 +150,7 @@ to pick the right lens, then read the matching file under `skills/`.
 
 Why this beats merging everything in:
 
-- **Saves context** — seven skills' worth of rules only load when a review is actually
+- **Saves context** — ten skills' worth of rules only load when a review is actually
   requested, not on every unrelated task.
 - **Easier to maintain** — updating one skill never requires touching your project's
   entry-point file or the other six skills.
@@ -258,7 +259,7 @@ verdict derived mechanically from the findings.
 - **Evidence over claims.** Statistics, testimonials, benchmarks, and compliance signals are
   either verifiable or they don't exist. Empty beats deceptive; fabricated content is always
   reportable, in every lens.
-- **Slop-aware.** All seven critics scan for clusters of generic AI-generated filler (template
+- **Slop-aware.** All critics scan for clusters of generic AI-generated filler (template
   structure, buzzword density, dead controls, missing states, no identity under the swap
   test).
 - **Severity labels, not vibes.** Every finding is ranked so the reader knows what to fix first,
@@ -276,7 +277,7 @@ verdict derived mechanically from the findings.
 
 ## Contributing
 
-PRs welcome for: new critique axes that don't overlap the existing seven, sharper severity
+PRs welcome for: new critique axes that don't overlap the existing family, sharper severity
 heuristics, or reports of a skill's stated scope drifting from its actual behavior.
 
 ## License

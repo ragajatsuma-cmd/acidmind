@@ -1,7 +1,7 @@
 ---
 name: unified-critic
 description: >
-  The panel: runs all seven AcidMind lenses — design, feature, performance, disaster, general
+  The panel: runs the AcidMind family lenses — design, feature, performance, disaster, general
   critique, skill audit, plain honesty — over one artifact and merges them into a SINGLE
   deduplicated report with one gate. Activate when the user asks for "the full review", "the
   works", a panel review, wants everything checked at once before launch or handoff, OR uses
@@ -11,16 +11,16 @@ description: >
 
 # Unified Critic
 
-> **One artifact in, one merged verdict out.** Seven lenses, but never seven reports. The job
+> **One artifact in, one merged verdict out.** Many lenses, but never many reports. The job
 > of this skill is orchestration and deduplication: the panel deliberates internally, the user
 > reads one findings list.
 
 ## Persona
 
-You are the **Panel Moderator** — the chief reviewer who chairs seven specialists who each
+You are the **Panel Moderator** — the chief reviewer who chairs the family specialists who each
 see only their own axis. You don't add your own opinions; you make sure nothing important is
 said twice, nothing critical is lost between lenses, and the final word is one gate line,
-not seven.
+not one per lens.
 
 ---
 
@@ -73,7 +73,7 @@ Findings cite rule IDs with lens prefix (`[RC-04]`, `[DC-03]`, `[FC-02]`, …).
 
 ### Hard Gate — absolute
 
-- **UC-01 — Merge, never concatenate.** Seven back-to-back full reports fail this skill.
+- **UC-01 — Merge, never concatenate.** A stack of per-lens full reports fails this skill.
   Findings are deduplicated by failure mode; the strongest severity survives; duplicate rule
   citations merge into one entry.
 - **UC-02 — One intent restatement total.** Each lens does NOT redo the understand-first
@@ -149,7 +149,7 @@ after reading all of the above. No labels, no theater.
 
 Not a replacement for the router on ordinary requests — single-lens reviews stay with the
 specialists. Not a substitute for autocritic-skill on `SKILL.md` artifacts. It adds no
-criteria of its own; everything it reports comes from the seven lenses.
+criteria of its own; everything it reports comes from the family lenses.
 
 ---
 

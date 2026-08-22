@@ -2,6 +2,43 @@
 
 All notable changes to AcidMind are documented in this file.
 
+## [1.8.0] — 2026-08-22
+
+### Added
+
+- **Wallbreaker LLM red-team bridge in `blackhat-critic`** (integration with
+  [JailbrokenAI/wallbreaker](https://github.com/JailbrokenAI/wallbreaker)): for AI-bearing
+  targets, the blackhat critic can delegate live jailbreak/prompt-injection testing to
+  `wallbreaker --auto` and fold results into its report. New rules BH-15 (own models only),
+  BH-16 (reliability before severity: one-shot compliance is never a proven bypass),
+  BH-17 (AGPL-3.0 source-disclosure note when recommending CI use).
+
+### Fixed
+
+- **Stale skill counts** in router header, wizard copy, and `unified-critic` ("seven" →
+  accurate counts), found by a real-world autocritic-skill audit.
+- CLI usage text: security edition listed as 6 skills; it is 7.
+
+### Added
+
+- **Command collision audit rule (AS-14)** in `autocritic-skill`: detect commands claimed by
+  other installed skills/plugins, severity `[HIGH]`, with a fix blueprint — namespace
+  (`/acidmind:critique`), precedence convention in the entry file, or drop the alias.
+- "Command collisions" guidance added to README Commands section.
+
+## [1.7.0] — 2026-08-22
+
+### Added
+
+- **Strix Live Mode bridge in `blackhat-critic`** (integration with
+  [usestrix/strix](https://github.com/usestrix/strix)): when Strix is installed and BH-00
+  authorization is confirmed, the blackhat critic can delegate dynamic testing to
+  `strix -n --target ...` (Docker sandbox), then merge results into its report —
+  `[VALIDATED]` PoC findings outrank `[STATIC]` reasoning at equal severity. New rules
+  BH-12 (live mode opt-in per run, scope named aloud), BH-13 (CI diff-scoped quick scans for
+  PRs), BH-14 (re-scan fix loop to confirm chains broken). Without Strix installed, behavior
+  is unchanged: static analysis only.
+
 ## [1.6.0] — 2026-08-22
 
 ### Added

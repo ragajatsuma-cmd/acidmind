@@ -97,6 +97,16 @@ Findings cite rule IDs (`[AS-XX]`). Severity: `[CRITICAL] [HIGH] [MED] [LOW] [NI
   technically accurate; no contradictions.
 - **AS-13 — Fixes are blueprints,** not verdicts: better description text, tighter boundaries,
   or the section to delete — with why the replacement is better.
+- **AS-14 — Command collision check.** List every command the audited skill claims
+  (`/grill-me`, `/critique`, …) and check them against other skills and plugins installed in
+  the same project. Two skills claiming one command is `[HIGH]`: the agent will pick one
+  behavior arbitrarily or blend both. Fix blueprint, in order of preference:
+  1. **Namespace** — in Claude Code plugin installs, colliding commands are reachable as
+     `/<plugin>:<command>`; document that form.
+  2. **Precedence convention** — one sentence in the project entry file: "`/grill-me` belongs
+     to <other skill>; use `/critique` for <this skill>."
+  3. **Drop the alias** — a skill with three trigger phrases loses nothing by giving one up;
+     two unclaimed commands beat one contested one.
 
 ---
 
