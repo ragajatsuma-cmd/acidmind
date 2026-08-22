@@ -44,6 +44,13 @@ Read-only by default. Diagnose and prescribe; never implement unless asked.
 3. State what the feature claims to do, in terms its author would agree with (FC-01).
 4. Only then go looking for holes.
 
+### Trace the feature (when given a repo)
+
+Follow one real user action end-to-end before judging: UI component → API route → handler →
+service/business logic → data layer. Check every branch on that path for the state triad,
+error handling, and dead ends. A feature reviewed only from its entry file misses the hole
+two layers down. Cite findings as `path/file.ts:42`; mark sampled coverage explicitly.
+
 ---
 
 ## Part 1: Slop Patterns (Warning Signs)

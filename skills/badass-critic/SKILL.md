@@ -47,6 +47,14 @@ Read-only by default. Diagnose and prescribe; never optimize unless asked.
    1M-row dataset (BC-02).
 4. State all assumptions explicitly.
 
+### Find the hot paths (when given a repo)
+
+Crawl for load-bearing code before estimating: request routes and their handlers, loops over
+collections inside services, ORM usage in iteration (N+1 country), queries without visible
+pagination, per-request connection/client creation, and sync I/O inside async flows. Estimate
+against those real call sites and cite them (`path/file.ts:42`). If you inspected a sample of
+the tree, say so in one line.
+
 ---
 
 ## Part 1: Slop Patterns (Warning Signs)

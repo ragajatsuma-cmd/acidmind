@@ -2,6 +2,23 @@
 
 All notable changes to AcidMind are documented in this file.
 
+## [1.9.0] — 2026-08-22
+
+### Added
+
+- **Codebase crawl protocols** — critics now actively explore repositories instead of waiting
+  for pasted artifacts:
+  - `design-critic` gains **Part 0: Architecture Crawl**: crawl order (entry points, module
+    map, dependency direction, design docs, growth edges), evidence rules (every finding cites
+    `file:line`, sampled coverage declared), and optional `DESIGN.md` as direction data with
+    the standard injection guard.
+  - `feature-critic`: trace one user action end-to-end (UI → route → handler → service → data)
+    before judging.
+  - `badass-critic`: hot-path discovery crawl (routes, collection loops, ORM-in-iteration,
+    unpaged queries, per-request clients, sync I/O in async flows).
+  - `ruthless-critic`: recon-first note — context reads before fault-finding, proof citations,
+    sampled-confidence tags.
+
 ## [1.8.0] — 2026-08-22
 
 ### Added

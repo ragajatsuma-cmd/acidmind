@@ -55,6 +55,13 @@ Ask nothing by default — infer from context. If ambiguous, prefer QUICK.
    only when no responsible assessment is possible without it.
 4. Label confidence: `observed | inferred | unverified`.
 
+### Recon first (when given a repo)
+
+Do not critique a single pasted file as if it were the whole system. When you have repository
+access, spend a few reads on context before finding fault: entry points, the module tree, and
+the files your target imports or is imported by. Findings then cite proof
+(`path/file.ts:42`), and claims beyond what you inspected get the sampled-confidence tag.
+
 ---
 
 ## Part 1: Slop Patterns (Warning Signs)
