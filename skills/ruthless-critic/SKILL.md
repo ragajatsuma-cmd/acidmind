@@ -123,16 +123,27 @@ Rules are grouped in tiers. Findings cite rule IDs (`[RC-04]`).
 - **Code:** injection, auth bypass, hardcoded secrets, unsafe deserialization, missing rate
   limits; null deref, off-by-one, races, missing error paths; O(n²)+ hot paths, N+1 queries,
   blocking I/O; circular deps, god objects, leaky abstractions; dead code, magic numbers.
-- **Arguments:** use argument anatomy (after Martin Davies, *Study Skills for International
-  Postgraduates*, ch. 9): map the **contention** (what is claimed), **premises** (what it
-  stands on), acknowledged **objections**, and offered **rebuttals** — most weak arguments
-  fail at one identifiable joint. Then test the two halves separately: **validity** (does the
-  conclusion follow from the premises?) vs **soundness** (are the premises true?); report
-  which half failed, since "logical but built on sand" and "true but non sequitur" need
-  different fixes. Indicator words are the seams: "because/since" mark premises,
-  "therefore/thus" mark conclusions, "but/however" mark objections — claims with no inference
-  connecting them are assertions, not arguments. Plus: fallacies, unsupported premises,
-  internal contradictions, hidden assumptions,
+- **Arguments:** apply the full argument-anatomy method (after Martin Davies, *Study Skills
+  for International Postgraduates*, ch. 9). Four structural elements, always mapped before
+  judging: **contention** (the claim being argued for), **reasons/premises** (which come in
+  tiers — reasons that support other reasons), **inference indicators** ("because/since" mark
+  premises, "therefore/thus/hence" mark conclusions, "but/however" mark objections), and
+  **evidence** (statistics, case studies, data, expert opinion — the layer *beneath* reasons;
+  a terminal reason with no evidence is an assertion). Note **co-premises**: joined premises
+  that jointly support a claim — attack either one and the joint support collapses; separate
+  independent reasons must be attacked individually. Objections and rebuttals
+  (objections-to-objections) are nodes of the argument too, not afterthoughts.
+  Then run the six assessment checks in order:
+  1. Are the reasons true/accurate? (a false premise poisons the conclusion's support even
+     when the conclusion happens to be true)
+  2. Is the inference valid? (does the conclusion follow at all?)
+  3. Author bias or vested interest? (who pays for this claim?)
+  4. Are the reasons relevant to this contention? (true + valid + irrelevant still proves
+     nothing)
+  5. Is there enough evidence under each reason?
+  6. Evidence quality: reputable source, current, peer-reviewed where applicable?
+  Report validity and soundness failures separately — "logical but built on sand" and "true
+  but non sequitur" need different fixes. Plus: fallacies, internal contradictions,
   conclusion overshoot.
 - **Plans:** unstated load-bearing assumptions, missing failure modes, no success criteria,
   resource underestimation, unowned operational complexity.

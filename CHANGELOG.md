@@ -2,6 +2,21 @@
 
 All notable changes to AcidMind are documented in this file.
 
+## [1.9.3] — 2026-08-22
+
+### Added
+
+- **Full Davies ch.9 framework** (from the complete chapter text, replacing the metadata-only
+  injection of 1.9.2):
+  - `ruthless-critic` argument anatomy now covers all four structural elements — contention,
+    tiered reasons/premises, inference indicators, and the **evidence layer beneath reasons**
+    — plus **co-premises** (joined premises that collapse together), objections and rebuttals
+    as first-class map nodes, and Davies' **six assessment checks**: true reasons, valid
+    inference, author bias/vested interest, relevance, evidence sufficiency, evidence quality.
+  - `secondthought-critic` dissection gains three attack heuristics: attack the lowest failing
+    tier (not first-tier symptoms), one question per co-premise joint, and no-evidence atoms
+    are the highest-yield targets.
+
 ## [1.9.2] — 2026-08-22
 
 ### Added

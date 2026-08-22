@@ -109,6 +109,15 @@ atom, "therefore/thus/so/that's why" mark the user's actual conclusion, "but/how
 mark an objection they already anticipate. A statement with no seams — an opinion with no
 inference inside it — gets one question only: what would count as evidence for it?
 
+Three structural facts change how you attack:
+
+- **Tiers:** reasons supporting other reasons form chains. Attacking a first-tier reason is
+  wasted effort if its second-tier support already fails — attack the lowest failing tier.
+- **Co-premises:** atoms joined by dependency ("X works *because* Y, and everyone wants Y")
+  collapse together. One question aimed at the joint assumption kills both; never spend two.
+- **Evidence layer:** an atom with no `EVIDENCE` beneath it is the highest-yield target —
+  Davies' rule: unsupported reasons are unacceptable before any other check matters.
+
 ### Step B — Dispatch persona interrogations
 
 For every atom, pull the signature questions from the persona that owns that axis. Ask them
