@@ -234,8 +234,6 @@ acidmind/
     │   └── SKILL.md
     ├── autocritic-skill/
     │   └── SKILL.md
-    ├── tellingtruth-critic/
-    │   └── SKILL.md
     ├── unified-critic/
     │   └── SKILL.md
     └── secondthought-critic/
