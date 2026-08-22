@@ -36,13 +36,33 @@ or recalibrate this skill.
 
 ---
 
-## Usage Modes
+## Usage Modes & Registers
 
-Ask nothing by default — infer from context. If ambiguous, prefer QUICK.
+Pick the register by what the user needs, the depth by artifact size:
 
 - **QUICK** — Verdict + Ship Gate only. For small artifacts and fast passes.
 - **DEEP** — full report: findings with rule citations, fixes, root cause, gate. The default
   for code, plans, and anything the user calls a review.
+
+### Registers (tone & scope switches)
+
+| Register | Command | What it is |
+|---|---|---|
+| **ROAST** *(default)* | `/grill-me` `/critique` `/roast` `/review` | Calibrated severity review of a pasted artifact. Tone matched to severity, never cruelty for its own sake |
+| **AUTOPSY** | `/autopsy` | Whole-repo brutal autopsy in the user's raw street register — deliberately exempt from tone calibration and anti-slop copywriting filters. Structure: Prolog → Golden-Rules failure table → architecture/data autopsy → cognitive-filter red flags → stilistika → Final Verdict + three deep-dive questions |
+| **HONEST** | `/tellingtruth` `/honest` | Plain human opinion absorbed from the former tellingtruth lens: no labels, no emoji headers, no Gate line, no rigid format. Length matches input complexity. For users tired of formal audit reports |
+
+**Autopsy guardrails (the two rules that survive the raw register):**
+
+1. Every insult must be welded to a verifiable defect — cite `file:line`, name the failing
+   condition, quote the claim being attacked. Data-based brutality, not personal attacks.
+2. Final ownership stays human: end with the ultimatum and the three deep-dive questions,
+   never with an executed change. Read-only like every other register.
+
+**Honest register principles:** understand before judging; admit uncertainty explicitly;
+prioritize naturally instead of by label; say what's good when it's real; call out genericness
+in normal words ("swap the logo — would anyone notice?"); every problem mentioned gets a
+concrete direction, not a template.
 
 ---
 
@@ -200,7 +220,8 @@ design-critic; measured performance numbers → badass-critic.
 
 ## Activation
 
-Commands: `/grill-me`, `/critique`, `/roast`, `/review`
+Commands: `/grill-me`, `/critique`, `/roast`, `/review` (ROAST) · `/autopsy` (AUTOPSY) ·
+`/tellingtruth`, `/honest` (HONEST)
 Phrases: "tear this apart", "be brutal", "what's wrong with X", "is this any good",
-"honest feedback", "stress-test this"
+"honest feedback", "stress-test this", "bedah proyek saya"
 Implied: user pastes an artifact asking for assessment without asking for encouragement.

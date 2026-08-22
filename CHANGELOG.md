@@ -2,6 +2,24 @@
 
 All notable changes to AcidMind are documented in this file.
 
+## [2.0.0] — 2026-08-22
+
+### Changed
+
+- **Consolidation: the family is now 8 skills** (down from 10):
+  - `heart-attack-critic` + `blackhat-critic` merged into **`security-critic`** — one lens,
+    two protocols: Protocol A (disaster simulation, HA-rules) and Protocol B (red-team attack
+    paths, BH-rules) with both live bridges (Strix, Wallbreaker). All old commands still work
+    (`/heartattack`, `/disaster`, `/blackhat`, `/pentest`, `/redteam`).
+  - `tellingtruth-critic` absorbed into **`ruthless-critic`** as its HONEST register
+    (`/tellingtruth`, `/honest`). The AUTOPSY register (`/autopsy`) also lands here: a
+    whole-repo brutal autopsy in raw street register, deliberately exempt from tone
+    calibration and anti-slop copywriting filters, with two surviving guardrails — every
+    insult welded to a verifiable defect, and final ownership stays human.
+- Router, wizard, CLI map, plugin commands, unified-critic panel order, secondthought persona
+  table, and README all updated to the eight-skill structure; routing steps renumbered;
+  security-edition references corrected everywhere.
+
 ## [1.9.5] — 2026-08-22
 
 ### Added

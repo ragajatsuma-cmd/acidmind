@@ -3,7 +3,9 @@
 > A family of critique skills for AI coding agents: specialist critics across architecture,
 > features, performance, disaster scenarios, offensive security, LLM red-teaming, skill
 > auditing, and plain honesty; an autoloaded pre-execution critic; and a unified panel.
-> Each skill is a different lens, read **on-demand**, not force-loaded into every session.
+> Each skill is a different lens, read **on-demand**, not force-loaded into every session —
+> with exactly one deliberate exception: `secondthought-critic` autoloads every session by
+> design, because its whole job is to intercept your opinions before execution happens.
 
 `AcidMind.md` is the router. It doesn't contain the critique rules itself — it tells an agent
 *which* skill file to read once it recognizes the user wants a review, and *when not to bother*.
@@ -27,14 +29,12 @@ to almost any codebase, unchanged? If yes, it's not a finding — go look harder
 
 | Skill | Read this when the user wants... | File |
 |---|---|---|
-| `ruthless-critic` | A general brutal review of code, an argument, a plan, or any artifact — the default when no other lens fits better | `skills/ruthless-critic/SKILL.md` |
+| `ruthless-critic` | A general brutal review of code, an argument, a plan, or any artifact — the default when no other lens fits better. Three registers: ROAST (default), AUTOPSY (whole-repo raw-register autopsy via `/autopsy`), HONEST (plain human opinion via `/tellingtruth`, `/honest`) | `skills/ruthless-critic/SKILL.md` |
 | `design-critic` | Architecture / system design reviewed — coupling, abstraction, dependencies, structural scalability | `skills/design-critic/SKILL.md` |
 | `feature-critic` | A specific feature checked for completeness and correctness — does it actually work for real users | `skills/feature-critic/SKILL.md` |
 | `badass-critic` | A performance review with concrete numbers — algorithmic complexity, DB/I/O, memory, concurrency | `skills/badass-critic/SKILL.md` |
-| `heart-attack-critic` | A worst-case disaster simulation before launch or a security audit — what could go fatally wrong | `skills/heart-attack-critic/SKILL.md` |
-| `blackhat-critic` | A red-team penetration review of their OWN app — attack paths a hired attacker would use, then hardening. Commands: `/blackhat`, `/pentest`, `/redteam` | `skills/blackhat-critic/SKILL.md` |
+| `security-critic` | The security lens, double-hatted: Protocol A disaster simulation before launch (`/heartattack`, `/disaster`) + Protocol B red-team attack paths on their OWN app with optional Strix/Wallbreaker live bridges (`/blackhat`, `/pentest`, `/redteam`) | `skills/security-critic/SKILL.md` |
 | `autocritic-skill` | A `SKILL.md` file itself audited before install/distribution — will it trigger correctly, is it safe, is it useful | `skills/autocritic-skill/SKILL.md` |
-| `tellingtruth-critic` | An unstructured, human, no-format honest opinion — no severity labels, no emoji, just straight talk | `skills/tellingtruth-critic/SKILL.md` |
 | `unified-critic` | Everything checked at once — all other lenses merged into one report with one gate. Commands: `/acidmind`, `/fullcritic`, `/panel` | `skills/unified-critic/SKILL.md` |
 
 ---
@@ -46,21 +46,26 @@ Use this decision order when a request could match more than one skill:
 1. **Is the artifact itself a `SKILL.md`?** → `autocritic-skill`, always. Nothing else applies
    to skill files.
 2. **Did the user explicitly ask to attack/break into/penetrate their own app** (`/blackhat`,
-   pentest framing)? → `blackhat-critic`. It is offensive-path analysis on authorized targets
-   only; never for third-party systems.
+   pentest framing)? → `security-critic` **Protocol B**. It is offensive-path analysis on
+   authorized targets only; never for third-party systems.
 3. **Did the user explicitly ask for a worst-case / disaster / "what could go fatally wrong"
-   scenario, or use a launch-readiness / security-audit framing?** → `heart-attack-critic`.
-   Do not use this for routine review requests — it is deliberately alarming and should stay
-   reserved for the moments that call for it.
-3. **Did the user ask specifically about speed, latency, load, scale, or resource use — or
+   scenario, or use a launch-readiness / security-audit framing?** → `security-critic`
+   **Protocol A**. Do not use this for routine review requests — it is deliberately alarming
+   and should stay reserved for the moments that call for it.
+   **Tie-breaker:** if pentest framing AND launch/security framing appear together
+   ("pentest my app before the security audit"), run Protocol B as the active lens and let it
+   invoke Protocol A's projection for business impact — one lens leads, the other contributes
+   a section; never two full reports.
+4. **Did the user ask specifically about speed, latency, load, scale, or resource use — or
    provide profiling/benchmark data?** → `badass-critic`.
-4. **Did the user ask whether a specific feature/function actually works, is complete, or
+5. **Did the user ask whether a specific feature/function actually works, is complete, or
    handles edge cases?** → `feature-critic`.
-5. **Did the user ask about structure, architecture, patterns, coupling, or "will this scale as
+6. **Did the user ask about structure, architecture, patterns, coupling, or "will this scale as
    a codebase" (not as a runtime)?** → `design-critic`.
-6. **Did the user explicitly ask for a plain, human, unstructured opinion — or say they're tired
-   of formal audit reports?** → `tellingtruth-critic`.
-7. **Everything else that's a review/critique/roast request** → `ruthless-critic`, the general
+7. **Did the user explicitly ask for a plain, human, unstructured opinion — or say they're tired
+   of formal audit reports?** → `ruthless-critic` in its **HONEST** register (`/tellingtruth`,
+   `/honest`).
+8. **Everything else that's a review/critique/roast request** → `ruthless-critic`, the general
    default.
 
 If a request spans more than one axis (e.g. "review this PR" touching both design and
@@ -88,10 +93,9 @@ routing table above against whatever files are already on disk and install nothi
    - **1. Core** (recommended default) — the four daily lenses: `ruthless-critic`,
      `design-critic`, `feature-critic`, `badass-critic`, plus the autoloaded
      `secondthought-critic`.
-   - **2. Security** — core plus `heart-attack-critic` and `blackhat-critic`, for teams
-     shipping to production.
-   - **3. Full** — all ten skills, including `autocritic-skill`, `tellingtruth-critic`,
-     and the `unified-critic` panel.
+   - **2. Security** — core plus `security-critic`, for teams shipping to production.
+   - **3. Full** — all eight skills, including `autocritic-skill` and the `unified-critic`
+     panel.
    - **4. Pick individually** — list every skill for multi-select.
    New skills appear here as they ship; never offer a skill that doesn't exist in this
    version. Missing skills can always be added later with `add <skill>` — choosing small
@@ -137,7 +141,7 @@ Notes:
 Most projects using an AI coding agent already have an entry-point file (`AGENTS.md`,
 `CLAUDE.md`, `GEMINI.md`, etc.) that the agent **always** reads at the start of a session.
 
-Don't paste all ten skills into that file. Instead, keep this repo's `skills/` directory
+Don't paste all eight skills into that file. Instead, keep this repo's `skills/` directory
 wherever your other agent rules files live, and add a single pointer block to your existing
 entry-point file:
 
@@ -150,10 +154,10 @@ to pick the right lens, then read the matching file under `skills/`.
 
 Why this beats merging everything in:
 
-- **Saves context** — ten skills' worth of rules only load when a review is actually
+- **Saves context** — eight skills' worth of rules only load when a review is actually
   requested, not on every unrelated task.
 - **Easier to maintain** — updating one skill never requires touching your project's
-  entry-point file or the other six skills.
+  entry-point file or the other skills.
 - **Portable** — copy the `skills/` directory (or just the one skill you need) into any project
   and add the one pointer line above.
 
@@ -226,9 +230,7 @@ acidmind/
     │   └── SKILL.md
     ├── badass-critic/
     │   └── SKILL.md
-    ├── heart-attack-critic/
-    │   └── SKILL.md
-    ├── blackhat-critic/
+    ├── security-critic/
     │   └── SKILL.md
     ├── autocritic-skill/
     │   └── SKILL.md

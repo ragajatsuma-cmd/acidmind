@@ -5,14 +5,12 @@ import path from "node:path";
 const DEFAULT_REPO = "ragajatsuma-cmd/acidmind";
 const DEFAULT_BRANCH = "main";
 const SKILLS = {
-  "ruthless-critic": "General brutal review of code, arguments, plans — the default lens (/grill-me)",
+  "ruthless-critic": "Brutal review with three registers: ROAST / AUTOPSY / HONEST (/grill-me, /autopsy)",
   "design-critic": "Architecture & system design: coupling, abstraction, dependencies (/designcritic)",
   "feature-critic": "Feature completeness & correctness for real users (/featurecritic)",
   "badass-critic": "Performance review with concrete numbers, not vibes (/badass)",
-  "heart-attack-critic": "Worst-case disaster simulation before launch / security audit (/heartattack)",
-  "blackhat-critic": "Red-team penetration review of your own app, attacker-style (/blackhat)",
+  "security-critic": "Disaster simulation + red-team pentest of your own app, with Strix/Wallbreaker bridges (/heartattack, /blackhat)",
   "autocritic-skill": "Auto-audit of a SKILL.md before you install or ship it (/auditskill)",
-  "tellingtruth-critic": "Unstructured, human, no-label honest opinion (/honest)",
   "unified-critic": "All lenses merged into one panel review with one gate (/acidmind)",
   "secondthought-critic": "Autoloaded: critiques your opinion/plan BEFORE the agent executes (/wait)",
 };
@@ -24,8 +22,7 @@ const EDITIONS = {
     "feature-critic",
     "badass-critic",
     "secondthought-critic",
-    "heart-attack-critic",
-    "blackhat-critic",
+    "security-critic",
   ],
   full: Object.keys(SKILLS),
 };

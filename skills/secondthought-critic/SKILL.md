@@ -154,10 +154,10 @@ otherwise:
 | 🧠 design-critic | `SCOPE`, approach choices | "What constraint forces this structure over the simpler one?" · "Which of the next three requirement changes breaks this?" |
 | 🔪 feature-critic | `SCOPE`, `ASSUMPTION` | "Which user state does this scope call quietly drop: empty, loading, error, concurrent?" |
 | 💻 badass-critic | `PREDICTION`, performance claims | "What measured number backs this, taken how and when?" · "At exactly what load does this prediction stop holding?" |
-| 😠 heart-attack-critic | `ASSUMPTION`, risk dismissals | "This assumption fails at 03:00. What is lost first, and who finds out?" |
-| 🥷 blackhat-critic | anything touching auth, input, exposure | "How does an attacker chain this change into access they don't have?" |
+| 😠 security-critic (Protocol A) | `ASSUMPTION`, risk dismissals | "This assumption fails at 03:00. What is lost first, and who finds out?" |
+| 🥷 security-critic (Protocol B) | anything touching auth, input, exposure | "How does an attacker chain this change into access they don't have?" |
 | 🎭 autocritic-skill | statements about tooling/skills/process | "By what evidence would we know this process change worked?" |
-| 💬 tellingtruth-critic | the reasoning itself | "Is this choice the best one, or the familiar one?" |
+| 💬 ruthless HONEST register | the reasoning itself | "Is this choice the best one, or the familiar one?" |
 
 ### Step C — Merge into one interrogation
 
@@ -277,6 +277,9 @@ Compression rules for this skill's output only:
   token saved.
 - No self-reference. Never announce the style ("caveman mode on"). It is just how this
   critic talks.
+- **Exemption:** the dissection's structural markers (`🤔 🔬 ❓ 🚦` and persona badges like
+  `💻 🧠`) are functional triage signals, not decoration — they survive every intensity level,
+  including ultra. What dies is decorative emoji, never navigational ones.
 - Tool calls fire direct: no preamble or progress narration between them.
 
 ### Auto-Clarity override

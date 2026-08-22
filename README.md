@@ -1,6 +1,6 @@
-[![Version](https://img.shields.io/badge/version-1.9.5-orange?style=flat-square)](./CHANGELOG.md)
+[![Version](https://img.shields.io/badge/version-2.0.0-orange?style=flat-square)](./CHANGELOG.md)
 [![License](https://img.shields.io/badge/license-MIT-blue?style=flat-square)](./LICENSE)
-[![Skills](https://img.shields.io/badge/skills-10-8a2be2?style=flat-square)](#-the-skill-family)
+[![Skills](https://img.shields.io/badge/skills-8-8a2be2?style=flat-square)](#-the-skill-family)
 [![Node](https://img.shields.io/badge/node-%3E%3D18-brightgreen?style=flat-square&logo=nodedotjs&logoColor=white)](https://nodejs.org)
 [![Stars](https://img.shields.io/github/stars/ragajatsuma-cmd/acidmind?style=flat-square&color=yellow)](https://github.com/ragajatsuma-cmd/acidmind/stargazers)
 [![Last Commit](https://img.shields.io/github/last-commit/ragajatsuma-cmd/acidmind/main?style=flat-square&logo=git&logoColor=white)](https://github.com/ragajatsuma-cmd/acidmind/commits/main)
@@ -9,7 +9,7 @@
 
 ![AcidMind banner](./assets/banner.jpeg)
 
-Ten critique skills for AI coding agents. One router. Zero generic reviews.
+Eight critique skills for AI coding agents. One router. Zero generic reviews.
 
 When your agent reviews code without a lens, it produces the same soft paragraph every time:
 praise, three nitpicks, a hedge. AcidMind replaces that with specialists that answer the
@@ -21,7 +21,7 @@ Every review ends with one mechanical verdict line:
 
 > **Gate: SHIP | FIX FIRST | DO NOT SHIP**
 
-Skills load on demand. Reviewing code costs five files of context, not ten skills' worth on
+Skills load on demand. Reviewing code costs five files of context, not eight skills' worth on
 every session.
 
 ---
@@ -30,23 +30,21 @@ every session.
 
 | Skill | Persona | What it answers | Command |
 |---|---|---|---|
-| `ruthless-critic` | 🧪 The acid test | Where does this artifact break, specifically? | `/grill-me`, `/critique`, `/roast` |
+| `ruthless-critic` | 🧪 The acid test — three registers: **ROAST** (default), **AUTOPSY** (whole-repo raw-register autopsy), **HONEST** (plain human opinion) | Where does this artifact break, specifically? What would a smart friend actually say? | `/grill-me`, `/critique`, `/autopsy`, `/tellingtruth`, `/honest` |
 | `design-critic` | 🧠 The architect | Will this structure survive its next three requirement changes? | `/designcritic` |
 | `feature-critic` | 🔪 The dissection | Does this feature work for real users, in every state? | `/featurecritic` |
 | `badass-critic` | 💻 The performance engineer | At what load does this fall over, measured how? | `/badass`, `/perfcritic` |
-| `heart-attack-critic` | 😠 The incident commander | What could go fatally wrong before launch? | `/heartattack`, `/disaster` |
-| `blackhat-critic` | 🥷 The hired attacker | How would someone break into my app? | `/blackhat`, `/pentest` |
+| `security-critic` | 😠🥷 The incident commander + hired attacker, double-hatted. Protocol A: disaster simulation. Protocol B: red-team with optional Strix/Wallbreaker live bridges | What could go fatally wrong? How would someone break in? | `/heartattack`, `/disaster`, `/blackhat`, `/pentest` |
 | `autocritic-skill` | 🎭 The auditor | Will this SKILL.md trigger correctly and produce useful output? | `/auditskill` |
-| `tellingtruth-critic` | 💬 The honest friend | What would a smart friend actually say about this? | `/tellingtruth`, `/honest` |
 | `unified-critic` | 🧩 The panel moderator | What does every lens say at once, merged into one report? | `/acidmind`, `/fullcritic` |
-| `secondthought-critic` | 🤔 The pause before execution | **Autoloaded every session:** when you state an opinion or plan, it critiques it before the agent acts on it | automatic, `/secondthought`, `/wait` |
+| `secondthought-critic` | 🤔 The pause before execution | **Autoloaded every session:** when you state an opinion or plan, it critiques it before the agent acts on it | automatic, `/wait` |
 
 Three properties hold across the family:
 
 1. **Read-only by default.** Skills diagnose and prescribe fixes. None rewrites your code
    unless you explicitly ask for implementation.
 2. **Scoped, not overlapping.** Each skill states what it does not cover and names the sibling
-   that covers it. Installing all ten never produces ten opinions on the same paragraph.
+   that covers it. Installing all eight never produces eight opinions on the same paragraph.
 3. **Purpose-gated, not style-gated.** Technique is never banned. Technique without a stated
    purpose is a finding.
 
@@ -105,14 +103,14 @@ secondthought critic), and writes the pointer block into your entry file.
 | Edition | Installs | For |
 |---|---|---|
 | `core` (default) | ruthless, design, feature, badass, secondthought | Daily code review |
-| `security` | core + heart-attack, blackhat | Teams shipping to production |
-| `full` | all ten skills | Pre-launch audits, power users |
+| `security` | core + security-critic | Teams shipping to production |
+| `full` | all eight skills | Pre-launch audits, power users |
 
 ```bash
 npx github:ragajatsuma-cmd/acidmind init --edition security
 npx github:ragajatsuma-cmd/acidmind init --all            # shorthand for full
 npx github:ragajatsuma-cmd/acidmind list                  # skills and editions
-npx github:ragajatsuma-cmd/acidmind add blackhat-critic   # add one skill later
+npx github:ragajatsuma-cmd/acidmind add security-critic   # add one skill later
 ```
 
 Flags: `--dest .agent` installs into a subdirectory, `--force` overwrites existing files,
@@ -120,7 +118,7 @@ Flags: `--dest .agent` installs into a subdirectory, `--force` overwrites existi
 
 ### Option 2: Claude Code plugin
 
-Installs all ten skills plus prewired slash commands:
+Installs all eight skills plus prewired slash commands:
 
 ```bash
 /plugin marketplace add https://github.com/ragajatsuma-cmd/acidmind
@@ -180,16 +178,17 @@ Slash commands require agent support. Everywhere else, plain language routes thr
 
 | Command | Skill |
 |---|---|
-| `/grill-me` `/critique` `/roast` `/review` | ruthless-critic |
+| `/grill-me` `/critique` `/roast` `/review` | ruthless-critic (ROAST) |
+| `/autopsy` | ruthless-critic (AUTOPSY register) |
+| `/tellingtruth` `/honest` | ruthless-critic (HONEST register) |
 | `/designcritic` | design-critic |
 | `/featurecritic` | feature-critic |
 | `/badass` `/perfcritic` | badass-critic |
-| `/heartattack` `/disaster` | heart-attack-critic |
-| `/blackhat` `/pentest` `/redteam` | blackhat-critic |
+| `/heartattack` `/disaster` | security-critic (Protocol A) |
+| `/blackhat` `/pentest` `/redteam` | security-critic (Protocol B) |
 | `/auditskill` `/autocritic` | autocritic-skill |
-| `/tellingtruth` `/honest` | tellingtruth-critic |
 | `/acidmind` `/fullcritic` `/panel` | unified-critic |
-| *(automatic)* `/secondthought` `/wait` | secondthought-critic |
+| *(automatic)* `/wait` | secondthought-critic |
 
 **Command collisions:** if another installed skill or plugin already claims one of these
 commands (e.g. a `/grill-me` interview skill), do not run both on one command. In Claude Code
@@ -216,10 +215,11 @@ override exactly once, and never re-litigates a settled decision.
 - Architecture concern: `design-critic`.
 - Feature correctness and completeness: `feature-critic`.
 - Performance under load: `badass-critic`.
-- Worst-case scenarios before launch: `heart-attack-critic`.
-- Attack paths against your own application: `blackhat-critic`.
+- Worst-case scenarios before launch: `security-critic` Protocol A (`/disaster`).
+- Attack paths against your own application: `security-critic` Protocol B (`/pentest`).
 - Auditing a SKILL.md file: `autocritic-skill`.
-- An honest opinion without severity labels: `tellingtruth-critic`.
+- An honest opinion without severity labels: ruthless-critic HONEST register (`/honest`).
+- A whole-repo brutal autopsy in raw register: ruthless-critic AUTOPSY (`/autopsy`).
 - Everything checked at once before a launch or handoff: `unified-critic` via `/acidmind`.
 - Automatic critique of your own opinions and plans before the agent acts: already included
   via the autoloaded `secondthought-critic`.
@@ -246,14 +246,12 @@ acidmind/
 │   ├── package.json          npm package manifest
 │   └── index.mjs             zero-dependency installer CLI
 └── skills/                   one folder per skill, each with SKILL.md
-    ├── ruthless-critic       🧪
+    ├── ruthless-critic       🧪 (ROAST / AUTOPSY / HONEST registers)
     ├── design-critic         🧠
     ├── feature-critic        🔪
     ├── badass-critic         💻
-    ├── heart-attack-critic   😠
-    ├── blackhat-critic       🥷
+    ├── security-critic       😠🥷 (Protocol A disaster + Protocol B red-team)
     ├── autocritic-skill      🎭
-    ├── tellingtruth-critic   💬
     ├── unified-critic        🧩
     └── secondthought-critic  🤔 (autoloaded)
 ```
@@ -262,13 +260,16 @@ acidmind/
 
 ## Responsible Use
 
-`blackhat-critic` assumes the role of an attacker against targets you own or have written
-permission to test. It refuses anything else. It describes attack paths, preconditions, and
-defenses. It does not produce ready-to-run exploit payloads and does not execute anything
-against live systems itself; when explicitly requested and authorized, it may delegate
-dynamic scanning to the installed [Strix](https://github.com/usestrix/strix) agent, which runs
-in its own Docker sandbox under the same authorization rules. All ten skills are read-only
-diagnosticians unless you explicitly ask for implementation.
+`security-critic` Protocol B assumes the role of an attacker against targets you own or have
+written permission to test. It refuses anything else. It describes attack paths,
+preconditions, and defenses. It does not produce ready-to-run exploit payloads and does not
+execute anything against live systems itself; when explicitly requested and authorized, it
+may delegate dynamic scanning to the installed [Strix](https://github.com/usestrix/strix)
+agent, which runs in its own Docker sandbox under the same authorization rules — and LLM
+red-team testing to [Wallbreaker](https://github.com/JailbrokenAI/wallbreaker), under BH-15's
+own-models-only rule. Seven of the eight skills are pure read-only diagnosticians unless you
+explicitly ask for implementation; `security-critic` is the documented exception, static by
+default and live only through its authorized bridges.
 
 ---
 

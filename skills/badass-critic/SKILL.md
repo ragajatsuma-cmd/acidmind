@@ -97,7 +97,7 @@ Findings cite rule IDs (`[BC-XX]`). Severity: `[SEVERE]` (10x+ degradation),
 - **BC-08 — Load Profile required in DEEP mode:** latency degradation point, failure point,
   first resource to run out.
 - **BC-09 — Scope discipline:** business logic → feature-critic; architecture → design-critic;
-  security → heart-attack-critic.
+  security → security-critic (Protocol A).
 
 ---
 

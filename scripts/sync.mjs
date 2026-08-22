@@ -69,9 +69,15 @@ for (const skill of skills) {
 }
 
 // --- stale hardcoded counts in living docs ---
+// A spelled count is only drift when it does NOT match the real skill count.
+const NUM_WORDS = { 2: "two", 3: "three", 4: "four", 5: "five", 6: "six", 7: "seven",
+  8: "eight", 9: "nine", 10: "ten", 11: "eleven", 12: "twelve" };
+const wrongCounts = Object.entries(NUM_WORDS)
+  .filter(([n]) => Number(n) !== skills.length)
+  .map(([, w]) => w);
 for (const [file, content] of [["README.md", readme], ["AcidMind.md", router]]) {
-  for (const m of content.matchAll(/\b(seven|eight|nine) (specialist|critique|critics|skills|lenses)/gi)) {
-    fail(`${file} contains hardcoded count "${m[0]}" — use the real number or neutral wording`);
+  for (const m of content.matchAll(new RegExp(`\\b(${wrongCounts.join("|")}) (specialist|critique|critics|skills|lenses)`, "gi"))) {
+    fail(`${file} contains hardcoded count "${m[0]}" — use the real number (${skills.length}) or neutral wording`);
   }
 }
 

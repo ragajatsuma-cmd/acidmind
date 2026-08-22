@@ -56,14 +56,16 @@ Fixed order, one shared preamble:
 1. **design-critic** — structure and coupling.
 2. **feature-critic** — completeness, states, dead controls, fabricated content.
 3. **badass-critic** — performance, numbers mandatory.
-4. **heart-attack-critic** — ONLY when launch/security framing exists or the user asked for
-   worst cases. Its activation boundary is respected even inside the panel.
-5. **blackhat-critic** — ONLY when explicitly requested (`/pentest` framing) AND target
-   authorization is confirmed; its BH-00 boundary applies without exception.
+4. **security-critic Protocol A** — disaster simulation; ONLY when launch/security framing
+   exists or the user asked for worst cases. Its activation boundary is respected even inside
+   the panel.
+5. **security-critic Protocol B** — red-team attack paths; ONLY when explicitly requested
+   (`/pentest` framing) AND target authorization is confirmed; BH-00 applies without exception.
 6. **ruthless-critic** — general flaws + AI-slop scan (catch-all for what the above missed).
 7. **autocritic-skill** — ONLY if the artifact itself is a `SKILL.md`; then it replaces steps
    1–6 entirely (nothing else applies to skill files).
-8. **tellingtruth-critic** — not a data pass: its voice writes the closing honest paragraph.
+8. **HONEST register** (ruthless-critic) — not a data pass: its voice writes the closing
+   honest paragraph.
 
 ---
 
@@ -80,7 +82,7 @@ Findings cite rule IDs with lens prefix (`[RC-04]`, `[DC-03]`, `[FC-02]`, …).
   preamble; it inherits the shared one.
 - **UC-03 — Lens boundaries stay enforced inside the panel.** A design finding is not
   re-reported as performance; cross-references become one merged finding with both citations.
-- **UC-04 — heart-attack-critic joins only on explicit trigger.** Silent inclusion is a fail;
+- **UC-04 — security Protocol A joins only on explicit trigger.** Silent inclusion is a fail;
   note its absence in DEEP mode when skipped ("disaster lens not requested").
 - **UC-05 — Exactly one Gate line at the end**, computed by Part 3's mapping. No per-lens
   gates in the output.
@@ -136,7 +138,7 @@ Deduplicated fixes, ordered by ROI across the whole panel.
 The shared-origin decision behind multiple findings (per UC-10).
 
 ### 🗣️ The Honest Word
-Two-to-four sentences in tellingtruth voice: the thing a smart friend would actually say
+Two-to-four sentences in HONEST-register voice: the thing a smart friend would actually say
 after reading all of the above. No labels, no theater.
 
 ### 🚦 Gate (exactly one)
