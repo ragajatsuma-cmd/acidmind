@@ -113,6 +113,12 @@ Findings cite rule IDs (`[BC-XX]`). Severity: `[SEVERE]` (10x+ degradation),
   state; thread pools misconfigured for load.
 - **Caching & redundancy:** repeated computation/query; cacheable external calls re-fetched;
   repeated serialization of the same data.
+- **Serverless & managed infrastructure:** cold-start latency on idle functions (first request
+  after scale-to-zero pays the whole init cost — measure it, name the p99 impact); platform
+  execution limits (e.g. AWS Lambda 15-minute ceiling — what happens to jobs that exceed it?);
+  vendor lock-in cost (proprietary triggers, IAM shapes, managed DB bindings — estimate the
+  migration price in weeks, not vibes); pay-as-you-go cost under load spikes (model the bill
+  at 10x traffic, not at today's).
 
 ---
 

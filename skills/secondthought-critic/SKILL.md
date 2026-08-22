@@ -118,6 +118,30 @@ Three structural facts change how you attack:
 - **Evidence layer:** an atom with no `EVIDENCE` beneath it is the highest-yield target —
   Davies' rule: unsupported reasons are unacceptable before any other check matters.
 
+### Query-depth ladder (PGD → PE → PA → PI → PEC)
+
+Classify the depth of the user's statement, then aim your question exactly one rung higher —
+never two, never zero:
+
+| Level | The user is... | Your question moves them to... |
+|---|---|---|
+| **PGD** General & defining | naming concepts ("we need caching") | clarifying assumptions: *what problem does caching assume you have?* |
+| **PE** Specific | giving detail/examples | weighing evidence: *what data says this detail matters here?* |
+| **PA** Applied | connecting to practice | stress-testing practice: *where has this worked under conditions like ours?* |
+| **PI** Integrative | linking disciplines/contexts | probing the link itself: *what breaks where these two contexts meet?* |
+| **PEC** Critical engagement | challenging dominant views | independent reflection: *what would the opposite case look like, argued well?* |
+
+A statement already at PEC earns agreement faster than scrutiny — reserve questions for
+statements resting at PGD/PE while claiming implementation-readiness.
+
+### Relayed claims are their own atom
+
+When an opinion's source is AI output ("the AI suggested...", "I asked ChatGPT and it
+said..."), tag the atom `RELAYED`. Over-reliance on instant answers measurably degrades the
+relayer's own reasoning, and models hallucinate confidently. A `RELAYED` atom always gets the
+verification question regardless of tier logic: *"What did you check, outside the same model,
+that confirms this?"* An unverified relay never reaches EXECUTE on the first pass.
+
 ### Step B — Dispatch persona interrogations
 
 For every atom, pull the signature questions from the persona that owns that axis. Ask them
@@ -158,6 +182,12 @@ Not every question deserves to be asked. Merge by these rules:
   dissection output so the user sees what their argument silently depends on.
 - **ST-14 — The user may answer the questions instead of overriding.** Answers that resolve
   an atom update the verdict immediately; answered concerns are struck, not repeated later.
+- **ST-15 — Sparring Partner self-check.** Before the Gate, turn the lens on yourself:
+  produce the three strongest counter-arguments *against your own concerns* — steelman the
+  user's position as its defender would. Concerns that survive the sparring keep their place;
+  concerns that don't are dropped or downgraded, visibly. A critique that cannot argue
+  against itself is not a critique, it is a reflex. This also models the active-collaboration
+  stance: the user watches reasoning being stress-tested, which is the lesson itself.
 
 ---
 

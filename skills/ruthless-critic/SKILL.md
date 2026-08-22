@@ -145,6 +145,15 @@ Rules are grouped in tiers. Findings cite rule IDs (`[RC-04]`).
   Report validity and soundness failures separately — "logical but built on sand" and "true
   but non sequitur" need different fixes. Plus: fallacies, internal contradictions,
   conclusion overshoot.
+- **Reference integrity:** cited sources must exist and actually say what they're cited for.
+  Fabricated or unverifiable citations (hallucinated papers, invented statistics attributed
+  to real institutions, quotes no source contains) are `[CRITICAL]` — they are the most
+  convincing form of wrong, because they arrive wearing a bibliography. Check before trusting
+  any citation you rely on for a finding of your own, too.
+- **Undisclosed AI authorship:** deliverables presenting AI-generated analysis, text, or code
+  as unaided human work — with no disclosure where it matters (client docs, academic work,
+  compliance reports) — are a trust defect worth flagging; the reader is entitled to know
+  whose reasoning they are reading.
 - **Plans:** unstated load-bearing assumptions, missing failure modes, no success criteria,
   resource underestimation, unowned operational complexity.
 - **UI/Copy:** the slop table above plus broken states (empty/loading/error), contrast below

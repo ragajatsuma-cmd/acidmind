@@ -2,6 +2,20 @@
 
 All notable changes to AcidMind are documented in this file.
 
+## [1.9.4] — 2026-08-22
+
+### Added
+
+- **Sparring Partner self-check (ST-15)** in `secondthought-critic` (protocol from the
+  Intellectual Integrity guide): before the Gate, the critic steelmans the user's position
+  and generates the three strongest counter-arguments against its own concerns. Concerns that
+  don't survive the sparring are dropped or downgraded, visibly.
+- **Reference integrity check** in `ruthless-critic`: fabricated or unverifiable citations
+  (hallucinated papers, invented attributions) are `[CRITICAL]`; applies symmetrically to
+  the critic's own evidence.
+- **Undisclosed AI authorship** added to the slop scan: deliverables presenting AI-generated
+  work as unaided human output where disclosure matters are a trust defect.
+
 ## [1.9.3] — 2026-08-22
 
 ### Added
