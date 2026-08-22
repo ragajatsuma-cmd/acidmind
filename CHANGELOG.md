@@ -2,6 +2,15 @@
 
 All notable changes to AcidMind are documented in this file.
 
+## [2.3.0] — 2026-08-22
+
+### Added
+
+- **International documentation** — translated READMEs in Korean, Japanese, Simplified
+  Chinese, Portuguese (BR), and Spanish under `docs/i18n/`, with a centered language
+  navigator and for-the-badge shield row in the main README (style referenced from
+  MatrAIx-Persona-8B).
+
 ## [2.2.1] — 2026-08-22
 
 ### Changed

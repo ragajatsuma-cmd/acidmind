@@ -1,15 +1,25 @@
-[![Version](https://img.shields.io/badge/version-2.2.1-orange?style=flat-square)](./CHANGELOG.md)
-[![License](https://img.shields.io/badge/license-MIT-blue?style=flat-square)](./LICENSE)
-[![Skills](https://img.shields.io/badge/skills-8-8a2be2?style=flat-square)](#-the-skill-family)
-[![Node](https://img.shields.io/badge/node-%3E%3D18-brightgreen?style=flat-square&logo=nodedotjs&logoColor=white)](https://nodejs.org)
-[![Stars](https://img.shields.io/github/stars/ragajatsuma-cmd/acidmind?style=flat-square&color=yellow)](https://github.com/ragajatsuma-cmd/acidmind/stargazers)
-[![Last Commit](https://img.shields.io/github/last-commit/ragajatsuma-cmd/acidmind/main?style=flat-square&logo=git&logoColor=white)](https://github.com/ragajatsuma-cmd/acidmind/commits/main)
-
-# AcidMind
+<div align="center">
+  <h1>🧪 AcidMind</h1>
+  <p><strong>Eight critique skills for AI coding agents. One router. Zero generic reviews.</strong></p>
+  <p>
+    <strong>English</strong> |
+    <a href="docs/i18n/README.ko.md">한국어</a> |
+    <a href="docs/i18n/README.ja.md">日本語</a> |
+    <a href="docs/i18n/README.zh-CN.md">简体中文</a> |
+    <a href="docs/i18n/README.pt-BR.md">Português</a> |
+    <a href="docs/i18n/README.es.md">Español</a>
+  </p>
+  <p>
+    <a href="./CHANGELOG.md"><img alt="Version" src="https://img.shields.io/badge/version-2.3.0-orange?style=for-the-badge"></a>
+    <a href="./LICENSE"><img alt="License" src="https://img.shields.io/badge/license-MIT-blue?style=for-the-badge"></a>
+    <img alt="Skills" src="https://img.shields.io/badge/skills-8-8a2be2?style=for-the-badge">
+    <a href="https://nodejs.org"><img alt="Node" src="https://img.shields.io/badge/node-%3E%3D18-brightgreen?style=for-the-badge&logo=nodedotjs&logoColor=white"></a>
+    <a href="https://github.com/ragajatsuma-cmd/acidmind/stargazers"><img alt="Stars" src="https://img.shields.io/github/stars/ragajatsuma-cmd/acidmind?style=for-the-badge&color=yellow"></a>
+    <a href="https://github.com/ragajatsuma-cmd/acidmind/commits/main"><img alt="Last Commit" src="https://img.shields.io/github/last-commit/ragajatsuma-cmd/acidmind/main?style=for-the-badge&logo=git&logoColor=white"></a>
+  </p>
+</div>
 
 ![AcidMind banner](./assets/banner.jpeg)
-
-Eight critique skills for AI coding agents. One router. Zero generic reviews.
 
 When your agent reviews code without a lens, it produces the same soft paragraph every time:
 praise, three nitpicks, a hedge. AcidMind replaces that with specialists that answer the
@@ -23,6 +33,21 @@ Every review ends with one mechanical verdict line:
 
 Skills load on demand. Reviewing code costs five files of context, not eight skills' worth on
 every session.
+
+---
+
+## Table of Contents
+
+- [The Skill Family](#the-skill-family)
+- [How It Works](#how-it-works)
+- [Quick Start](#quick-start)
+- [Commands](#commands)
+- [Choosing a Lens](#choosing-a-lens)
+- [Repository Structure](#repository-structure)
+- [Responsible Use](#responsible-use)
+- [Compatibility](#compatibility)
+- [Contributing](#contributing)
+- [License](#license)
 
 ---
 
