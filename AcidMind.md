@@ -1,9 +1,9 @@
 # AcidMind
 
-> A family of ten critique skills for AI coding agents: eight specialist critics, one
-> autoloaded pre-execution critic, and one panel moderator. Each skill is a different lens
-> — design, features, performance, security, LLM red-teaming, meta-skill auditing, or plain
-> human honesty — read **on-demand**, not force-loaded into every session.
+> A family of critique skills for AI coding agents: specialist critics across architecture,
+> features, performance, disaster scenarios, offensive security, LLM red-teaming, skill
+> auditing, and plain honesty; an autoloaded pre-execution critic; and a unified panel.
+> Each skill is a different lens, read **on-demand**, not force-loaded into every session.
 
 `AcidMind.md` is the router. It doesn't contain the critique rules itself — it tells an agent
 *which* skill file to read once it recognizes the user wants a review, and *when not to bother*.

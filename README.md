@@ -1,4 +1,4 @@
-[![Version](https://img.shields.io/badge/version-1.9.0-orange?style=flat-square)](./CHANGELOG.md)
+[![Version](https://img.shields.io/badge/version-1.9.1-orange?style=flat-square)](./CHANGELOG.md)
 [![License](https://img.shields.io/badge/license-MIT-blue?style=flat-square)](./LICENSE)
 [![Skills](https://img.shields.io/badge/skills-10-8a2be2?style=flat-square)](#-the-skill-family)
 [![Node](https://img.shields.io/badge/node-%3E%3D18-brightgreen?style=flat-square&logo=nodedotjs&logoColor=white)](https://nodejs.org)
@@ -163,9 +163,13 @@ npx github:ragajatsuma-cmd/acidmind status   # installed vs latest
 npx github:ragajatsuma-cmd/acidmind update   # auto-install latest, no questions asked
 ```
 
-`update` force-refreshes the router and your edition's skills, and preserves your entry file
-(it only replaces the marker-wrapped pointer block). Your agent also helps: the pointer block
-asks it to check the version once per session and notify you when a newer release exists.
+`update` force-refreshes the router and your edition's skills, prunes skill folders that are
+no longer part of your edition, and preserves your entry file (it only replaces the
+marker-wrapped pointer block). Your agent also helps: the pointer block asks it to check the
+version once per session and notify you when a newer release exists.
+
+Tip: add `.acidmind.json` to your project's `.gitignore` — it is local install state, not
+project configuration.
 
 ---
 

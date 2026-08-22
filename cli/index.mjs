@@ -1,5 +1,5 @@
 #!/usr/bin/env node
-import { mkdir, readFile, writeFile, access } from "node:fs/promises";
+import { mkdir, readFile, writeFile, access, readdir, rm } from "node:fs/promises";
 import path from "node:path";
 
 const DEFAULT_REPO = "ragajatsuma-cmd/acidmind";
@@ -331,6 +331,26 @@ async function cmdStatus(opts) {
   }
 }
 
+async function pruneStale(dest, keepSkills) {
+  // Remove skill folders no longer part of the installed set (e.g. after edition change
+  // or skills deleted upstream), plus legacy files that are no longer distributed.
+  const skillsDir = path.join(dest, "skills");
+  if (!(await exists(skillsDir))) return;
+  for (const entry of await readdir(skillsDir, { withFileTypes: true })) {
+    if (!entry.isDirectory()) continue;
+    if (!keepSkills.has(entry.name)) {
+      await rm(path.join(skillsDir, entry.name), { recursive: true, force: true });
+      console.log(`  pruned:   skills/${entry.name} (not in current edition)`);
+      continue;
+    }
+    const legacyId = path.join(skillsDir, entry.name, "SKILL-ID.md");
+    if (await exists(legacyId)) {
+      await rm(legacyId);
+      console.log(`  pruned:   skills/${entry.name}/SKILL-ID.md (no longer distributed)`);
+    }
+  }
+}
+
 async function cmdUpdate(positional, opts) {
   const manifest = await readManifest(opts.dest);
   if (!manifest) {
@@ -356,6 +376,8 @@ async function cmdUpdate(positional, opts) {
   for (const skill of editionSkills(edition)) {
     await installSkill(skill, { ...opts, force: true });
   }
+  console.log("");
+  await pruneStale(opts.dest, new Set(editionSkills(edition)));
   if (opts.pointer) {
     console.log("");
     await addPointerBlock(opts);

@@ -2,6 +2,18 @@
 
 All notable changes to AcidMind are documented in this file.
 
+## [1.9.1] — 2026-08-22
+
+### Added
+
+- **`scripts/sync.mjs`** — single source of truth sync: version comes from the top CHANGELOG
+  header, skills count from the `skills/` folders. Syncs `VERSION` and README badges, and
+  fails loudly on drift (CLI map gaps, missing router rows, hardcoded counts in living docs).
+  Release flow is now: edit `CHANGELOG.md`, run `node scripts/sync.mjs`, commit.
+- **Pruning in `acidmind update`**: skill folders no longer part of your edition are removed,
+  and legacy files (`SKILL-ID.md`) still present from old installs get cleaned up.
+- `CONTRIBUTING.md` (the PRs-welcome badge no longer points at a dead file).
+
 ## [1.9.0] — 2026-08-22
 
 ### Added
