@@ -2,6 +2,21 @@
 
 All notable changes to AcidMind are documented in this file.
 
+## [2.1.0] — 2026-08-22
+
+### Added
+
+- **Visual forensics injected across three critics** (from the forensic design audit guide):
+  - `design-critic`: Advocatus Diaboli persona stance (integrity of code over visual taste);
+    new axes for split-hairs waste, the 8-second intent test, aesthetics-vs-accessibility
+    collisions, template cut corners, motion/CSS forensics (DOM thrash, selector collisions,
+    unexplainable properties), and frontend-backend desync.
+  - `badass-critic`: new rendering & motion cost axis — frame budgets, CPU spikes from heavy
+    transitions/parallax, memory leaks from micro-interaction overload, CSS payload bloat;
+    animation masking data latency is treated as a latency problem in costume.
+  - `feature-critic`: visual blockers that break the core task (low-contrast navigation,
+    overlays over inputs) are `[BLOCKER]`, not design taste; the 8-second intent test added.
+
 ## [2.0.0] — 2026-08-22
 
 ### Changed

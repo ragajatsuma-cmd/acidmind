@@ -1,4 +1,4 @@
-[![Version](https://img.shields.io/badge/version-2.0.0-orange?style=flat-square)](./CHANGELOG.md)
+[![Version](https://img.shields.io/badge/version-2.1.0-orange?style=flat-square)](./CHANGELOG.md)
 [![License](https://img.shields.io/badge/license-MIT-blue?style=flat-square)](./LICENSE)
 [![Skills](https://img.shields.io/badge/skills-8-8a2be2?style=flat-square)](#-the-skill-family)
 [![Node](https://img.shields.io/badge/node-%3E%3D18-brightgreen?style=flat-square&logo=nodedotjs&logoColor=white)](https://nodejs.org)

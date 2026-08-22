@@ -119,6 +119,10 @@ Findings cite rule IDs (`[BC-XX]`). Severity: `[SEVERE]` (10x+ degradation),
   vendor lock-in cost (proprietary triggers, IAM shapes, managed DB bindings — estimate the
   migration price in weeks, not vibes); pay-as-you-go cost under load spikes (model the bill
   at 10x traffic, not at today's).
+- **Rendering & motion cost:** high-fidelity transitions and parallax driving DOM thrash and
+  CPU spikes; micro-interaction overload causing selector collisions and memory leaks; CSS
+  payload bloat from generated spaghetti stylesheets. Motion used to mask data latency is a
+  latency problem wearing a costume — estimate the frame budget it consumes per scroll.
 
 ---
 

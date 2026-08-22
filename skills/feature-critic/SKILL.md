@@ -112,6 +112,11 @@ Findings cite rule IDs (`[FC-XX]`). Severity: `[BLOCKER] [SEVERE] [MODERATE] [MI
 - **Edge cases users will hit:** empty/null/max-boundary input; concurrent access; double
   submits; permission differences; stale data.
 - **Resilience across conditions:** every shipped theme, breakpoint, keyboard-only use.
+- **Visual blockers that break the task:** navigation unreadable due to low contrast; overlays
+  covering input fields; responsive elements desynced from data states — if users cannot
+  complete the core task because aesthetics won, that is a `[BLOCKER]`, not a design taste.
+- **The 8-second intent test:** if a first-time user cannot tell within eight seconds what
+  this feature does and how to start it, the interface failed even when the logic works.
 
 ---
 
