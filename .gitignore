@@ -4,3 +4,6 @@ node_modules/
 .idea/
 .vscode/
 *.tmp
+
+# local landing page (not published)
+landing/
